@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+<!--{eval global $starttime,$querynum;$mtime = explode(' ', microtime());$runtime=number_format($mtime[1] + $mtime[0] - $starttime,6); $setting=$this->setting;$user=$this->user;$headernavlist=$this->nav;$regular=$this->regular;$toolbars="'".str_replace(",", "','", $setting['editor_toolbars'])."'";}-->
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>公共-注册</title> 
+
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Set a shorter title for iOS6 devices when saved to home screen -->
+    <meta name="apple-mobile-web-app-title" content="tianya touch">
+
+  
+
+    <!-- Include the CSS -->
+	<link rel="stylesheet" href="http://static.tianyaui.com/global/m/touch/css/touch-global.css">
+    <link rel="stylesheet" href="http://passport.tianya.cn/css/main_m.css">
+    <script type="text/javascript" src="{SITE_URL}js/jquery.js"></script>
+            <script type="text/javascript" src="{SITE_URL}js/sowenda/common.js"></script>
+<script type="text/javascript">var g_site_url = "{SITE_URL}";
+            var g_site_name = "{$setting['site_name']}";
+            var g_prefix = "{$setting['seo_prefix']}";
+            var g_suffix = "{$setting['seo_suffix']}";
+            var g_uid = {$user['uid']};</script>
+
+
+</head>
+<body>
+
+<!-- header -->
+<header class="header-static clearfix">
+    <div class="left">
+        <ul class="list-nav">
+            <li><a href="javascript:history.go(-1);"><i class="icon-chevron-left"></i></a></li>
+        </ul>
+    </div>
+    <div class="center">
+        用户注册
+    </div>
+    <div class="right">
+        <ul class="list-set">
+            <li class="item item-user"><a href="{url user/login}">登录</a></li>
+        </ul>
+    </div>
+</header>
+<!-- .content -->
+<div class="wrap-container">
+    <div class="content" id="page_register">
+        <form name="loginform" class="reg-form" method="post" action="{url user/register}">
+        	<input type="hidden" name="fowardURL" value="http://wenda.tianya.cn/m/ask">
+        	<input type="hidden" name="sourceURL" value="">
+        	<input type="hidden" name="__sid" id="__sid" value="0#4#1.1#9756f8c0-8929-47cb-928d-10cb4cdf70a9">
+            <div class="form-item item-with-label">
+                <label for="user_name">用户名</label><input  type="text" name="username" id="username" maxlength="16" value="" onblur="check_username();"><input type="hidden" id="user_action" name="action" value="f0.1436516641788.0|7c03de4556377d7dcde7dbda638bdc7b|d41d8cd98f00b204e9800998ecf8427e|Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X; en-us) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53|v2.2">
+            </div>
+            <div class="form-item item-with-label">
+                <label for="password">密　码</label><input onblur="check_passwd();" type="password" name="password" id="password" value="">
+            </div>
+             <div class="form-item item-with-label">
+                <label for="repassword">密码确认</label><input onblur="check_repasswd();" type="password" name="repassword" id="repassword" value="">
+            </div>
+            
+            <div class="form-item item-with-label">
+                <label for="email">确认邮箱</label><input  onblur="check_email();" type="text" name="email" id="email" value="">
+            </div>
+            
+                    <!--{if $setting['code_register']}-->
+                    <div class="clr"></div>
+                   
+                   
+                    
+                     <div class="form-item item-with-label">
+                <label for="code">验证码</label><input  onblur="check_code();" type="text" name="code" id="code" value="">
+            </div>
+             <div class="code-bar" style="text-align:left;">
+                        <span class="verifycode"><img  src="{url user/code}" onclick="javascript:updatecode();" id="verifycode"></span><a class="changecode" href="javascript:updatecode();">&nbsp;看不清?</a>
+                    </div>
+                    <!--{/if}-->
+            
+            
+            
+            
+            <div class="form-control"><button onclick="docheck();" name="submit"  class="btn full" type="submit">注册</button></div>
+         
+        </form>
+    </div>
+<center><span style="font-size:12px;">WAP版权归属:<a href="{SITE_URL}">{$setting['site_name']}</a> <!--{if $setting['site_statcode']}-->
+            {$setting['site_statcode']}
+            <!--{/if}--></span></center>
+</div>
+<!-- Include the JS -->
+<script src="{SITE_URL}js/wap/touch-global.js"></script>
+<script src="{SITE_URL}js/wap/member_m.js"></script>
+
+
+</body></html>

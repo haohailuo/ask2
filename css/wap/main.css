@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+.supportit {
+background: url(images/wenda_m.png) no-repeat 0 -353px;
+background-size: 500px 500px;
+padding: 0 0 0 20px;
+margin: 0 20px 0 0;
+}
+/*分页模块*/
+.pages{ padding:10px 0px 10px 0px; font-family:Tahoma; font-weight:bold;}
+.pages a,.pages strong,.pages span{ display:inline-block; padding:0 9px; margin:0 2px; min-width:10px; _width:10px; white-space:nowrap; height:27px; line-height:27px; text-align:center; font-size:14px; font-weight:normal;}
+.pages a{ border:1px solid #d6d6d6; background:#fff;}
+.pages a:hover{ color:#333; background-color:#e3e3e3; text-decoration:none;}
+.pages strong{border:1px solid #d6d6d6; background-color:#F9F9F9; color:#333; font-weight:bold;}
+.pages span{color: #999999;font-size: 12px;}
+
+.searchBar #search-kw {
+padding: 0 5px 0 10px;
+width: 100%;
+box-sizing: border-box;
+margin: 6px 0;
+height: 30px;
+border: #288add 1px solid;
+border-radius: 2px;
+}

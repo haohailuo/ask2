@@ -1,0 +1,72 @@
+
+
+<!--{template header,sowenda}-->
+    <link href="{SITE_URL}css/sowenda/new.combo.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/user.combo.css" rel="stylesheet" />
+    <!-- 中间内容部分-->
+
+    <div id="bd">
+        <div class="grid main-cnt">
+             <!--{template space_menu}-->
+
+
+            <div class="article">
+                <div class="mod-qa-list">
+                    <div class="hd">
+                        <h3>TA的回答</h3>
+                        &nbsp;<span>({$answersize})</span>
+                    </div>
+                    <div class="bd" style="margin: 10px 0 15px;">
+                        <ul>
+                        
+                          <!--{loop $answerlist $answer}-->
+                                     
+                           
+                            
+                             <!--{if $answer['adopttime']>0}-->
+                             
+                              <li class="item" ask_id="1448195661726680" ans_id="1448195956726869">
+                                <a target="_blank" href="{url question/view/$answer['qid']/u-$member['uid']/a-$answer['id']}" class="lnk">
+                                    <div>
+                                        <i class="res" title="已解决问题"></i>
+                                        <span class="title" title="{$answer['title']}">{$answer['title']}</span>
+                                    </div>
+                                    <div class="content">{$answer['description']}</div>
+                                    <div class="info">{$answer['time']}</div>
+                                </a>
+                                <div class="right">
+                                    <div class="st-best">满意答案</div>
+                                </div>
+                            </li>
+                               <!--{else}-->
+                                <li class="item " ask_id="1447845639490724" ans_id="1447903878724132">
+                                <a target="_blank" href="{url question/view/$answer['qid']/u-$member['uid']/a-$answer['id']}" class="lnk">
+                                <div>
+                                <i class="uns" title="待解决问题"></i>
+                                <span class="title" title="{$answer['title']}">{$answer['title']}</span>
+                                </div>
+                                <div class="content">{$answer['description']}</div>
+                                <div class="info">{$answer['time']}</div></a>
+                                <div class="right"></div>
+                        </li>
+                                 <!--{/if}-->
+                           
+                           
+                            <!--{/loop}-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="pagination" id="list-page">
+                        <p class="pages">
+                           {$departstr}
+                        </p>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+<!--{template footer,sowenda}-->

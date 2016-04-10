@@ -1,0 +1,45 @@
+<!--{template header}-->
+<!--{eval $adlist = $this->fromcache("adlist");}-->
+<div class="wrapper clearfix">
+    <div class="content-left">
+      <p style="margin:4px auto;font-weight:bold;text-align:center;font-size: 24px;font-family: "微软雅黑";font-weight: normal;width: 750px;margin: 40px auto 0;white-space: nowrap;text-overflow: ellipsis;">
+      {$topicone['title']}
+      </p>
+      <div style="border:solid 2px #F8F8F8;padding: 5px 5px 25px 5px;position: relative;">
+      {$topicone['describtion']}
+      <div style="margin-top:10px auto 0px;">
+    <span style="display:inline-block;padding-bottom:10px;float:left;font-size:15px;color:silve;"> 
+      <!--{if isset($setting['question_share'])==null}-->
+      <div class="bshare-custom"><a title="分享到" href="http://www.bShare.cn/" id="bshare-shareto" class="bshare-more">分享到</a><a title="分享到QQ空间" class="bshare-qzone">QQ空间</a><a title="分享到新浪微博" class="bshare-sinaminiblog">新浪微博</a><a title="分享到人人网" class="bshare-renren">人人网</a><a title="分享到腾讯微博" class="bshare-qqmb">腾讯微博</a><a title="分享到网易微博" class="bshare-neteasemb">网易微博</a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+      <!--{/if}--> 
+    {$setting['question_share']}
+    </span>
+    <span style="display:inline-block;padding-bottom:10px;float:right;font-size:13px;color:silve;">浏览次数:{$topicone['views']}</span>
+      </div>
+    </div>
+    </div>
+    <div class="aside-right">
+        <div class="modbox mt10">
+            <div class="title">一周热点问题</div>
+            <ul class="right-list">
+                <!--{eval $attentionlist=$this->fromcache('attentionlist');}-->
+                <!--{loop $attentionlist $index $question}-->
+                <!--{eval $index++;}-->
+                <li>
+                    <!--{if $index<4}-->
+                    <em class="n1">{$index}</em>
+                    <!--{else}-->
+                    <em class="n2">{$index}</em>
+                    <!--{/if}-->
+                    <a  title="{$question['title']}" target="_blank" href="{url question/view/$question['id']}">{eval echo cutstr($question['title'],40,'');}</a>
+                </li>
+                <!--{/loop}-->
+            </ul>
+        </div>
+        <!--广告位2-->
+        <!--{if (isset($adlist['common']['right1']) && trim($adlist['common']['right1']))}-->
+        <div style="margin-top:5px;">{$adlist['common']['right1']}</div>
+        <!--{/if}-->
+    </div>
+</div>
+<!--{template footer}-->

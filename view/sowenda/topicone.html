@@ -1,0 +1,119 @@
+
+    
+<!--{template header,sowenda}-->
+<link href="{SITE_URL}css/sowenda/base.combo.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/index.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/index.combo.css" rel="stylesheet" />
+    <div id="bd" class="clearfix" style="width:1200px;">
+
+
+        <!--面包屑-->
+        <div class="mod-bread-crumb"><span>新知</span><span>&nbsp;&gt;&nbsp;</span><span>情感家庭</span></div>
+
+
+
+        <!--文章内容开始-->
+        <div class="article" style="width:892px;">
+            <!-- 文章标题 -->
+            <h1 class="art-title">{$topicone['title']}</h1>
+            <!-- 文章信息 -->
+            <div class="art-info">
+                <!-- 创建时间 -->
+                <span class="art-time">人气指数：{$topicone['views']}</span>  <span class="art-time" style="margin-left:20px;">{$topicone['viewtime']}</span>
+                <!-- 管理员编辑，删除入口 --><!-- 原创logo --><!-- 主体内容 -->
+                <div class="content">
+                    <div class="mod-essence-ans clearfix">
+                        <div class="main-content" style="z-index:0">
+                            <div class="sections-wrap">
+                        <!-- 前言 -->
+                        <div class="section brief">
+                            <div class="content text">
+                              
+                                 {$topicone['describtion']}
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <!-- 声明部分 -->
+            <div class="bshare-custom"> <p class="mod-tips"><span class="tag" style="display:inline-block">分享</span>
+                <span style="display:inline-block"> 
+
+     <a title="分享到" href="http://www.bShare.cn/" id="bshare-shareto" class="  bshare-more"></a>
+     <a title="分享到QQ空间" class="bshare-qzone">QQ空间</a>
+     <a title="分享到新浪微博" class="bshare-sinaminiblog">新浪微博</a>
+     <a title="分享到人人网" class="bshare-renren">人人网</a>
+     <a title="分享到腾讯微博" class="bshare-qqmb">腾讯微博</a>
+     <a title="分享到网易微博" class="bshare-neteasemb">网易微博</a>
+     <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis">
+     </a>
+     <span class="BSHARE_COUNT bshare-share-count">0</span>
+     
+
+     <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+ 
+   
+    </span>
+         
+        </div>
+    </div>
+
+
+
+</div>
+</div>
+
+        <!--文章内容结束-->
+        <div class="aside">
+            <!--作者信息开始-->
+            <div class="mod-author-info">
+                <p class="pic">
+                    <a target="_blank" href="{url user/space/$member['uid']}">
+                        <img src="{$member['avatar']}" alt="">
+                    </a>
+                </p>
+                <p class="name">
+                    <a target="_blank" href="{url user/space/$member['uid']}">{$member['username']}</a>
+                </p>
+                <img class="author-icon" src="http://p4.qhimg.com/t0168d4f53b1d77f678.png" alt="">
+                <table>
+                    <tbody>
+                    <tr><td class="border coin">金币</td><td class="score">经验</td></tr>
+                    <tr>
+                        <td class="border">
+                        <span class="orange" target="_blank" href="#">{$member['credit2']}</span></td><td><span class="orange" target="_blank" href="#">{$member['credit1']}</span>
+                    </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="other">
+                    <h3><a href="{url topic/userxinzhi/$member['uid']}">TA的新知</a></h3>
+                    <ul>
+                     <!--{loop $topiclist1 $index $topic}-->
+                       <li><a target="_blank" href="{url topic/getone/$topic['id']}" text="{$topic['title']}">{$topic['title']}</a></li>
+                       <!--{/loop}-->
+                      
+                    </ul>
+                    <p class="more"><a target="_blank" href="{url topic/userxinzhi/$member['uid']}" text="<网站详情页>-TA的新知-查看更多【点击】">查看更多</a></p>
+                </div>
+            </div>
+            <!--作者信息结束-->
+        </div>
+          <!--{if 0!=$user['uid']}-->
+      
+       <div class="mod-fixed" style=""><span>我也要来一篇！</span><a href="{url user/addxinzhi}" text="发表" class="btn btn-login js-signin">发表</a><a href="#" text="<网站详情页>-登陆浮层-关闭【点击】" class="close js-foot-close"></a></div>
+ 
+ <!--{else}-->
+   <!-- 如果没登录则显示 -->
+  <div class="mod-fixed" style=""><span>快来加入问答新知吧！</span><a href="#" onClick="showlogin()" text="<网站详情页>-登陆浮层-登陆【点击】" class="btn btn-login js-signin">登录</a><a href="{url user/register}" text="<网站详情页>-登陆浮层-注册【点击】" class="btn btn-reg js-reg">注册</a><a href="#" text="<网站详情页>-登陆浮层-关闭【点击】" class="close js-foot-close"></a></div>
+ 
+    <!--{/if}-->
+
+    </div>
+<script>
+$(".js-foot-close").click(function(){
+	$(".mod-fixed").hide();
+	return false;
+})
+</script>
+<!--{template footer,sowenda}-->

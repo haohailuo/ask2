@@ -1,0 +1,119 @@
+
+
+<!--{template header,sowenda}-->
+    <link href="{SITE_URL}css/sowenda/new.combo.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/user.combo.css" rel="stylesheet" />
+<!-- 中间内容部分-->
+
+    <div id="bd">
+        <div class="grid main-cnt">
+             <!--{template user_menu,sowenda}-->
+
+
+            <div class="article">
+                <div class="mod-status-info">
+                    <div class="hd"><h3>我的资料</h3><span class="info"></span>
+                    </div>
+                    <div class="bd">
+                        <div class="status-data clearfix">
+                            <ul>
+                                <li class="item"><em>{$user['answers']}</em><span>回答</span></li>
+                                <li class="item"><em>{$user['questions']}</em><span>提问</span></li>
+                                <li class="item">
+                                    <a target="_blank" href="/other/help#10_1">
+                                    <em>{$adoptpercent}%</em><span>采纳率</span>
+                                    <img src="http://p4.qhimg.com/t0102cbe77e8c3729fa.png" alt="查看采纳率的计算方式" style="vertical-align: -3px;margin-left: 5px;" title="查看采纳率的计算方式">
+                                </a>
+                                </li>
+                                <li class="item"><em>0</em><span>帮助人数</span></li><li class="item"><em>{$user['supports']}</em><span>赞</span></li>
+                                <li class="item"><em>{$user['followers']}</em><span>关注者</span></li>
+                                <li class="item"><em>{$user['attentions']}</em><span>已关注</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                   <div class="mod-status-info">
+                    <div class="hd"><h3>我的经验值</h3><span class="info"></span>
+                    </div>
+                    <div class="bd">
+                        <div class="status-data clearfix">
+                            <ul>
+                                <li class="item"><em>{$user['credit1']}</em><span>总分</span></li>
+                                <li class="item"><em>{$detail1['other']}</em><span>日常操作</span></li>
+                                  <li class="item"><em>{$detail1['reward']}</em><span>奖励得分</span></li>
+                                   <li class="item"><em>{$detail1['punish']}</em><span>违规处罚</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                 <div class="mod-status-info">
+                    <div class="hd"><h3>我的财富值</h3><span class="info"></span>
+                    </div>
+                    <div class="bd">
+                        <div class="status-data clearfix">
+                            <ul>
+                                <li class="item"><em>{$user['credit2']}</em><span>总分</span></li>
+                                <li class="item"><em>{$detail2['reward']}</em><span>奖励得分</span></li>
+                                  <li class="item"><em>{$detail2['punish']}</em><span>违规处罚</span></li>
+                                   <li class="item"><em>{$detail2['adopt']}</em><span>回答被采纳</span></li>
+                                    <li class="item"><em>{$detail2['offer']}</em><span>悬赏付出</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+               <div class="mod-qa-list">
+                        <div class="hd">
+                            <h3>TA的回答</h3>
+                            &nbsp;
+                          
+                            <a class="more" href="{url user/ask/1}">更多<span style="font-family:'\5b8b\4f53';">&gt;&gt;</span>
+                            </a>
+                        </div>
+                        <div class="bd" style="margin: 10px 0 15px;">
+                            <ul>
+                              <!--{loop $questionlist $question}-->
+                            
+                               <!--{if $question['status']==2}-->
+                               
+                              
+                                <li class="item" ask_id="1448195661726680" ans_id="1448195956726869">
+                                    <a target="_blank" href="{url question/view/$question['id']}" class="lnk">
+                                        <div>
+                                            <i class="res" title="已解决问题"></i>
+                                           <span class="title" title="{$question['title']}">{eval echo cutstr($question['title'],54)}</span>
+                                        </div>
+                                        <div>{$question['description']}</div>
+                                        <div class="info">{$question['format_time']}</div>
+                                    </a>
+                                    <div class="right"><div class="st-best">满意答案</div>
+                                    </div>
+                                </li>
+                                <!--{else}-->
+                              
+                                <li class="item" ask_id="1448063536493962" ans_id="1448063835494091">
+                                    <a target="_blank" href="{url question/view/$question['id']}" class="lnk">
+                                        <div>
+                                            <i class="uns" title="待解决问题"></i>
+                                            <span class="title" title="{$question['title']}">{eval echo cutstr($question['title'],54)}</span>
+                                        </div>
+                                        <div >{$question['description']}</div>
+                                        <div class="info">
+                                            <i class="approve"></i>
+                                            <em>{$question['answers']}/{$question['views']}</em> &nbsp;&nbsp;|&nbsp;&nbsp;{$question['format_time']}
+                                        </div>
+                                    </a>
+                                    <div class="right"></div>
+                                </li>
+                                <!--{/if}-->
+                               <!--{/loop}-->
+                            </ul>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+<!--{template footer,sowenda}-->

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+ <!--{eval global $starttime,$querynum;$mtime = explode(' ', microtime());$runtime=number_format($mtime[1] + $mtime[0] - $starttime,6); $setting=$this->setting;$user=$this->user;$headernavlist=$this->nav;$regular=$this->regular;$toolbars="'".str_replace(",", "','", $setting['editor_toolbars'])."'";}-->
+<head >  
+    <meta charset="UTF-8">
+   <!--{if isset($seo_title)}-->
+        <title>{$seo_title}</title>
+        <!--{else}-->
+        <title><!--{if $navtitle}-->{$navtitle}_<!--{/if}-->{$setting['site_name']}</title>
+        <!--{/if}-->
+        <!--{if isset($seo_description)}-->
+        <meta name="description" content="{eval echo cutstr($seo_description,160,'')}" />
+        <!--{else}-->
+        <meta name="description" content="{$setting['site_name']}" />
+        <!--{/if}-->
+        <meta name="keywords" content="{$seo_keywords}" />
+        <meta name="applicable-device" content="pc"/>
+<meta http-equiv='Cache-Control' content='no-transform'/>
+         <meta name="author" content="Ask2 Team" />
+        <meta name="copyright" content="2016 ask2.cn" />
+        
+            <link href="{SITE_URL}css/sowenda/indexs.combo.css" rel="stylesheet" />
+             <link href="{SITE_URL}css/sowenda/main.css" rel="stylesheet" />
+  
+    <link href="{SITE_URL}css/sowenda/detail.combo.css" rel="stylesheet" />
+      <link href="{SITE_URL}css/sowenda/new.combo.css" rel="stylesheet" />
+  
+     <link rel="stylesheet" type="text/css" href="{SITE_URL}js/jquery-ui/jquery-ui.css" />
+       <link href="{SITE_URL}css/sowenda/custom.css" rel="stylesheet" />
+      <script type="text/javascript" src="{SITE_URL}js/jquery.js"></script>
+       
+       <script type="text/javascript">var g_site_url = "{SITE_URL}";
+            var g_site_name = "{$setting['site_name']}";
+            var g_prefix = "{$setting['seo_prefix']}";
+            var g_suffix = "{$setting['seo_suffix']}";
+            var query = '?';
+            var g_uid = {$user['uid']};</script>
+
+</head>
+<body>
+<!-- 顶部外部链接  -->
+<div class="js-fixed">
+<div id="g-hd"><div id="g-hd-inner">
+    <div id="g-hd-nav">
+        <ul id="g-hd-tabs">
+              <!--{eval $headernavlist = $this->fromcache("headernavlist");}-->
+                        <!--{loop $headernavlist $nav}-->
+                        <!--{if $nav['type']==2 && $nav['available']}-->
+                        <li>                            
+                            <a  title="{$nav['title']}" href="{$nav['url']}"  {if $nav['target']}target="_blank"{/if}><span text="hd-home" >{$nav['name']}</span></a>
+                        </li>
+                        <!--{/if}-->
+                        <!--{/loop}-->
+        </ul>
+    </div>
+</div>
+</div>
+
+</div>
+
+<div id="js-hd-nav-place" style="height:36px;"></div>
+
+<!-- 头部搜索 -->
+<div class="activity" id="wenda-content-wrap">
+
+    <div class="mod-mini" id="mod-search">
+
+
+        <div class="search clearfix">
+            <div class="logo">
+                <a href="/" text="hd-logo" hidefocus="true">{$setting['site_name']}</a></div>
+            <form class="sh-form" name="searchform" action="{url question/search}" method="post"><div class="ipt-sh" id="js-sh-input">
+                <input maxlength="100" class="js-sh-ipt" type="text"  value="" autocomplete="off" tabindex="1" name="word" id="search-kw" value="{$word}" >
+                <div class="suggest-container js-suggest-area" style="display:none;">
+                    <div class="content"><ul class="js-suggest-list suggest-list"></ul></div></div></div>
+                <button hidefocus="" class="green-search-btn js-search-bt js-suggest-search-btn"  type="submit" id="search_btn" text="<网站>【顶部搜索答案】点击">搜索答案</button>
+                <button hidefocus=""  id="ask_btn" class="green-ask-btn js-ask-layer" text="<网站>【顶部我要提问】点击">我要提问</button>
+            </form>
+            <div id="hd-tools" class="mod-top-tools">
+                <div class="user" id="user_info" qid="" role="" username="" imageurl="" bubbled="" isdaren="" level="" ansnum="">
+                <!--{if 0!=$user['uid']}-->
+               
+                <div id="js-has-login">
+                    <div class="user-item" style="top:3px;right:20px;">
+                    <a href="{url user/default}" target="_blank">
+                    <img width="32" height="32" style="border-radius:50%;" src="{$user['avatar']}"></a>
+                    </div>
+                    <div class="user-item user-menu" style="z-index:10;">
+                    <span class="setting usersetting">
+                    <a id="topbar_username" href="{url user/default}" target="_blank">{$user['username']}</a>
+                    </span>
+                    <div class="tips-daily" style="display: none;">
+                    <div class="ui-sub-suc">
+                    <div class="ui-sub-suc-inner">每天登录问答 <span>+2</span> 经验值，<span>+2</span> 金币</div>
+                    </div>
+                    </div>
+                    <div class="panel-setting" style="display:none;">
+                    <div class="g-point g-point-top" style="position: absolute;left: 27px;top: -13px;">
+                    <ins class="bg">
+                    </ins><ins class="border" style="border-color:transparent transparent #b9b9b9;"></ins>
+                    </div>
+                    <div class="hd">
+                    </div>
+                    <div class="bd">
+                    <ul>
+                     <!--{if $user['groupid']<=3}-->
+                      <li><a class="js-user-ask-link" target="_blank" href="{SITE_URL}index.php?admin_main" text="topbar-myAsk">系统设置</a></li>
+
+                                    <!--{/if}--> 
+                                     <li><a  class="js-user-ask-link" target="_blank" href="{url message/personal}" text="topbar-myAsk">私人消息<span class="msg-num"  id="mymessage_personal"></span></a></li>
+                                       <li><a  class="js-user-ask-link" target="_blank" href="{url message/system}" >系统消息<span class="msg-num"  id="mymessage_system"></span></a></li>
+                    <li><a class="js-user-ask-link" target="_blank" href="{url user/ask/2}" text="topbar-myAsk">我的提问</a></li>
+                    <li><a class="js-user-answer-link" target="_blank" href="{url user/answer/1}" text="topbar-myAnswer">我的回答</a></li>
+                    <li><a style="color:#999;" href="{url user/logout}" class="js-user-logout" text="topbar-logout">退出</a></li>
+                    </ul>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="user-item" style="z-index:9;">
+                    <span class="hd-tools-sep">&nbsp;</span>
+                    <a href="{url message/personal}" target="_blank">
+                    <span class="mail-img"></span>
+                    <span class="msg-count" style="line-height: 13px;font-family: tohoma;">1</span>
+                    </a>
+                    <div class="msg-tip" style="display:none;">
+               
+                    
+                    </div>
+                    </div>
+                    <div class="clear:both;">
+                    </div></div>
+                <!--{else}-->
+                  <div id="js-not-login" >
+                    <!-- logo回首页模块 --><div class="user-item"><a href="#" onClick="showlogin()" class="user-login" text="<网站>【顶部导航登录按钮】点击">登录</a></div>
+                    <div class="user-item"><span class="hd-tools-sep">|</span><a href="{url user/register}" text="<网站>【顶部导航注册按钮】点击" class="user-reg">注册</a></div>
+                    <div class="clear"></div></div>
+                   <!--{/if}-->
+              
+                   
+                    </div>
+                    </div>
+    </div></div>
+
+
+
+    <!-- 导航条 -->
+    <div id="doc4" class="doc-mini">
+
+        <div id="hd">
+            <div class="main-nav clearfix">
+                <ul class="list">
+                
+                   <!--{loop $headernavlist $index $headernav}-->
+                     <!--{if $headernav['type']==1 && $headernav['available']}-->
+                     <!--{if strpos($headernav['format_url'],'c-all')>0}-->
+                      <li id="navStore"><a class="store" href="{url category/view/all}" text="hd-store"><span class="s$index">{$headernav['name']}<i></i></span></a></li>
+                    
+                     <!--{else}-->
+                   <li >  <a class="home" title="{$headernav['title']}" href="{$headernav['format_url']}" text="hd-home"><span class="s$index">{$headernav['name']}</span></a></li>
+                      <!--{/if}-->
+                     
+                      <!--{/if}-->
+                  
+                    <!--{/loop}-->
+                    
+                   
+                 
+
+
+                </ul>
+                </div></div>
+

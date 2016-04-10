@@ -1,0 +1,58 @@
+<!--{template header,wap}-->
+ <figure class="info cf">
+        <div class="head-pic"> <img src="{$user['avatar']}" alt=""> </div>
+        <h2>{$user['username']}<a class="sex sexed"></a> <a class="diamond_level "></a></h2>
+        <p class="gray">
+            {if $user['signature']}{$user['signature']}{else}暂无介绍{/if}
+        </p>
+        <button  type="button" class=" ui-btn focus-btn lightdeepgreen-linear button_attention" id="attenttouser_{$member['uid']}" onclick="loginout();" >
+		退出登录
+		</button>
+         
+
+            
+    </figure>
+    <div id="questions_tab_person">
+        <div class="tab-btn tab-btn-4">
+            <ul class="box_title cf">
+                <li class="active"><span class="fs14 "><a href="{url user/space_ask/$user['uid']}">$questiontotal<br>
+                    提问</a></span></li>
+                <li class=""><span class="fs14"><a href="{url user/space_answer/$user['uid']}">$answersize<br>
+                    回答</a></span></li>
+               <li class=""><span class="fs14"><a href="{url topic/userxinzhi/$user['uid']}">$rownum<br>
+                    精华知识</a></span></li>
+                    <li class=""><span class="fs14"><a href="{url favorite/default}">$total<br>
+                    收藏</a></span></li>
+            </ul>
+        </div>
+        <div class="tab-con cf">
+            <div class="questions-con move">
+                <article>
+                	
+                    <ul class="questions-lists">
+                        <!--{loop $questionlist $question}-->
+                            <li class="table">
+                                <div class="ques-details">
+                                    <h3 class="inline"><a href="{url question/view/$question['id']}">{eval echo cutstr($question['title'],60)}<span class="gray"> | {$question['answers']}回答</span></a></h3>
+                                    
+                                </div>
+                            </li>
+                          <!--{/loop}-->
+                    </ul>
+                    
+                    
+                </article>
+                
+                
+            </div>
+            <div class="pages">{$departstr}</div>
+        </div>
+    </div>
+    <script>
+    function loginout() {
+    	
+     window.location.href="{url user/logout}";
+    }
+    
+    </script>
+    <!--{template footer,wap}-->

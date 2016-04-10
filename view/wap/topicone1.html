@@ -1,0 +1,63 @@
+<!--{template header,wap}-->
+
+         <style>
+#content img{
+	width:100%;
+}
+</style>
+          <center><h1>{$topicone['title']}</h1></center>
+          <div id="content" style="padding:1px;border:solid 1px silver;" >
+          {$topicone['describtion']}
+      
+   
+     
+    <ul class="functions_elite mt25">
+                <li> 
+                	
+                          
+						<a class="" ><i class="ico"></i><span>阅读:{$topicone['views']}</span><b></b></a>
+                </li>
+                <li><a href="javascript:void(0)" class="question_share"><i class="ico"></i><span>分享</span><b></b></a></li>
+                
+            </ul>
+   
+    
+          </div>
+          
+            <div class="modbox mt10">
+            <div class="title">一周热点问题</div>
+            <ul class="right-list">
+                <!--{eval $attentionlist=$this->fromcache('attentionlist');}-->
+                <!--{loop $attentionlist $index $question}-->
+                <!--{eval $index++;}-->
+                <li>
+                    <!--{if $index<4}-->
+                    <em class="n1">{$index}</em>
+                    <!--{else}-->
+                    <em class="n2">{$index}</em>
+                    <!--{/if}-->
+                    <a  title="{$question['title']}" target="_blank" href="{url question/view/$question['id']}">{eval echo cutstr($question['title'],40,'');}</a>
+                </li>
+                <!--{/loop}-->
+            </ul>
+        </div>
+<!-- footer -->
+<!-- footer -->
+<center><span style="font-size:12px;">WAP版权归属:<a href="{SITE_URL}">{$setting['site_name']}</a> </span></center>
+<!--end footer -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?b2c5156cca3672915f8b8f0a6419c1bd";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+</body></html>

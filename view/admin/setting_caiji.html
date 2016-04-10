@@ -1,0 +1,642 @@
+﻿<!--{template header,admin}-->
+<style>
+
+.functionclass{
+	width:100%;
+	list-style:none;
+padding:0px;
+}
+.functionclass>li{
+	padding:0px;
+    margin-top:3px;
+    cursor:pointer;
+}
+</style>
+  <script src='{SITE_URL}js/common.js' language='javascript'></script>
+<div style="width:100%; height:15px;color:#000;margin:0px 0px 10px;">
+    <div style="float:left;"><a href="index.php?admin_main/stat{$setting['seo_suffix']}" target="main"><b>控制面板首页</b></a>&nbsp;&raquo;&nbsp;数据采集设置</div>
+</div>
+
+<form >
+<table>
+<tr>
+<td valign="top">
+<span style="color:red">常见问答列表(点击列表项采集)</span>
+<ul class="functionclass">
+
+</ul>
+
+
+
+</td>
+<td>
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+        <tr class="header">
+            <td colspan="2">采集设置<span id="tipsurl"></span>&nbsp;&nbsp;<span style="color:red">ask2问答官网采集教程(<a target="_blank" href="http://www.ask2.cn/article-39.html">http://www.ask2.cn</a></span>)&nbsp;&nbsp;-><span style="color:red">大家一定要用火狐浏览器采集才有采集进度提示</span></td>
+        </tr>
+         <tr>
+            <td class="altbg1" width="45%"><b>网页编码:</b><br>一般不需要变，如果出现乱码就切换编码格式</td>
+            <td class="altbg2">
+              <select name="bianma" id="bianma">
+               <option value ="utf-8" {if $bianma==utf-8} selected  {/if}>utf-8</option>
+  <option value ="gb2312" {if $bianma==gb2312} selected  {/if}>gb2312</option>
+ 
+  
+</select>
+            </td>
+        </tr>
+         <tr>
+            <td class="altbg1" width="45%"><b>采集分类:</b></td>
+            <td class="altbg2">
+               <div id="dialogcate1">
+      
+                    <select  id="category1"  size="8" name="category1" ></select>
+                                                  
+                    <select  id="category2"   size="8" name="category2" style="display:none"></select>                                        
+                
+                    <select id="category3"  size="8"  name="category3" style="display:none"></select>
+               
+
+      
+    </div>
+            
+            </td>
+        </tr>
+        <tr>
+            <td class="altbg1" width="45%"><b>输入采集网址:</b>
+            
+            <br>如采集的分页是：http://wenda.so.com/c/35?pn=2，后边分页的2则你将“2”页码换成{#num},最后显示
+            http://wenda.so.com/c/35?pn={#num}</td>
+            <td class="altbg2">
+               <input type="text"  id="caiji_url" value="{$caiji_url}" name="caiji_url" style="width:300px" />
+            </td>
+        </tr>
+        <tr>
+            <td class="altbg1" width="45%"><b>输入采集网址分页开始和结束数值:</b></td>
+            <td class="altbg2">
+           <p><span>开始页码:</span>  <input type="text"  id="caiji_beginnum" value="{$caiji_beginnum}" name="caiji_beginnum" style="width:50px" />
+           <span>结束页码</span><input type="text"  id="caiji_endnum" value="{$caiji_endnum}" name="caiji_endnum" style="width:50px" />
+           </p>
+            </td>
+        </tr>
+       <tr>
+            <td class="altbg1" width="45%"><b>采集列表前面规则:</b><br>可输入html元素的类名或则ID，类名前加"."，ID前面加"#"</td>
+            <td class="altbg2">
+               <input type="text" value="{$caiji_prefix}"  id="caiji_prefix" name="caiji_prefix" style="width:300px"  />
+           <br>   <input type="checkbox"  {if $ckbox!=null} checked  {/if} id="ckbox" name="ckbox" >  <label>a标签title中获取标题(如果标题带有省略号请勾选)</label>
+            </td>
+        </tr>
+         <tr style="display:none;">
+            <td class="altbg1" width="45%"><b>用户名:</b><br>如果用户名不填则录入数据默认为管理员</td>
+            <td class="altbg2">
+               <select id="s_username" name="s_username">
+
+ 
+   <!--{loop $userlist $activeuser}-->
+		
+		              
+  <option value ="{$activeuser['uid']}" {if $s_username==$activeuser['uid']} selected  {/if}> {$activeuser['username']}</option>
+		  <!--{/loop}-->
+</select>
+            </td>
+         </tr>
+           <tr>
+            <td class="altbg1" width="45%"><b>答案采集:</b><br>此项不是必填留空则不采集,可输入html元素的类名或则ID，类名前加"."，分类前面加"#"</td>
+            <td class="altbg2">
+               <input type="text"  id="caiji_daan" value="{$caiji_daan}" name="caiji_daan" style="width:300px" />
+            </td>
+        </tr>
+         <tr>
+            <td class="altbg1" width="45%"><b>问题描述:</b><br>填写描述html标签的类名或者ID即可，记得类名加".",ID加"#"</td>
+            <td class="altbg2">
+               <input type="text"  id="caiji_desc" value="{$caiji_desc}" name="caiji_desc" style="width:300px" />
+            </td>
+        </tr>
+         <tr>
+            <td class="altbg1" width="45%"><b>最佳答案规则:</b><br>填写描述html标签的类名或者ID即可，记得类名加".",ID加"#"</td>
+            <td class="altbg2">
+               <input type="text"  id="caiji_best" value="{$caiji_best}" name="caiji_best" style="width:300px" />
+            </td>
+        </tr>
+         <tr>
+            <td class="altbg1" width="45%"><b>回答用户名采集规则:</b><br>填写描述用户名所在html标签的类名或者ID即可，记得类名加".",ID加"#"</td>
+            <td class="altbg2">
+               <input type="text"  id="caiji_hdusername" value="{$caiji_hdusername}" name="caiji_hdusername" style="width:300px" />
+            </td>
+        </tr>
+         <tr>
+            <td class="altbg1" width="45%"><b>回答用户头像采集规则:</b><br>填写用户头像html标签的类名或者ID即可，记得类名加".",ID加"#"</td>
+            <td class="altbg2">
+               <input type="text"  id="caiji_hdusertx" value="{$caiji_hdusertx}" name="caiji_hdusertx" style="width:300px" />
+            </td>
+        </tr>
+        <tr>
+            <td class="altbg1" width="45%"><b>答案采集网站域名:</b><br>如果问题网址不是绝对路径请填写</td>
+            <td class="altbg2">
+               <input type="text"  id="caiji_yuming" value="{$caiji_yuming}" name="caiji_yuming" style="width:300px" />
+            </td>
+        </tr>
+           <tr>
+            <td class="altbg1" width="45%"><b>是否过滤回答内容中的a标签:</b><br>如果你不想在采集的回答中包含a标签就勾选</td>
+            <td class="altbg2">
+            
+            <input type="checkbox"  id="ckabox" name="ckabox" >  <label>过滤回答中的a标签请勾选</label>
+            </td>
+        </tr>
+    </table>
+</td>
+
+
+</tr>
+
+
+</table>
+ 
+    <input type="hidden" name="cid" id="cid"/>
+                    <input type="hidden" name="cid1" id="cid1" value="0"/>
+                    <input type="hidden" name="cid2" id="cid2" value="0"/>
+                    <input type="hidden" name="cid3" id="cid3" value="0"/>
+     <center><input type="button" id="subme" class="button" name="submit" value="提 交"></center><br>
+     <center><div id="msgtip" style="color:red"></div></center>
+     <center><div id="msgpagetip" style="color:red"></div></center>
+</form>
+<!--{if isset($message)}-->
+<!--{eval $type=isset($type)?$type:'correctmsg'; }-->
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr>
+        <td class="{$type}">{$message}</td>
+    </tr>
+</table>
+<!--{/if}-->
+<div style="width:100%; height:15px;color:#000;margin:0px 0px 10px;">
+    <div style="float:left;"><a href="#" target="main"><b id="numtip">采集结果({$count1})条</b></a></div>
+  <input type="button" id="geiindata" class="button" name="geiindata" onclick="ckdata();" value="入库" style="float:right">
+</div>
+  <table width="100%" border="0" cellpadding="4" cellspacing="1" id="ajaxtb"  class="tableborder">
+        <tr class="header">
+          <td width="6%"><input class="checkbox" value="chkall" id="chkall" onclick="checkall('tid[]')" type="checkbox" name="chkall"><label for="chkall">全选</label></td>
+            <td  width="15%">采集标题</td>
+            <td  width="15%">采集url</td>
+            
+        </tr>
+
+       
+ 
+ <!--{loop $caijilist $caijidata}-->
+   <tr id="ck{$caijidata['num']}">
+     <td class="altbg2"><input class="ckboxme" type="checkbox" value='{$caijidata['title']}' name="tid[]"></td>
+  <td class="altbg2">{$caijidata['title']}</td>
+            <td class="altbg2" id="url{$caijidata['num']}">{$caijidata['href']}</td>
+   </tr>
+  <!--{/loop}-->
+ 
+    </table>
+    <script>
+    var category1 = {$categoryjs[category1]};
+    var category2 = {$categoryjs[category2]};
+    var category3 = {$categoryjs[category3]};
+   
+      //  $(document).ready(function() {
+        	
+        	initcategory(category1);
+       
+  //  });
+
+    function selectcate() {
+        var selectedcatestr = '';
+        var category1 = $("#category1 option:selected").val();
+        var category2 = $("#category2 option:selected").val();
+        var category3 = $("#category3 option:selected").val();
+        if (category1 > 0) {
+            selectedcatestr = $("#category1 option:selected").html();
+            $("#cid").val(category1);
+            $("#cid1").val(category1);
+        }
+        if (category2 > 0) {
+            selectedcatestr += " > " + $("#category2 option:selected").html();
+            $("#cid").val(category2);
+            $("#cid2").val(category2);
+        }
+        if (category3 > 0) {
+            selectedcatestr += " > " + $("#category3 option:selected").html();
+            $("#cid").val(category3);
+            $("#cid3").val(category3);
+        }
+        
+        $("#catedialog").dialog("close");
+    }
+    </script>
+    <script type = "text/javascript">
+var httpRequest = false;
+var hidtr;
+function createRequest( url, title,cid3,cid2,cid1,cid,uid,username,daanurl,guize,bianma,mi )
+{
+ httpRequest = false;
+ hidtr=document.getElementById("ck"+mi);
+ 
+ if( window.XMLHttpRequest )
+ {
+  httpRequest = new XMLHttpRequest();
+  if( httpRequest.overrideMimeType )
+  {
+   httpRequest.overrideMimeType( "text/xml" );
+  }
+ }
+ else if( window.ActiveXObject )
+ {
+  try
+  {
+   httpRequest = new ActiveXObject( "Msxml2.XMLHTTP" );
+  }
+  catch( e )
+  {
+   try
+   {
+    httpRequest = new ActiveXObject( "Microsoft.XMLHTTP" );
+   }
+   catch( e )
+   {
+   }
+  }
+ }
+
+ if( !httpRequest )
+ {
+  alert( 'Can\'t create XMLHTTP instance' );
+  return false;
+ }
+
+ httpRequest.onreadystatechange = alertContents;    // 立即执行数据回收
+ httpRequest.open( "POST", url, true );
+ // POST 方法必须有的函数1 => 传输数据需要用setRequestHeader() 来添加 HTTP 头
+ httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+// post 方法必须有的函数2 => 传值的方法 .send( 'name=value' );
+
+var postvalue="title="+encodeURIComponent(title);//+"&cid3="+cid3+"&cid2="+cid2+"&cid1="+cid1+"&cid="+cid+"&uid="+uid+"&username="+encodeURIComponent(username)+"&daanurl="+encodeURIComponent(daanurl)+"&guize="+encodeURIComponent(guize)+"&bianma="+encodeURIComponent(bianma);
+//alert(postvalue);
+ httpRequest.send(postvalue );  
+}
+
+function alertContents()
+{
+ if( httpRequest.readyState == 4 )
+ {
+  if( httpRequest.status == 200 )
+  {
+
+   alert( httpRequest.responseText);
+  }
+  else
+  {
+   alert( '页面错误' );
+  }
+ }
+}
+function ckdata(){
+	//checkall('tid[]');
+	check('tid[]');
+}
+</script>
+    <script type="text/javascript">
+<!--
+function ajaxFunction( url,mi)
+{
+	var trme=document.getElementById("ck"+mi);
+	 var xmlHttp;
+
+	    try
+	    {
+	  // Firefox, Opera 8.0+, Safari
+	  xmlHttp = new XMLHttpRequest();    // 实例化对象
+	    }
+	    catch( e )
+	    {
+	     // Internet Explorer
+	     try
+	     {
+	      xmlHttp = new ActiveXObject( "Msxml2.XMLHTTP" );
+	     }
+	     catch ( e )
+	     {
+	      try
+	      {
+	       xmlHttp = new ActiveXObject( "Microsoft.XMLHTTP" );
+	      }
+	      catch( e )
+	      {
+	       alert("您的浏览器不支持AJAX！");
+	       return false;
+	      }
+	     }
+	    }
+
+	    xmlHttp.onreadystatechange = function()
+	    {
+	     if( xmlHttp.readyState == 4  && xmlHttp.status == 200 )
+	     {
+	    alert("dddd");
+	    	//trme.style.display="none";
+	    // alert( xmlHttp.responseText);
+	   // $("#ck"+i).hide();
+	     }
+	    }
+	    xmlHttp.open( "GET", url, true );
+	    xmlHttp.send( null );
+
+}
+
+function check(obj)      
+{      
+	
+     var ic=0;
+for(i=0;i<document.all(obj).length;i++)      
+{      
+if(document.all(obj)[i].checked){
+	
+	ic++;
+	var title=document.all(obj)[i].value;
+	//alert(title);
+	//alert(title);
+	//return;
+	//alert($('#s_fenlei option:selected') .val());//选中的值
+	//var obj1 = document.getElementByIdx("s_fenlei"); //定位id
+	 var value =$('#category1 option:selected') .val();// obj.options[index].value;
+	 var value1 =$('#category1 option:selected') .val();
+	 var value2 =$('#category2 option:selected') .val();
+	 var value3 =$('#category3 option:selected') .val();
+	 if (value1 > 0) {
+		 value=value1;
+     }
+     if (value2 > 0) {
+    	 value=value2;
+     }
+     if (value3 > 0) {
+    	 value=3;
+     }
+    
+	// var ckbool=document.getElementById('ckbox').checked;
+	// alert(ckbox);
+	//alert(value1);
+	//alert(value2);
+//	alert(value3);
+	// var obj1 = document.getElementByIdx("s_username"); //定位id
+	 var uvalue =$('#s_username option:selected').val();// obj1.options[index].value;
+	 var ckabox=document.getElementById("ckabox");
+	// alert('uvalue'+uvalue);
+	 var utext =$('#s_username option:selected').text();
+	// alert('utext'+utext);
+	 var bianma =$('#bianma option:selected') .val();
+	// alert('bianma'+bianma);
+	 var guize=$("#caiji_daan").val();
+	// alert('guize'+guize);
+	 var daanyuming=$("#caiji_yuming").val();
+	// alert('daanyuming'+daanyuming);
+	 var daandesc=$("#caiji_desc").val();
+	// alert('daandesc'+daandesc);
+	 var daanbest=$("#caiji_best").val();
+	// alert('daanbest'+daanbest);
+	 var caiji_hdusername=$("#caiji_hdusername").val();
+	 //alert('caiji_hdusername'+caiji_hdusername);
+	 var caiji_hdusertx=$("#caiji_hdusertx").val();
+	// alert('caiji_hdusertx'+caiji_hdusertx);
+	 var caiji_beginnum=$("#caiji_beginnum").val();
+	// alert('caiji_beginnum'+caiji_beginnum);
+	 var caiji_endnum=$("#caiji_endnum").val();
+	 //alert('caiji_endnum'+caiji_endnum);
+	 
+	 var dananurl=$("#url"+i).html();
+	
+	 if(dananurl.indexOf("http:")<0)
+
+	 {
+		 dananurl=daanyuming+dananurl;
+	//	 
+	 }
+	// alert('dananurl'+dananurl);
+	// alert(encodeURIComponent(dananurl));
+	// alert(guize);
+	// alert(dananurl);
+// alert(g_site_url + "index.php?admin_setting/ajaxcaiji{$setting['seo_suffix']}" '?title='+title+"&cid="+value+"&uid="+uvalue );
+ //alert(g_site_url+"index.php?admin_setting/ajaxcaiji{$setting['seo_suffix']}" +'?title='+title+"&cid="+value+"&uid="+uvalue);
+	//ajaxFunction(g_site_url + "index.php?admin_setting/ajaxcaiji{$setting['seo_suffix']}" '?title='+title+"&cid="+value+"&uid="+uvalue ); 
+  var myurl=g_site_url+"index.php?admin_setting/ajaxcaiji{$setting['seo_suffix']}";
+ // var trme;
+  //var urlajax=g_site_url+"index.php?admin_setting/ajaxcaiji{$setting['seo_suffix']}" +'&title='+title+"&cid3="+value3+"&cid2="+value2+"&cid1="+value1+"&cid="+value+"&uid="+uvalue+"&username="+utext+"&site="+encodeURI(daanyuming)+"&daanurl="+encodeURI(dananurl)+"&guize="+encodeURI(guize)+"&bianma="+bianma;
+//alert(myurl);
+//var dataval=
+//alert('caiji_hdusertx'+caiji_hdusertx+'caiji_hdusername'+caiji_hdusername+'title'+title+'cid3'+value3+'cid2'+value2+'cid1'+value1+'cid'+value+'uid'+uvalue+'username'+utext+'daanurl'+dananurl+'guize'+guize+'bianma'+bianma+'daandesc'+daandesc+'daanbest'+daanbest+'caiji_beginnum'+caiji_beginnum+'caiji_endnum'+caiji_endnum);
+//$.post(myurl,{'caiji_hdusertx':caiji_hdusertx,'caiji_hdusername':caiji_hdusername,'title':title,'cid3':value3,'cid2':value2,'cid1':value1,'cid':value,'uid':uvalue,'username':utext,'daanurl':dananurl,'guize':guize,'bianma':bianma,'daandesc':daandesc,'daanbest':daanbest,'caiji_beginnum':caiji_beginnum,'caiji_endnum':caiji_endnum},function(data){
+	//$("ck"+i).hide();
+	// trme=document.getElementById("ck"+i);
+	// trme.style.display="none";
+	// alert($("#ck"+i).html());
+	//alert('success');
+	//alert(data);
+	//$("#msgtip").html("已采集入库"+ic+"条"+"<br>");
+//});
+$.ajax({
+  type: "post",
+  url: myurl,
+  async:false, 
+  dataType:"text",
+   data:{'caiji_hdusertx':caiji_hdusertx,'caiji_hdusername':caiji_hdusername,'title':title,'cid3':value3,'cid2':value2,'cid1':value1,'cid':value,'uid':uvalue,'username':utext,'daanurl':dananurl,'guize':guize,'bianma':bianma,'daandesc':daandesc,'daanbest':daanbest,'caiji_beginnum':caiji_beginnum,'caiji_endnum':caiji_endnum,'daanyuming':daanyuming,'ckabox':ckabox.checked},
+  
+   success: function (data) {
+//alert(data);
+	   $("#msgtip").html("已采集入库"+ic+"条"+"<br>");
+    },
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+         //  alert(errorThrown);
+   }
+  });
+
+//createRequest(myurl,title,value3,value2,value1,value,uvalue,utext,dananurl,guize,bianma,i);
+//ajaxFunction(urlajax,i);
+
+}   
+}      
+}       
+
+
+$("#subme").click(function(){
+	
+	if($("#caiji_url").val()=="")
+		{
+		alert("网址不能为空!");
+		return false;
+		}
+	if($("#caiji_url").val()=="")
+	{
+	alert("规则不能为空!");
+	return false;
+	}
+	 var bianma =$('#bianma option:selected') .val();
+	 var caiji_beginnum=$("#caiji_beginnum").val();
+	 var caiji_endnum=$("#caiji_endnum").val();
+	 if(!(/^(\+|-)?\d+$/.test( caiji_beginnum )) || caiji_beginnum < 0){
+
+
+		 alert("页码起始号只能是数字!");
+			return false;
+
+
+		}
+	 if(!(/^(\+|-)?\d+$/.test( caiji_endnum )) || caiji_endnum < 0){
+
+
+		 alert("页码结束号只能是数字!");
+			return false;
+
+
+		}
+	//alert(caiji_beginnum);
+	//alert(caiji_endnum);
+	 if(parseInt(caiji_beginnum)>parseInt(caiji_endnum)){
+		 alert("页码起始号不能大于页码结束号!");
+			return false;
+	 }
+	 var caiji_url=$("#caiji_url").val();
+	 var caiji_prefix=$("#caiji_prefix").val();
+	 var tepurl;
+	 var ckbox=document.getElementById("ckbox");
+	// alert(ckbox.checked);
+	var autoint=0;
+	 for(i=caiji_beginnum;i<=caiji_endnum;i++){
+		 tepurl=caiji_url;
+		 tepurl=tepurl.replace("{#num}",i);
+		 var myurl=g_site_url+"index.php?admin_setting/ajaxpostpage{$setting['seo_suffix']}";
+		// var dataval="{'caiji_url':tepurl,'bianma':bianma,'ckbox':ckbox.checked,'caiji_prefix':caiji_prefix}";
+		$(".ajaxtr").remove();
+		$.ajax({
+            type: "post",
+             url: myurl,
+             data:{'caiji_url':tepurl,'bianma':bianma,'ckbox':ckbox.checked,'caiji_prefix':caiji_prefix},
+             dataType: "text",
+             success: function (data) {
+            	     
+                      if(data.replace(/\s/g, "")=='-1'){
+                    	  
+                    	  alert("请先添加ask2问答系统为友情链接");
+                    	  return ;
+                      }
+            		var dataObj =eval("("+data+")");
+            		
+        			$.each(dataObj,function(idx,item){  
+        				   //输出 
+        				 
+        				
+        				   
+        				   var tb_tr="<tr class='ajaxtr' id='ck"+autoint+"'>"+'<td class="altbg2"><input class="ckboxme" checked="checked" type="checkbox" value="'+item.title+'"name="tid[]"></td>';
+        				   var tb_tr=tb_tr+'<td class="altbg2">'+item.title+"</td>";
+        				   var tb_tr=tb_tr+'<td class="altbg2" id="url'+autoint+'">'+item.href+'</td></tr>';
+        				   $("#ajaxtb").append(tb_tr);
+        				   var num=autoint+1;
+        				 //  alert("当前页采集了 "+num+"条");
+        				   $("#numtip").html("当前页采集了 "+num+"条");
+        				   $("#msgtip").html("<br>");
+        				 
+        				   autoint++;
+        				});
+
+        			
+             },
+             error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert(errorThrown);
+           }
+     });
+		
+		 	
+		
+	 }
+	return false;
+});
+
+//-->
+</script>
+<script>
+var fileurl=g_site_url+"index.php?admin_setting/getfolders{$setting['seo_suffix']}";
+$.ajax({
+    url: fileurl,
+    dataType: 'text',
+    success: function(data2) {
+    	
+       var temps=data2.split(',');
+       if(temps.length>0){
+    	   $(".functionclass").html("");
+    	 
+    	   for(var tp=0;tp<temps.length;tp++){
+    		   if(temps[tp]!=''){
+    			   var val_file=temps[tp].replace(/(^\s*)|(\s*$)/g,'');
+    			 
+    			  var  lifile="<li class='urlcollect' >val</li>";
+    			  
+    			  //lifile=lifile.replace("fileid",val_file);
+    			  lifile=lifile.replace("val",val_file);
+    			
+    			   $(".functionclass").prepend(lifile);
+    			  
+    		   }
+    	   }
+    	  
+    	   $(".urlcollect").click(function() {
+    			var namestr=$(this).html();
+    			var filename=$(this).html()+".txt";
+    			
+    		    $.ajax({
+    		        url: "caiji/"+filename,
+    		        dataType: 'text',
+    		        success: function(data1) {
+    		        
+    		        	$("#category1 option[value='1']").attr("selected", "selected"); 
+    		        	
+    		            var datalist=data1.split('|');
+    		            $("#tipsurl").html("<b>"+datalist[8]+"</b>");
+    		          
+    		            $("#caiji_url").val(datalist[0]);
+    		            $("#caiji_beginnum").val("1");
+    		            $("#caiji_endnum").val("1");
+    		           // switch(namestr){
+    		            //case "360ask":
+    		            	//$("#ckbox").attr("checked","checked");
+    		            //	break;
+    		            //}
+    		            //if(namestr=="360ask"||namestr=="gaotie"){
+    		            //	document.getElementById("ckbox").checked=true;
+    		            	//$("#ckbox").attr("checked",true);
+    		           // }else{
+    		            	//$("#ckbox").attr("checked",false);
+    		            	//document.getElementById("ckbox").checked=false;
+    		           // }
+    		           // alert(datalist[9]);
+    		            if(datalist[9]==1){
+    		            	document.getElementById("ckbox").checked=true;
+    		            }else{
+    		            	document.getElementById("ckbox").checked=false;
+    		            }
+    		            $("#caiji_prefix").val(datalist[1]);
+    		            $("#caiji_daan").val(datalist[2]);
+    		            
+    		            $("#caiji_desc").val(datalist[3]);
+    		            
+    		            $("#caiji_best").val(datalist[4]);
+    		            
+    		            $("#caiji_hdusername").val(datalist[5]);
+    		            
+    		            $("#caiji_hdusertx").val(datalist[6]);
+    		          
+    		            	  $("#caiji_yuming").val(datalist[7]);
+    		            
+    		          
+    		           
+    		        }
+    		    });
+    		});
+
+       }
+      
+       
+    }
+});
+</script>
+<!--{template footer,admin}-->

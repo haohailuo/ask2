@@ -1,0 +1,90 @@
+<!--{template header,wap}-->
+ <figure class="info cf"> 
+        <div class="head-pic"> <img src="{$member['avatar']}" alt=""> </div>
+        <h2>{$member['username']}<a class="sex sexed"></a> <a class="diamond_level "></a></h2>
+        <p class="gray">
+            {if $member['signature']}{$member['signature']}{else}暂无介绍{/if}
+        </p>
+        
+          <!--{if $member['uid']!=$user['uid']}-->
+                <!--{if $is_followed}-->
+                  <input type="button" class=" ui-btn focus-btn lightdeepgreen-linear button_followed" value="取消关注" id="attenttouser_{$member['uid']}" onclick="attentto_user({$member['uid']})">
+                <!--{else}-->
+                <input type="button" class=" ui-btn focus-btn lightdeepgreen-linear button_attention" value="添加关注" id="attenttouser_{$member['uid']}" onclick="attentto_user({$member['uid']})">
+                <!--{/if}-->
+              
+        <!--{/if}-->
+
+             <!--{if $member['uid']==$user['uid']}-->
+                <input type="button" class=" ui-btn focus-btn lightdeepgreen-linear button_attention" value="退出登录" id="attenttouser_{$member['uid']}" onclick="loginout();">
+               <!--{/if}-->
+    </figure>
+    <div id="questions_tab_person">
+        <div class="tab-btn tab-btn-4">
+            <ul class="box_title cf">
+                <li class="active"><span class="fs14 "><a href="{url user/space_ask/$member['uid']}">$questiontotal<br>
+                    动态</a></span></li>
+                <li class=""><span class="fs14"><a href="{url user/space_answer/$member['uid']}">$answersize<br>
+                    回答</a></span></li>
+               <!--{if $member['uid']==$user['uid']}-->
+                 <li class=""><span class="fs14"><a href="{url topic/userxinzhi/$member['uid']}">$rownum<br>
+                    精华知识</a></span></li>
+                    <li class=""><span class="fs14"><a href="{url favorite/default}">$total<br>
+                    收藏</a></span></li>
+                <!--{/if}-->
+            </ul>
+        </div>
+        <div class="tab-con cf">
+            <div class="questions-con move">
+                <article>
+                	
+                    <ul class="questions-lists">
+                        <!--{loop $doinglist $question}-->
+                            <li class="table">
+                                <div class="ques-details">
+                                    <h3 class="inline"><a href="{url question/view/$question['id']}">{eval echo cutstr($question['title'],60)}<span class="gray"> | {$question['answers']}回答</span></a></h3>
+                                    
+                                </div>
+                            </li>
+                          <!--{/loop}-->
+                    </ul>
+                    
+                    
+                </article>
+                
+                
+            </div>
+            <div class="pages">{$departstr}</div>
+        </div>
+    </div>
+    <script>
+    function attentto_user(uid) {
+    	
+        if (g_uid == 0) {
+        	 showErrMsg("请先登录!");
+        	 window.location.href="{url user/login}";
+        }
+        $.post(g_site_url + "index.php?user/attentto", {uid: uid}, function(msg) {
+            if (msg == 'ok') {
+                if ($("#attenttouser_"+uid).hasClass("button_attention")) {
+                    $("#attenttouser_"+uid).removeClass("button_attention");
+                    $("#attenttouser_"+uid).addClass("button_followed");
+                    $("#attenttouser_"+uid).val("取消关注");
+                } else {
+                    $("#attenttouser_"+uid).removeClass("button_followed");
+                    $("#attenttouser_"+uid).addClass("button_attention");
+                    $("#attenttouser_"+uid).val("添加关注");
+                }
+            }
+        });
+    }
+    
+    </script>
+     <script>
+    function loginout() {
+    	
+     window.location.href="{url user/logout}";
+    }
+    
+    </script>
+    <!--{template footer,wap}-->

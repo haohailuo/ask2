@@ -1,0 +1,161 @@
+   <!-- 左边导航-->
+
+        <div class="js-panels">
+
+            <div class="mod-lift g-mod-fixed">
+                <a href="javascript:scroll(0,0)" class="ui-back-top" id="back_top" style="visibility: visible;"><span>返回顶部</span></a>
+
+            </div>
+
+ 
+  
+
+            </div>
+
+        <div id="ft">
+       <!--{if $linklist}-->
+       <div class="ft_link">
+        <h3 class="title">友情链接</h3>
+         <!--{loop $linklist $link}-->
+            <a target="_blank" href="{$link['url']}" title="{$link['description']}">
+                <!--{if $link['logo']}-->
+                <img src="{$link['logo']}" alt="{$link['name']}" />
+                <!--{else}-->
+                {$link['name']}
+                <!--{/if}-->
+            </a>
+            <!--{/loop}-->
+       </div>
+
+<!--{/if}-->
+            <p class="copyright">Copyright    <a target="_blank" href="http://www.ask2.cn">{$setting['site_name']}</a> 服务&nbsp;&nbsp;&nbsp;
+            <a target="_blank" href="{url tags}">网站标签</a>   &nbsp;&nbsp;      <a target="_blank" href="{url new}">最新问题</a>   &nbsp;&nbsp;  <a target="_blank" href="http://www.miibeian.gov.cn/">{$setting['site_icp']}</a>
+            </p>
+        </div>
+    </div>
+
+
+
+<div id="bread-crumbs" class="panel-q-store" style="display: none;">
+<div class="list">
+<ul class="clearfix">
+
+  <!--{eval $categorylist=$this->fromcache('categorylist');}-->
+                <!--{loop $categorylist  $category1}-->
+            <li>    <a href="{url category/view/$category1['id']}">{$category1['name']}</a></li>
+                
+                    <!--{/loop}--> 
+                
+
+
+</ul>
+</div>
+
+</div>
+
+
+
+
+<div style="z-index: 1028; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; overflow: hidden; -webkit-user-select: none; opacity: 0.4;  display: none;  background: rgb(0, 0, 0);" tabindex="0"></div>
+
+
+<link href="{SITE_URL}css/sowenda/reg_login.css" rel="stylesheet" />
+<div id="zhediv" class="quc-mask quc-mask-panel" style="display: none;">
+
+</div>
+
+
+
+<div id="login_div" class="quc-panel quc-wrapper" style=" display: none;top: 40%; left: 33%; position: fixed;">
+<div class="quc-panel-hd">
+<div class="quc-panel-title">
+<span>欢迎登录{$setting['site_name']}</span>
+</div>
+<a href="#" class="quc-panel-close"><i>关闭</i></a>
+</div>
+<div class="quc-panel-bd">
+<div class="quc-mod-sign-in quc-mod-normal-sign-in">
+<div class="quc-tip-wrapper"><p class="quc-tip quc-tip-error"></p></div>
+<div class=" quc-main-login">
+<form class="quc-form" name="loginform"  action="{url user/login}" method="post"    {if $setting['ucenter_open']==0}onsubmit="return checkform();"{/if}>
+ <input type="hidden" name="forward" value="{$forward}"/>
+<p class="quc-field quc-field-account quc-input-long">
+<label class="quc-label" for="quc_account_183811257">帐&nbsp;&nbsp;&nbsp;号</label>
+<span class="quc-input-bg ">
+<input class="quc-input quc-input-account" type="text" id="popusername" name="username" placeholder="手机号/用户名/邮箱" autocomplete="off" ></span>
+</p>
+<p class="quc-field quc-field-password quc-input-long">
+<label class="quc-label" for="quc_password_183811258">密&nbsp;&nbsp;&nbsp;码</label>
+<span class="quc-input-bg ">
+<input class="quc-input quc-input-password" type="password" id="poppassword" name="password" maxlength="20" placeholder="请输入您的密码" ></span>
+</p>
+  <!--{if $setting['code_login']}-->
+<p class="quc-field quc-field-captcha quc-input-short" >
+<label class="quc-label" for="quc_phrase_183811259">验证码</label>
+<span class="quc-input-bg">
+<input class="quc-input quc-input-captcha" type="text" id="code" name="code" onblur="check_code();" maxlength="7" autocomplete="off" placeholder="请输入验证码" ></span><span id="codetip"></span>
+<img class="quc-captcha-img quc-captcha-change" src="{url user/code}" alt="验证码"  onclick="javascript:updatecode();" id="verifycode" title="点击更换" tabindex="99"> 
+<a class="quc-link quc-captcha-change-link quc-captcha-change" href="javascript:updatecode();">换一张</a>
+</p>
+  <!--{else}-->
+   <input type="hidden"  id="ischeck" name="ischeck" value="0"/>
+       <!--{/if}-->
+<p class="quc-field quc-field-keep-alive">
+<label><input class="quc-checkbox quc-checkbox-keep-alive" type="checkbox"  id="cookietime" name="cookietime" value="2592000"  checked="checked">下次自动登录</label>
+</p><p class="quc-field quc-field-submit"><input type="button" value="登录" name="submit" onclick="checkform()" class="quc-submit quc-button quc-button-sign-in"> </p>
+<p class="quc-field quc-field-third-part">
+
+
+  <!--{if $setting['sinalogin_open']}-->
+  <span>其他帐号登录：</span>
+<span class="quc-third-part">
+  
+            <a title="新浪微博登陆" href="{SITE_URL}plugin/sinalogin/index.php" title="新浪微博登陆" class="quc-third-part-icon quc-third-part-icon-sina"></a>
+            </span>
+            <!--{/if}-->
+            <!--{if $setting['qqlogin_open']}-->
+              <span>其他帐号登录：</span>
+<span class="quc-third-part">
+            <a  class="quc-third-part-icon quc-third-part-icon-fetion" title="QQ账号登陆" href="{SITE_URL}plugin/qqlogin/index.php"></a>
+                </span>
+            <!--{/if}-->
+
+</p>
+</form>
+</div>
+<div class="quc-footer">
+
+<a class="quc-link quc-link-grey quc-link-sign-up" href="{url user/register}">注册新帐号</a>
+<a class="quc-link quc-link-about quc-link-about-normal" href="{url user/getpass}" target="_blank">忘记密码？</a>
+  
+
+</div>
+</div>
+</div>
+
+</div>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?b2c5156cca3672915f8b8f0a6419c1bd";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript" src="{SITE_URL}js/jquery-ui/jquery-ui.js"></script>
+     <script type="text/javascript" src="{SITE_URL}js/sowenda/common.js"></script>
+     
+     <div class="usercard" id="usercard"><div class="usercard_in clearfix"><div class="loading"><img src='{SITE_URL}css/default/loading.gif' align='absmiddle' />&nbsp;加载中...</div></div></div>
+</body>
+</html>
+

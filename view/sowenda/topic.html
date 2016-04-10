@@ -1,0 +1,179 @@
+
+
+<!--{template header,sowenda}-->
+
+   <link href="{SITE_URL}css/sowenda/base.combo.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/index.css" rel="stylesheet" />
+    <div id="bd" class="clearfix">
+
+
+        <!--焦点图开始-->
+        <div class="mod-slide clearfix">
+            <div class="slide j-switchable">
+                <div class="box">
+                    <div class="items" style="position: absolute;  width: 2860px; transition: none 500ms ease; -webkit-transition: none 500ms ease;">
+                          <!--{eval $topiclist=$this->fromcache('topiclist');}-->
+            <!--{if $topiclist}-->
+              <!--{loop $topiclist $index $topic}-->
+                <!--{if $index<=3}-->
+               <div class="item" id="item{$index}" >
+                            <a target="_blank" href="{url topic/getone/$topic['id']}" class="pic">
+                        <img src="{SITE_URL}{$topic['image']}" alt="">
+                            </a>
+                            <div class="detail">
+                                <h3>
+                                    <a href="{url topic/getone/$topic['id']}" target="_blank">{eval echo cutstr($topic['title'],14,'');}</a>
+                                </h3>
+                                <p>
+                                    <a href="{url topic/getone/$topic['id']}" target="_blank">{eval echo cutstr(strip_tags($topic['describtion']),120,'');}</a>
+                                </p>
+                            </div>
+                        </div>
+                           <!--{/if}-->
+               <!--{/loop}-->
+              <!--{/if}-->
+                       
+                       
+                       
+                       
+                       
+                    
+                    </div>
+                </div>
+                <p class="trigger">
+                 <!--{if $topiclist}-->
+              <!--{loop $topiclist $index $topic}-->
+               <!--{if $index<=3}-->
+               <a href="#{$index}"  class="indextopic top{$index}">{$index}</a>
+                 <!--{/if}-->
+              <!--{/loop}-->
+              <!--{/if}-->
+                   
+                </p>
+            </div>
+            <div class="login-panel">
+                <h3>新知</h3>
+             
+              
+                <!--{if 0!=$user['uid']}-->
+                   <h4>您身边的知识伴侣~</h4>
+                   <p class="layout">
+                    <a href="{url user/addxinzhi}" class="btn btn-login js-signin">发表新知</a>
+                  
+                </p>
+                  <!--{else}-->
+                     <h4>暂时不能为您提供服务了。感谢您对新知的支持~</h4>
+                    <p class="layout">
+                    <a href="{url user/login}" class="btn btn-login js-signin">登录</a>
+                    <a href="{url user/register}" class="btn btn-reg js-reg">注册</a>
+                </p>
+                   <!--{/if}-->
+              
+            </div></div>
+
+        <!--焦点图结束-->
+
+        <!--热门新知开始-->
+        <div class="mod-hot"><h3>热门新知</h3>
+        <div class="items clearfix">
+        <ul class="item">
+          <!--{loop $topiclist1 $index $topic}-->
+          <!--{if 0==$index}-->
+           <li class="first">
+        <a target="_blank" class="pic" href="{url topic/getone/$topic['id']}">
+        <img src="{SITE_URL}{$topic['image']}" alt="">
+        </a>
+        <a target="_blank" href="{url topic/getone/$topic['id']}" class="desc">{$topic['title']}</a>
+        </li>
+        
+         <!--{else}-->
+          <li><a target="_blank" href="{url topic/getone/$topic['id']}">{$topic['title']}</a></li>
+         
+           <!--{/if}-->
+           
+            <!--{/loop}-->
+       
+       
+        </ul>
+        <ul class="item">
+         <!--{loop $topiclist2 $index $topic}-->
+          <!--{if 0==$index}-->
+           <li class="first">
+        <a target="_blank" class="pic" href="{url topic/getone/$topic['id']}">
+        <img src="{SITE_URL}{$topic['image']}" alt="">
+        </a>
+        <a target="_blank" href="{url topic/getone/$topic['id']}" class="desc">{$topic['title']}</a>
+        </li>
+        
+         <!--{else}-->
+          <li><a target="_blank" href="{url topic/getone/$topic['id']}">{$topic['title']}</a></li>
+         
+           <!--{/if}-->
+           
+            <!--{/loop}-->
+        </ul>
+        <ul class="item item-last">
+        <!--{loop $topiclist3 $index $topic}-->
+          <!--{if 0==$index}-->
+           <li class="first">
+        <a target="_blank" class="pic" href="{url topic/getone/$topic['id']}">
+        <img src="{SITE_URL}{$topic['image']}" alt="">
+        </a>
+        <a target="_blank" href="{url topic/getone/$topic['id']}" class="desc">{$topic['title']}</a>
+        </li>
+        
+         <!--{else}-->
+          <li><a target="_blank" href="{url topic/getone/$topic['id']}">{$topic['title']}</a></li>
+         
+           <!--{/if}-->
+           
+            <!--{/loop}-->
+        </ul>
+        </div>
+        </div>
+        <!--热门新知结束-->
+        <!--更多内容开始-->
+       
+        <!--更多内容结束-->
+
+    </div>
+
+<script>
+i=0;
+$(".indextopic").click(function(){
+	$(".slide .items .item").hide();
+	i=$(this).html();
+	$("#item"+i).show();
+	$(".indextopic").removeClass("active");
+	$(".top"+i).addClass("active");
+});
+
+var count=$(".slide .items .item").length;
+
+
+var imagescroll=setInterval(function(){
+	$(".indextopic").removeClass("active");
+	$(".slide .items .item").hide();
+	$("#item"+i).show();
+	$(".top"+i).addClass("active");
+	i++;
+	console.log(i);
+	if(i>=count)i=0;
+},5000);
+$(".top0").addClass("active");
+$(".slide .items,.slide .items .item,.indextopic,.trigger").hover(function(){
+	clearInterval(imagescroll);
+	 
+},function(){
+	
+	 
+});
+$(".indextopic,.trigger").hover(function(){
+	clearInterval(imagescroll);
+	 
+},function(){
+	
+	
+});
+</script>
+<!--{template footer,sowenda}-->

@@ -1,0 +1,176 @@
+<!--{template header,sowenda}-->
+   <link href="{SITE_URL}css/sowenda/listindex.combo.css" rel="stylesheet" />
+   <link href="{SITE_URL}css/sowenda/list.combo.css" rel="stylesheet" />
+
+<!-- 中间内容部分-->
+
+    <div id="bd" class="grid-3 clearfix">
+
+        <div class="mod-bread-crumb" id="hd-crumb">
+            <ul class="clearfix">
+            
+             <!--{if $cid!='all'}-->
+               <li><a href="{url category/view/all}">全部问题</a></li><li><span class="line"></span></li>
+                <li >
+                   
+ <!--{loop $navlist $nav}-->
+    &gt; <a href="{url category/view/$nav['id']}" data-type="list">{$nav['name']}</a> 
+    <!--{/loop}-->
+    <!--{if $cid!='all'}-->&gt;  <a href="{url category/view/$cid}" data-cid="1" data-type="list"> {$category['name']}</a><!--{/if}-->
+                </li>
+                <!--{else}-->
+              <li><a href="{url category/view/all}">全部问题</a></li>
+                <!--{/if}-->
+                
+            </ul>
+        </div>
+
+
+        <!-- 左边导航-->
+        <div class="article">
+            <!-- 分类-->
+            <div class="mod-category" id="mod-category">
+                <div class="hd"><h3>{$category['name']}</h3></div>
+                <div class="bd">
+                    <div class="list">
+                        <ul class="clearfix">
+                   
+                            
+                             <!--{loop $sublist $index $sub}-->
+                <!--{if $sub['id']==$cid}-->
+                <li>{$sub['name']}<em>({$sub['questions']})</em></li>
+                <!--{else}-->
+                <li><a href="{url category/view/$sub['id']}">{$sub['name']}</a><em>({$sub['questions']})</em></li>
+                <!--{/if}-->
+                <!--{/loop}-->
+                        </ul>
+                    </div>
+                    <div class="form">
+                        <form action="?" method="get">
+                            <div>
+                                <input placeholder="输入关键词搜索问题" class="sh-ipt" name="q" value="" maxlength="30" type="text">
+                                <input name="filt" value="10" type="hidden">
+                            <span class="btn btn-1" style="vertical-align: top;_margin-top: 1px;*margin-top: 1px;">
+                                <button type="submit" text="mod-category-search">搜索</button>
+                            </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 问题列表-->
+
+
+            <div class="mod-answer-list" id="mod-answer-list">
+                <div class="guide js-guide">
+                <span class="close js-close-guide">
+
+                </span>
+                </div>
+                <div class="hd">
+                    <ul class="tab-card">
+                    
+                        
+                        
+                          <!--{if all==$status}--><li class="on"><span>全部问题</span></li><!--{else}--><li class="current_none"><a href="{url category/view/$cid/all}">全部问题</a></li><!--{/if}-->
+                    <!--{if 6==$status}--><li class="on">推荐问题</li><!--{else}--><li class="current_none"><a class="recommand" href="{url category/view/$cid/6}">推荐问题</a></li><!--{/if}-->
+                    <!--{if 4==$status}--><li class="on">悬赏问题</li><!--{else}--><li class="current_none"><a href="{url category/view/$cid/4}">悬赏问题</a></li><!--{/if}-->
+                    <!--{if 1==$status}--><li class="on"><font color="#ff6600">？</font>待解决</li><!--{else}--><li class="current_none"><a href="{url category/view/$cid/1}"><font color="#ff6600">？</font>待解决</a></li><!--{/if}-->
+                    <!--{if 2==$status}--><li class="on"><font color="#1bbf00">√ </font>已解决</li><!--{else}--><li class="current_none"><a href="{url category/view/$cid/2}"><font color="#1bbf00">√ </font>已解决</a></li><!--{/if}-->             
+                        
+                        
+                        
+                    </ul>
+                </div>
+                <div class="bd">
+                    <div class="cls-qa-table">
+                        <table>
+                            <tbody>
+                            <tr class="">
+                                <th class="s0">标题</th>
+                                <th class="s1">回答/浏览</th>
+                                <th class="s2">时间</th>
+                            </tr>
+                            
+                             <!--{loop $questionlist $question}-->
+                             
+                              <tr id="{$question['id']}" ze-ans="1" class="quickask">
+                                <td class="title">
+                                    <div class="tit-full">
+                                        <div class="wrap">
+                                         <!--{if $question['price'] > 0}-->
+                                                  <span class="wealth">{$question['price']}</span>
+                                                <!--{/if}-->
+                                   
+                                            <a text="list-item" target="_blank" href="{url question/view/$question['id']}" class="lnk" title="{$question['title']}">   {eval echo cutstr($question['title'],50);}</a>&nbsp;
+                                       
+                                        </div>
+                                      
+                                    </div>
+                                </td>
+                                <td>{$question['answers']}/{$question['views']}</td>
+                                <td>{$question['format_time']}</td>
+                            </tr>
+                              <!--{/loop}-->
+                           
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination" id="list-page">
+                        <p class="pages">
+                           {$departstr}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+
+        <!-- 右边内容-->
+
+        <div class="aside">
+            <div style="margin-bottom:10px;">
+            
+              <!--{if 0!=$user['uid']}-->
+               
+                <!--{else}-->
+                 <div class="mod-userlogin">
+                    <div class="hd">
+                        <p class="today-help">好搜问答是一个互助、分享的知识社区。加入好搜问答，来分享您的智慧吧！</p>
+                    </div>
+                    <div class="bd clearfix">
+                        <a href="#" text="<网站>【用户信息面板登录按钮】点击" onClick="showlogin()"  class="btn-login user-login"><span>马上登录</span></a>
+                        <a href="{url user/register}" text="<网站>【用户信息面板注册按钮】点击" class="btn-reg user-reg"><span>快速注册</span></a>
+                    </div>
+                </div>
+                 <!--{/if}-->
+               
+                
+              
+            </div>
+          
+          
+            <div class="garllery_ad" id="garllery">
+                <a text="http://dev.tg.wan.360.cn/?channel=515480472&amp;placeid=" href="javascript:void(0);" target="_blank">
+                    <img src="http://p6.qhimg.com/t01fc80d350a4a01f2b.jpg">
+                </a>
+            </div>
+          </div>
+
+
+        </div>
+
+<div id="datazhe" style="z-index: 1026; display:none; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; overflow: hidden; -webkit-user-select: none;filter:alpha(opacity=40);  opacity: 0.4; background: rgb(0, 0, 0);" tabindex="0"></div>
+
+
+
+<!--{template footer,sowenda}-->

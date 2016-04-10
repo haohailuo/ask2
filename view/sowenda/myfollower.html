@@ -1,0 +1,51 @@
+<!--{template header,sowenda}-->
+<link href="{SITE_URL}css/sowenda/new.combo.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/user.combo.css" rel="stylesheet" />
+<!-- 中间内容部分-->
+
+    <div id="bd">
+        <div class="grid main-cnt">
+      <!--{template user_menu,sowenda}-->
+      
+      
+    
+      
+      
+      
+       <div class="article">
+
+                    <div class="mod-qa-list">
+                        <div class="hd">
+                            <h3>关注我的人</h3>&nbsp;<span>({$rownum})</span>
+                        </div>
+                        <div class="bd" style="margin: 10px 0 15px;">
+                            <div class="qa-type js-qa-type">
+                            
+                            <ul class="active-list clearfix">
+                        <!--{loop $followerlist $follower}-->
+                        <li>
+                        <a title="{$follower['username']}" target="_blank" href="{url user/space/$follower['followerid']}">
+                        <img width="80" height="80" src="{$follower['avatar']}" onmouseout="pop_user_out();" onmouseover="pop_user_on(this, '{$follower['followerid']}', 'image_active');">
+                        </a>
+                        <a class="name" title="{$follower['follower']}" target="_blank" href="{url user/space/$follower['followerid']}">
+                        {$follower['follower']}
+                        </a>
+                        </li>
+                        <!--{/loop}-->
+                    </ul>
+                            
+                            </div>
+                          <div class="pagination" id="list-page">
+                        <p class="pages">
+                           {$departstr}
+                        </p>
+                    </div>
+                            </div>
+                            
+                            </div>
+                </div>            
+                           
+      </div>
+    </div>
+
+<!--{template footer,sowenda}-->

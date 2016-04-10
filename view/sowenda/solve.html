@@ -1,0 +1,599 @@
+<!--{template header,sowenda}-->
+
+
+
+<!-- 中间内容部分-->
+<style>
+.mod-bread-crumb {
+    color: #414141;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.mod-bread-crumb {
+    float: left;
+    width: 50%;
+}
+.mod-bread-crumb {
+    position: relative;
+    z-index: 15;
+}
+body {
+    background: #FFF;
+    color: #333;
+    font: 12px/1.5 '微软雅黑',arial,sans-serif;
+    text-align: center;
+    font-size: 14px;
+    position: relative;
+}
+</style>
+<div id="bd" class="mod-detail" style="margin-top:16px;">
+<div class="mod-bread-crumb">
+ <span>分类</span>
+ <!--{loop $navlist $nav}-->
+<span>&nbsp;&gt;&nbsp;</span><span> <a href="{url category/view/$nav['id']}">{$nav['name']}</a> </span>
+   
+    <!--{/loop}-->
+<span>&nbsp;&gt;&nbsp;</span><span> <a href="{url question/view/$question['id']}">{$question['title']}</a> </span>
+</div>
+<div style="display:none;">
+</div>
+<div style="clear:both"></div>
+
+<div class="grid clearfix"><!-- 填空回答，安仔提示 -->
+<div class="article " id="js-detail">
+
+    <div class="mod-q js-form" ask_id="1448174703614371" style="border-bottom:0;">
+        <div class="question_logo" style="display:none;"></div>
+        <div class="hd">
+          
+         {if $page>1}
+       <a href="{url question/view/$question['id']}" style="color:black" ><h1 class="title js-ask-title">{$question['title']}</h1></a> 
+         {else}
+         <h1 class="title js-ask-title">{$question['title']}</h1>
+         {/if}
+            
+
+
+
+
+
+            <div class="mod-user-label">
+                <div class="l-ask clearfix">
+                    <div class="text" style="float:left;">
+
+
+
+                        <span class="ask-author">
+                        
+                            <!--{if $question['hidden']}-->
+                        <span>匿名</span>
+                    <!--{elseif $question['authorid']==0}-->
+                    <span><!--{if $question['ip']}-->{$question['ip']}<!--{else}-->游客<!--{/if}--></span>
+                    <!--{else}-->
+                        <span><a onmouseover="pop_user_on(this, '{$question[authorid]}', 'text');"  onmouseout="pop_user_out();"  href="{url user/space/$question['authorid']}" target="_blank">{$question['author']}</a></span>
+                    <!--{/if}-->
+                        
+                        </span>
+
+ <!-- 分类 -->
+
+
+<!--{if $navlist}-->  <i class="line"></i>
+                     分类：
+                        
+  <!--{loop $navlist $nav}-->
+<span><a target="_blank" title="$nav['name']" href="{url category/view/$nav['id']}">{$nav['name']}</a></span>
+                
+                <!--{/loop}--><!--{else}--><!--{/if}-->
+                      
+                        <!-- 分类 -->
+
+                        <!-- 分类 -->
+
+
+<!--{if $taglist}-->  <i class="line"></i>
+                       标签：
+                        
+<!--{loop $taglist $tag}-->
+<span><a target="_blank" title="$tag" href="{url tag-$tag}">{$tag}</a></span>
+                
+                <!--{/loop}--><!--{else}--><!--{/if}-->
+                      
+                        <!-- 分类 -->
+
+
+
+                        <i class="line"></i>
+                        <span>浏览{$question['views']}次</span>
+
+
+
+                        <i class="line"></i>
+                        <span>{$question['format_time']}</span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <input type="hidden" value="{$question['title']}" id="js-ask-title">
+        </div>
+        <div class="bd"><div class="q-cnt"><p>{$question['description']}</p></div>
+            <div class="mod-added-qa js-added-area" style="">
+                <ul></ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 最佳答案-->
+
+
+    <div class="mod-resolved-ans js-form" ans_id="1448179252729798" qid="1348336210" data-resolved-type="best">
+        <div class="top-line"></div>
+        <i class="ico best"></i>
+        <div class="bd">
+
+
+
+
+
+
+
+        <div class="mod-user-label">
+
+            <div class="l-ans clearfix">
+                <div class="info">
+
+                    <a target="_blank" href="{url user/space/$bestanswer['authorid']}" class="pic   js-ordinary-card" index="1348336210">
+                        <img onmouseover="pop_user_on(this, '{$bestanswer[authorid]}', 'image');"  onmouseout="pop_user_out();" src="{$bestanswer['author_avartar']}">
+                    </a>
+                </div>
+
+                <div class="text">
+
+
+
+
+                    <div style="margin-bottom:2px;display:block;">
+<span>
+
+<a onmouseover="pop_user_on(this, '{$bestanswer[authorid]}', 'text');"  onmouseout="pop_user_out();" target="_blank" href="{url user/space/$bestanswer['authorid']}" class="ask-author  js-ordinary-card" index="1348336210">{$bestanswer['author']}</a>
+</span>
+
+
+
+
+                    </div>
+
+
+
+                    <span title="采纳率越高回答质量越高">采纳率：<span style="margin-right:0;" class="o">{$bestanswer['adoption_rate']}%</span></span>
+
+                    <span>{$bestanswer['author_groupname']}</span>
+
+
+
+
+
+
+                    <i class="line"></i><span>{$bestanswer['format_time']}</span>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="resolved-cnt">
+            <p>{$bestanswer['content']}</p>
+        </div>
+           
+           
+            <div class="laud" data-clicked="" data-ans_id="{$bestanswer['id']}">
+                <a href="javascript:;" class="js-laud good button_agree" data-op="1" id="{$bestanswer['id']}" data-num="{$bestanswer['supports']}">
+               <span class="supportnum">{$bestanswer['supports']}</span>
+                </a>
+                
+            </div>
+            <div class="share-content">{$setting['question_share']}</div>
+       </div></div>
+
+    <!-- 其它回答-->
+    <div class="mod-other-ans clearfix" id="hoa">
+        <div class="answers"><div class="hd">
+            <h2>全部回答<span>（{$rownum}）</span></h2>
+        </div><div class="bd"><ul>
+
+  <!--{loop $answerlist $index $answer}-->
+
+            <li  class="ans-item js-form" ans_id="1448179053726794" qid="160055128">
+
+
+
+
+
+
+
+                <div class="mod-user-label">
+
+                    <div class="l-ans clearfix">
+                        <div class="info">
+
+                            <a target="_blank" href="{url user/space/$answer['authorid']}" class="pic   js-ordinary-card" index="160055128">
+                                <img onmouseover="pop_user_on(this, '{$answer[authorid]}', 'img');"  onmouseout="pop_user_out();" src="{$answer['author_avartar']}">
+                            </a>
+                        </div>
+
+                        <div class="text">
+
+
+
+
+                            <div style="margin-bottom:2px;display:inline;">
+<span>
+
+<a  onmouseover="pop_user_on(this, '{$answer[authorid]}', 'text');"  onmouseout="pop_user_out();" target="_blank" href="{url user/space/$answer['authorid']}" class="ask-author  js-ordinary-card" index="160055128">{$answer['author']}</a>
+</span>
+
+
+
+
+                            </div>
+
+
+
+<span>
+<i class="s-daren-lev s-daren-lev-1"></i>
+<a>乐帮达人</a>
+</span>
+                            <span title="采纳率越高回答质量越高">采纳率：<span style="margin-right:0;" class="o">{$answer['adoption_rate']}%</span></span>
+
+                            <span>{$bestanswer['author_groupname']}</span>
+
+
+
+
+
+
+                            <span class="time">{$answer['time']}</span>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <p>{$answer['content']}  </p>
+              <div class="mod-added-qa js-added-area" style="display:block">
+                <ul>
+                <!--{loop $answer['appends'] $append}-->       
+                           
+                                <!--{if $append['authorid']==$answer['authorid']}-->
+                                
+                                 <li style="border:0" class="item" pid="1448179053726794" append_id="1448179136701049">
+                <span class="ico-q">回答:</span>
+                <span class="add-c">{$append['content']}    <span class="time">{$append['format_time']}</span> </span>
+                </li>
+                              
+                                <!--{else}-->
+                           
+                               <li style="border:0" class="item" pid="1448179053726794" append_id="1448179136701049">
+                <span class="ico-q">追问：</span>
+                <span class="add-c">{$append['content']} <span class='time'>{$append['format_time']}</span></span>
+                </li>
+                              
+                                <!--{/if}-->
+                                                        
+                           
+                            <!--{/loop}-->        
+               
+               
+                </ul>
+                </div>
+                <div class="console clearfix"><div class="clearfix">
+                <div class="action">
+               <span class="js-operate" >
+                           <!--{if $user['grouptype']==1}-->
+                          
+                           <a  class="js-report  ui-report"  href="{url question/editanswer/$answer['id']}">编辑内容</a>
+                           <a  class="js-report  ui-report"  href="javascript:void(0);" onclick="delete_answer('{$answer['id']}', '{$question['id']}')">删除</a>
+                            <!--{/if}-->
+                            <a href="javascript:;" qtitle="{$question['title']}" qid="{$answer['id']}" text="【详情页】-回答检举" data-type="answer" class="js-report jianjuanswer ui-report">检举</a>
+                            <!-- <span class="line ui-line last-line"></span> -->
+                            </span>
+                 <a href="javascript:;" class="approve button_agree js-approve " id="{$answer['id']}" data-num="{$answer['supports']}"><i class="vtext">很给力</i><span class="supportnum">{$answer['supports']}</span></a>
+                </div>
+                </div>
+                <div class="js-form-area add-area">
+                </div>
+                </div>
+                </li>
+
+
+ <!--{/loop}-->
+
+        </ul>
+        </div>
+            <div class="ft"> <div class="pagination" id="list-page">
+                        <p class="pages">
+                           {$departstr}
+                        </p>
+                    </div>
+            </div>
+        </div>
+    </div>
+ 
+
+    <!-- 相关问题-->
+
+    <div class="mod-related-question" id="ask-relate">
+        <div class="hd">
+            <h2>相关问题</h2>
+        </div>
+        <div class="bd">
+            <ul>
+            <!--{loop $solvelist $solve}-->
+                <li  class="clearfix"><a class="s0" title="{$solve['title']}" target="_blank"  href="{url question/view/$solve['id']}">{$solve['title']}</a> <span class="s1">{$solve['answers']}个回答</span></li>
+                <!--{/loop}-->
+               
+            </ul>
+            
+        </div>
+    </div>
+
+    <!-- 等您帮助附近的朋友-->
+
+    <div class="mod-related-city js-related-city" style="display: block;">
+        <div class="hd">
+            <h2>精选新知推荐给您</h2>
+            <span class="js-city-change" text="【同城问题—换一换】-点击" data-page="0" data-maxpage="-1"></span>
+        </div>
+        <div class="bd">
+            <ul class="js-city-list">
+             <!--{eval $topiclist=$this->fromcache('topiclist');}-->
+        <!--{if $topiclist}-->
+          <!--{loop $topiclist $index $article}-->
+           <!--{if $index<8}-->
+           <li class="clearfix">
+                    <a href="{url topic/getone/$article['id']}" target="_blank" class="title" text="【详情页-同城问题】-点击" title="{$article['title']}">
+                        <span class="city">【北京】</span>
+                      {$article['title']}
+                    </a>
+                    <span class="time">浏览{$article['views']}次</span>
+                </li>
+                  <!--{/if}-->
+            <!--{/loop}-->
+         <!--{/if}-->
+               
+                </ul>
+            <p class="more js-more-rel-city">
+                <a text="更多同城问题点击" href="{url topic/default}" target="_blank">
+                    更多新知浏览<span style="font-family:'宋体'">&nbsp;&gt;&gt;</span>
+                </a>
+            </p>
+        </div>
+    </div>
+
+
+
+
+    <!-- 结束框-->
+</div>
+
+
+
+<div id="js-aside" class="aside">
+    <!-- 广告-->
+    <div class="mod-score-mall">
+        <a target="_blank" href="javascript:void(0);" text="【详情页-本来生活合作活动】点击">
+            <img src="http://p6.qhimg.com/t01cec68279bf18c88e.png" alt="">
+        </a>
+    </div>
+
+
+
+    <div class="mod-recom-q" id="recom-q" data-tag-id="28942" data-cid="" style="display: block;">
+        <h4 style="color:#3eaf0e;">
+            <!-- 回答下面问题可获得金币哦 -->一周热点问题</h4>
+        <ul class="q-l">
+            <!--{eval $attentionlist=$this->fromcache('attentionlist');}-->
+                    <!--{loop $attentionlist $index $question}-->
+                        <li>
+                <div class="q-content">
+                    <span class="wen">问：</span>
+                    <a title="{$question['title']}" href="{url question/view/$question['id']}" target="_blank" class="js-q"
+                     text="{$question['title']}">{$question['title']}</a>
+                     
+                    <span class="time">昨天</span>
+                </div>
+            </li>
+                     <!--{/loop}-->
+        
+        </ul>
+
+        
+    </div>
+
+
+    <div class="garllery_ad" id="garllery">
+        <a text="" href="javascript:void(0);" ><img src="http://p6.qhimg.com/t01fc80d350a4a01f2b.jpg"></a>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- 左边导航-->
+
+<div class="js-panels">
+
+    <div class="mod-lift g-mod-fixed">
+        <a href="javascript:;" class="ui-back-top" id="back_top" style="visibility: visible;"><span>返回顶部</span></a>
+
+    </div>
+
+  <form name="askform" action="{url question/add}" method="POST">
+    <div id="bottom_ask" class="bottom-fixed" style="">
+        <a class="bottom-close" href="javascript:;"></a>
+        <div class="bd">
+            <i class="left"></i>
+            <span class="center">
+           
+                <input id="bottom_ask_con" name="word" type="text" value="" placeholder="填写您的问题，5分钟就可以收到回答哦！">
+                <a id="bottom_ask_btn" class="btn btn-2-b" href="javascript:void(0)">
+               
+                
+                
+                  <button type="submit" name="post" class="btn btn-2-b" >提问</button>
+               
+                
+                </a>
+             
+            </span>
+        </div>
+    </div>
+</form>
+</div>
+
+<div id="jianjucontent" tabindex="-1" style="display:none;position: fixed; left: 716px; top: 166px; bottom: auto; right: auto; margin: 0px; padding: 0px; outline: 0px; border: 0px none; width: 470px; z-index: 1031;" aria-describedby="content:1448271211539" class="panel-02 panel-report panel panel-modal panel-show panel-focus" role="alertdialog">
+<div i="dialog" class="panel-content">
+<div i="header" class="hd" style="display: block;">
+<h3><i class="ico-report"></i>检举不良内容</h3>
+</div>
+<div i="content" class="bd" id="content:1448271211539">
+<form id="rp_form" class="rp_form" action="/inform/add" method="post">
+<input value="1448267403729388" type="hidden" name="ask_id"><input value="1448267713702742" type="hidden" name="ans_id">
+<input value="" type="hidden" name="reported_qid">
+<div class="js-group-type group group-2">
+<h4>检举类型</h4>
+<ul>
+<li class="js-report-con"><label>
+<input type="radio" name="group-type" value="检举内容"><span>检举内容</span></label>
+</li>
+<li class="js-report-user">
+<label><input type="radio" name="group-type" value="检举用户"><span>检举用户</span></label></li>
+</ul>
+</div>
+<div class="group group-2"><h4>检举原因</h4><div class="list"><ul>
+<li>
+<label class="reason-btn"><input type="radio" name="type" value="广告推广"><span>广告推广</span></label>
+</li><li>
+<label class="reason-btn"><input type="radio" name="type" value="恶意灌水"><span>恶意灌水</span></label></li>
+<li><label class="reason-btn"><input type="radio" name="type" value="回答内容与提问无关"><span>回答内容与提问无关</span></label></li>
+<li><label class="copy-ans-btn"><input type="radio" name="type" value="抄袭答案"><span>抄袭答案</span></label></li>
+<li><label class="reason-btn"><input type="radio" name="type" value="其他"><span>其他</span></label></li>
+</ul></div></div>
+<div class="group group-3"><h4>检举说明</h4><div class="textarea">
+<ul class="anslist" style="display:none;line-height:20px;overflow:auto;height:171px;"></ul>
+<textarea name="content" id="content_jianju" maxlength="200" placeholder="请输入描述200个字以内"></textarea>
+</div></div>
+
+</div>
+<div i="footer" class="ft" style="display: block;">
+<span class="mark" style="float:left;" id="js-error">
+</span><span class="btn btn-2">
+ <input type="hidden" value="{$question['id']}" id="qidviews" name="qid">
+
+<input type="hidden" value="{$question['title']}" id="title_jianju" name="qtitle" />
+<input type="hidden" value="" name="aid" id="answerid"/>
+<input type="submit" value="提交" name="submit" id="rp_btn" class="btn btn-2 sendbtn">
+
+</span></div></div><span i="close" class="close" title="">
+</span>
+<script>
+$(".jianjuanswer").click(function(){
+
+	$("#qidviews").val($("#qidview").val());
+	$("#answerid").val($(this).attr("qid"));
+	$("#title_jianju").val($(this).attr("qtitle"));
+	
+	
+})
+
+$("#rp_btn").click(function(){
+//	alert($("input[name='group-type']:checked ").val());
+var type1=$("input[name='group-type']:checked ").val();
+var type2=$("input[name='type']:checked ").val();
+var content=$("#content_jianju").val();
+
+if(type1==null){
+	alert("检举类型没有选择");
+	return false;
+}
+if(type2==null){
+	alert("检举原因没有选择");
+	return false;
+}
+
+if(content==""||content==null){
+	alert("检举描述没有写");
+	return false;
+}
+	
+});
+</script>
+</form>
+</div>
+     <div class="zhezhaodiv"  style="display:none;z-index: 1030; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; overflow: hidden; -webkit-user-select: none; opacity: 0.4; background: rgb(0, 0, 0);" tabindex="0"></div>
+<div class="pop-support" id="support_tip" style="color:#FB6E1A;font-weight: 700;position: absolute;z-index: 30;display:none;">+1</div>
+<script>
+
+$(".jianjuanswer").click(function(){
+	var qid=$(this).attr("qid");
+	$("#jianjucontent").show();
+	$(".zhezhaodiv").show();
+});
+$(".close").click(function(){
+	$("#jianjucontent").hide();
+	$(".zhezhaodiv").hide();
+});
+/*删除回答*/
+function delete_answer(aid, qid) {
+    if (confirm('确定删除问题？该操作不可返回！') === true) {
+        document.location.href = g_site_url + '' + query + 'question/deleteanswer/' + aid + '/' + qid + g_suffix;
+    }
+}
+$(".button_agree").click(function(e){
+    var supportobj = $(this);
+    var supnum=$(this).find(".supportnum");
+    var xx = $(this).offset().left;//e.originalEvent.x || e.originalEvent.layerX || 0; 
+    var yy =  $(this).offset().top;//e.originalEvent.y || e.originalEvent.layerY || 0; 
+    var vtext=$(this).find('.vtext');
+ console.log(xx+","+yy);
+   var intnum=parseInt(supnum.html());
+  
+ 
+            var answerid = $(this).attr("id");
+            $.ajax({
+            type: "GET",
+                    url:"{SITE_URL}index.php?answer/ajaxhassupport/" + answerid,
+                    cache: false,
+                    success: function(hassupport){
+                    	 console.log(hassupport);
+                    if (hassupport != '1'){
+                    	supnum.html(intnum+1);
+                    	console.log("num:"+supnum.html());
+                    	 $("#support_tip").show();
+                    	    $("#support_tip").css({top:yy,left:xx+30});
+                    	 
+                    	    $("#support_tip").animate({"opacity":"1",top:yy-55}, 500).animate({"opacity":"0"}, 200);
+                            $.ajax({
+                            type: "GET",
+                                    cache:false,
+                                    url: "{SITE_URL}index.php?answer/ajaxaddsupport/" + answerid,
+                                    success: function(comments) {
+                                    
+                                    	vtext.html("已赞同");
+                                    }
+                            });
+                    }
+                    }
+            });
+    });
+</script>
+
+<!--{template footer,sowenda}-->

@@ -1,0 +1,60 @@
+
+<!--{template header,sowenda}-->
+   <link href="{SITE_URL}css/sowenda/base.combo.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/xinzhilist.css" rel="stylesheet" />
+    <div id="bd" class="clearfix">
+
+        <div class="mod-bread-crumb"><span>个人中心</span><span>&nbsp;&gt;&nbsp;</span><span>我的新知</span></div>
+        <div class="mod-items">
+        
+        <!--{if $topiclist==null}-->
+        
+         <div id="msg_tabs_content" class="tab-boxs">
+
+            <div class="box" style="display:block;">
+                <p class="empty">您还没有发布的新知哦~  <a href="/user/addxinzhi/?q=" class="btn btn-2" style="line-height:20px;height:20px;">去发布</a></p>
+            </div>
+            </div>
+        <!--{/if}-->
+             <!--{loop $topiclist $index $topic}-->
+                  <div class="item clearfix">
+                <div class="pic">
+                    <a target="_blank" href="{url topic/getone/$topic['id']}">
+                        <img src="{SITE_URL}{$topic['image']}" alt="">
+                    </a>
+                </div><div class="info">
+                <h3><a target="_blank" href="{url topic/getone/$topic['id']}">{$topic['title']}</a></h3>
+                <p>{eval echo cutstr(strip_tags($topic['describtion']),350,'...');}</p>
+                <p class="time">浏览量:{$topic['views']}</p>
+            </div>
+            </div>
+              <!--{/loop}-->
+       
+           
+          <div class="pagination" id="">  <div class="pages">{$departstr}</div>	</div>
+        </div>
+  
+        <div class="aside">
+            <!--用户信息开始-->
+            <div class="mod-userinfo">
+                <!-- 登录用户 -->
+                <p class="pic">
+                    <a href="{url user/space/$member['uid']}">
+                        <img src="{$member['avatar']}" alt="">
+                    </a>
+                </p>
+                <p class="name">{$member['username']}</p>
+                <table>
+                    <tbody>
+                    <tr><td class="border coin">金币</td><td class="score">经验</td></tr>
+                    <tr><td class="border"><em class="orange">{$member['credit2']}</em></td><td><em class="orange">{$member['credit1']}</em></td></tr>
+                    </tbody>
+                </table>
+                <!-- 未登录用户 -->
+            </div>
+            <!--用户信息结束-->
+        </div>
+
+    </div>
+
+<!--{template footer,sowenda}-->

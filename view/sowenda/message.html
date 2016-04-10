@@ -1,0 +1,86 @@
+
+<!--{template header,sowenda}-->
+    <link href="{SITE_URL}css/sowenda/new.combo.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/user.combo.css" rel="stylesheet" />
+<!-- 中间内容部分-->
+
+    <div id="bd">
+        <div class="grid main-cnt">
+             <!--{template user_menu,sowenda}-->
+
+
+                <div class="article article_bg">
+                    <div class="mod-massage">
+                        <div class="hd clearfix">
+                            <h3>我的消息</h3>
+                            <span class="notice-status">有 0 条未读</span>
+                            <span class="flright">
+                            <a class="btn btn-2" onclick="javascript:document.location = '{url message/send}'">
+                            <span>写消息</span>
+                            </a>
+                            </span>
+                        </div>
+                        <div class="bd">
+                            <div class="notice-tab-card clearfix">
+                                <ul>
+                                    <li class="web <!--{if $regular=="message/personal"}--> cur<!--{/if}-->"><span><a href="{url message/personal}">私人消息</a></span></li>
+                                    <li class="line"></li>
+                                    <li class="system <!--{if $regular=="message/system"}--> cur<!--{/if}-->"><a href="{url message/system}">系统消息</a></li>
+                                </ul>
+                            </div>
+                            
+ 
+                              <!--{loop $messagelist $message}-->
+                              
+                                
+                                
+                                
+                            <div class="c">
+                            <div class="item clearfix">
+                           
+                            <div class="v clearfix read">
+                            <div class="summary">
+                            <span>
+                           {eval echo cutstr($message['content'],300,'')}
+                            <a target="_blank" href="{url message/view/$type/$message[fromuid]}">&gt;&gt;点我查看详情&lt;&lt;</a>
+                            </span>
+                            </div>
+                            <div class="t">{$message['format_time']}</div>
+                            </div>
+                            </div>
+                            
+                            </div>
+                                <!--{/loop}--> 
+                                <!--{if $messagelist==null}-->
+                                
+     <div class="mod-nolist">
+                             <div class="empty">
+                                <div class="con">
+                                    <i class="ico ico-warning"></i>您还没有收到任何消息。多提问，多回答即有机会收到消息。
+                                </div>
+                                <div class="btns">
+                                    <a href="/c/0/?filt=0&amp;q=" class="btn btn-2"><span>我要回答</span></a>
+                                    <a href="/home/ask/?q=" class="btn btn-2"><span>我要提问</span></a>
+                                </div>
+                            </div>
+ 
+                          
+                            
+                            
+                        </div>
+                           <!--{/if}-->
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+<!--{template footer,sowenda}-->

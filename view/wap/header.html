@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+  <!--{eval global $starttime,$querynum;$mtime = explode(' ', microtime());$runtime=number_format($mtime[1] + $mtime[0] - $starttime,6); $setting=$this->setting;$user=$this->user;$headernavlist=$this->nav;$regular=$this->regular;$toolbars="'".str_replace(",", "','", $setting['editor_toolbars'])."'";}-->
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <!--{if isset($seo_title)}-->
+        <title>{$seo_title}</title> 
+        <!--{else}-->
+        <title><!--{if $navtitle}-->{$navtitle} - <!--{/if}-->{$setting['site_name']}</title>
+        <!--{/if}-->
+        <!--{if isset($seo_description)}-->
+        <meta name="description" content="{$navtitle}{$seo_title}{eval echo cutstr($seo_description,160,'')}" />
+        <!--{else}-->
+        <meta name="description" content="{$navtitle}{$seo_title}{$setting['site_name']}" />
+        <!--{/if}-->
+        <meta name="keywords" content="{$navtitle}{$seo_title}{$seo_keywords}" />
+        <meta name="generator" content="Ask2 {ASK2_VERSION} {ASK2_RELEASE}" />
+<!-- Sets initial viewport load and disables zooming  -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<!-- Set a shorter title for iOS6 devices when saved to home screen -->
+<meta name="apple-mobile-web-app-title" content="tianya touch">
+
+<!-- Set Apple icons for when prototype is saved to home screen -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://static.tianyaui.com/global/m/touch/images/icons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://static.tianyaui.com/global/m/touch/images/icons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://static.tianyaui.com/global/m/touch/images/icons/apple-touch-icon-57x57.png">
+
+<!-- Set Apple startup image -->
+<link rel="apple-touch-startup-image" href="http://static.tianyaui.com/global/m/touch/images/startup.jpg">
+<!--<link rel="icon" type="image/x-icon" href="favicon.ico" />-->
+
+<!-- Include the CSS -->
+<link rel="stylesheet" href="{SITE_URL}css/wap/wenda-main.css">
+      <link rel="stylesheet" type="text/css" href="{SITE_URL}css/wap/main.css" />
+<script type="text/javascript"  src="{SITE_URL}js/jquery.js"></script>
+
+<link rel="stylesheet" href="http://bdimg.share.baidu.com/static/api/css/share_style1_32.css">
+<script type="text/javascript">var g_site_url = "{SITE_URL}";
+            var g_site_name = "{$setting['site_name']}";
+            var g_prefix = "{$setting['seo_prefix']}";
+            var g_suffix = "{$setting['seo_suffix']}";
+            var g_uid = {$user['uid']};</script>
+            <script src="{SITE_URL}js/wap/member_m.js"></script>
+            
+   
+</head>
+<body id="body">
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<!--pop share -->
+<div class="pop_share" style="display:none">
+    <div class="pop_share_clo" onclick="clo_pop_share()">取消</div>
+    <h2><span>分享到</span></h2>
+    <div class="bdsharebuttonbox bdshare-button-style1-32" data-bd-bind="1436662617503"><a href="http://wenda.tianya.cn/m/question/19pm6sbi87tb8re3v0fjprcsf8ltbj5uisg60#" class="bds_more" data-cmd="more"></a><a href="http://wenda.tianya.cn/m/question/19pm6sbi87tb8re3v0fjprcsf8ltbj5uisg60#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="http://wenda.tianya.cn/m/question/19pm6sbi87tb8re3v0fjprcsf8ltbj5uisg60#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="http://wenda.tianya.cn/m/question/19pm6sbi87tb8re3v0fjprcsf8ltbj5uisg60#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="http://wenda.tianya.cn/m/question/19pm6sbi87tb8re3v0fjprcsf8ltbj5uisg60#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a></div>
+    <script>
+	window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script> 
+</div>
+<div class="pop_share_cover" style="display:none"></div>
+<!--pop share end -->
+<!-- header -->
+<header class="header cf">
+	<h1 class=" fl" style="margin: 9px 0 0 10px;"><a class="icon-logo" href="{SITE_URL}" style="color: white;">{$setting['site_name']}</a></h1>
+	<div class="entry-info fr">
+        
+		<ul class="list-set cf">
+		
+			<li>
+			 <!--{if 0!=$user['uid']}-->
+			<a  href="{url user/score}">{$user['username']}</a>
+			  <!--{else}-->
+			  <a class="btn login" href="{url user/login}">登录</a>
+			   <!--{/if}-->
+		
+			
+			</li>
+			<!--<li><a class="register" href="{url user/register}">注册</a></li> -->
+		
+		
+		</ul>
+        <a id="search_logo" class="btn" href="javascript:void(0)"></a>		
+	</div>
+</header>
+
+<div class="searchBar">
+	<form method="post"  name="searchform"  action="{url question/search}"  id="searchForm">
+	<input type="submit" value="搜问题" id="search_btn" class="ui-btn search_btn">
+	<input type="text" required="true" value="{$word}" placeholder="搜问题、标签或人" x-webkit-grammar="builtin:translate" x-webkit-speech="" class="ui-text searchInp" name="word" id="search-kw" >
+    </form>
+
+</div>
+
+<!-- .content -->
+<div class="content">
+	<nav>
+		<ul class="fs14 cf">
+			<li <!--{if  $menu=="首页"}-->  class="active" <!--{/if}-->  ><a href="{SITE_URL}">问答首页</a></li>
+			<li <!--{if $navtitle == "标签搜索"}-->  class="active" <!--{/if}-->><a href="{url tags}">标签</a></li>
+            <li  <!--{if $menu=="topic"||$navtitle == "专题列表"}-->  class="active" <!--{/if}--> ><a href="{url topic/default}">精华知识</a></li>
+			<li <!--{if $navtitle == "提出问题"}-->  class="active" <!--{/if}-->  ><a href="{url question/add}">我要提问</a></li>	
+		</ul>
+	</nav>
+	
+	
+	
+	
+	
+	

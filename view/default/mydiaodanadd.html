@@ -1,0 +1,170 @@
+
+<!--{template header}-->
+<div class="wrapper mt10 clearfix">
+    <!--{template user_menu}-->
+    <div class="user-content">
+        <div class="my-answerbox">
+            <div class="title">掉单信息<span style="float:right;text-decoration:underline"><a href="{url user/diaodanlist}">返回我的掉单</a></span></div>
+           
+            <div class="loginform">
+                <form method="POST" name="upinfoForm"  action="{url user/diaodanadd}" enctype="multipart/form-data">
+                    <div class="input-bar">
+                        <h2>掉单类型:</h2>
+                        <select name="leixing" id="leixing">
+                        <option value="存款掉单">存款掉单</option>
+                        <option value="转账掉单">转账掉单</option>
+                        </select><span class="tip"></span>
+                    </div>
+                    
+                    <div class="clr"></div>
+                   
+                    <div class="input-bar">
+                        <h2>会员账号:</h2>
+                        <input type="text"  name="huiyuanzhanghao" id="huiyuanzhanghao" class="normal-input" value="{$diaodan['huiyuanzhanghao']}">
+                    <span style="color:red;">*必填</span>
+                    </div>
+                    <div class="clr"></div>
+                    
+                    <div class="input-bar">
+                        <h2>时间:</h2>
+                        <input type="text"  name="shijian" id="shijian" class="normal-input" value="{$diaodan['shijian']}">
+                    <span style="color:red;">*必填</span> </div>
+                    <div class="clr"></div>
+                   
+                     
+                    <div class="input-bar">
+                        <h2>金额:</h2>
+                        <input type="text"  name="jine" id="jine" class="normal-input" value="{$diaodan['jine']}">
+                     <span style="color:red;">*必填</span></div>
+                    <div class="clr"></div>
+                     <div class="input-bar">
+                        <h2>商户名称:</h2>
+                        <input type="text"  name="shanghumingchen" id="shanghumingchen" class="normal-input" value="{$diaodan['shanghumingchen']}">
+                    <span class="shmc" style="color:red;display:none;">*必填</span> </div>
+                  
+                    <div class="clr"></div>
+                    <div class="input-bar">
+                        <h2>操作网址:</h2>
+                        <input type="text"  name="caozuowangzhi" id="caozuowangzhi" class="normal-input" value="{$diaodan['caozuowangzhi']}">
+                          <span class="czwz" style="color:red;display:none;">*必填</span></div>
+                    <div class="clr"></div>
+                    
+                    <div class="input-bar">
+                        <h2>转账平台:</h2>
+                       <select name="pingtai1" id="pingtai1">
+                        <!--{loop $pingtailist $pingtai}-->
+                            <option value="{$pingtai['name']}" >{$pingtai['name']}</option>
+                            <!--{/loop}-->
+                        </select>转到
+                        <select name="pingtai2" id="pingtai2">
+                        <!--{loop $pingtailist $pingtai}-->
+                            <option value="{$pingtai['name']}" >{$pingtai['name']}</option>
+                            <!--{/loop}-->
+                        </select>
+                    </div>
+                    <div class="clr"></div>
+                    <div class="input-bar">
+                        <h2>存款方式:</h2>
+                       <select name="cunkuanfangshi" id="cunkuanfangshi">
+                       
+                        
+                          <!--{loop $cunkuanlist $cunkuan}-->
+                            <option value="{$cunkuan['name']}" >{$cunkuan['name']}</option>
+                            <!--{/loop}-->
+                        </select>
+                    </div>
+                    <div class="clr"></div>
+                    <div class="input-bar">
+                        <h2>订单号:</h2>
+                        <input type="text"  name="dingdanhao" id="dingdanhao" class="normal-input" value="{$diaodan['dingdanhao']}">
+                    </div>
+                    <div class="clr"></div>
+                      <div class="input-bar">
+                        <h2>存款截图:</h2>
+                          <input id="cunkuanjietu" name="cunkuanjietu" type="file"/>
+                    </div>
+                    <div class="clr"></div>
+                    <div class="auto-login">
+                        <input type="submit" id="btnadd" name="submit" class="normal-button" value="保&nbsp;存" />
+                    </div>
+              </form>
+                <script>
+                $("#leixing").change(function(){
+                	 var lx=$("#leixing").val();
+                 switch(lx){
+                      case "存款掉单":
+                   	  
+                   	 $(".shmc").show();
+                	 $(".czwz").hide();
+                      break;
+                      case "转账掉单":
+                    	  $(".shmc").hide();
+                     	 $(".czwz").show();
+                      break;
+                      }
+                })
+                var lx=$("#leixing").val();
+                 switch(lx){
+                 case "存款掉单":
+                  	  
+               
+                  	  
+                   	 $(".shmc").show();
+                	 $(".czwz").hide();
+                      break;
+                      case "转账掉单":
+                    	  $(".shmc").hide();
+                     	 $(".czwz").show();
+                      break;
+                      }
+                $("#btnadd").click(function(){
+                	  lx=$("#leixing").val();
+                	 var huiyuanzhanghao=$.trim($("#huiyuanzhanghao").val());
+                	 var shijian=$.trim($("#shijian").val());
+                     var shanghumingchen=$.trim($("#shanghumingchen").val());
+                     var jine=$.trim($("#jine").val());
+                     var caozuowangzhi=$.trim($("#caozuowangzhi").val());
+                     var dingdanhao=$.trim($("#dingdanhao").val());
+                     var cunkuanjietu=$("#cunkuanjietu").val();
+                    if(huiyuanzhanghao==''){
+                 	   alert("会员账号不能为空!");
+                 	   $("#huiyuanzhanghao").focus();
+                 	  return false;
+                    }
+                    if(shijian==''){
+                  	   alert("时间不能为空!");
+                  	   $("#shijian").focus();
+                  	  return false;
+                     }
+                    if(jine==''){
+                   	   alert("金额不能为空!");
+                   	   $("#jine").focus();
+                   	  return false;
+                      };
+                      switch(lx){
+                      case "存款掉单":
+                   	   if(shanghumingchen==''){
+                         	   alert("商户名称不能为空!");
+                         	   $("#shanghumingchen").focus();
+                         	  return false;
+                            }
+                   	  
+                      break;
+                      case "转账掉单":
+                   	   if(caozuowangzhi==''){
+                         	   alert("操作网址不能为空!");
+                         	   $("#caozuowangzhi").focus();
+                         	  return false;
+                            }
+                      break;
+                      }
+                })
+               
+              
+                
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<!--{template footer}-->

@@ -1,0 +1,90 @@
+<!--{template header}-->
+ <link href="{SITE_URL}css/sowenda/new.combo.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/user.combo.css" rel="stylesheet" />
+<script type="text/javascript" src="{SITE_URL}js/editor/ueditor.config.js"></script> 
+<script type="text/javascript" src="{SITE_URL}js/editor/ueditor.all.js"></script> 
+
+
+
+<!-- 中间内容部分-->
+
+    <div id="bd">
+        <div class="grid main-cnt">
+             <!--{template user_menu,sowenda}-->
+
+                <div class="article">
+
+                    <div class="mod-qa-list">
+                        <div class="hd">
+                            <h3>写私信</h3>&nbsp;<span><a href="{url message/personal}">返回消息列表</a></span>
+                        </div>
+                        <div class="bd" style="margin: 10px 0 15px;">
+                            <div class="qa-type js-qa-type">
+                            
+                <div class="quc-wrapper sendmessage"  >      
+                            
+<form class="quc-form" action="{url message/send}" method="post"  >
+<p class="quc-field quc-field-account quc-input-long">
+<label class="quc-label" for="quc_account_183811257">收件人:</label>
+<span class="quc-input-bg">
+<input class="quc-input quc-input-account" type="text" id="username" name="username"  value="{$sendto['username']}" placeholder="请输入收件人名字" autocomplete="off" ></span>
+</p>
+
+<p class="quc-field quc-field-account quc-input-long">
+<label class="quc-label" for="quc_account_183811257">主&nbsp;&nbsp;&nbsp;&nbsp;题:</label>
+<span class="quc-input-bg">
+<input class="quc-input quc-input-account" type="text" id="subject" name="subject" value="{$sendto['subject']}" placeholder="请填写主题信息" autocomplete="off" ></span>
+</p>
+
+
+
+<p class="quc-field quc-field-account quc-input-long">
+<label class="quc-label" for="quc_account_183811257">内&nbsp;&nbsp;&nbsp;&nbsp;容:</label>
+
+ <script type="text/plain" id="content" name="content" style="height: 122px;width:500px;"></script>
+                            <script type="text/javascript">UE.getEditor('content', UE.utils.extend({toolbars:[[{$toolbars}]]}));</script>
+
+
+</p>
+
+
+
+<p class="quc-field quc-field-account quc-input-long">
+<label class="quc-label" for="quc_account_183811257">验证码:</label>
+<span>
+<span class="quc-input-bg"><input class="quc-input quc-input-account" type="text" id="code" name="code" onblur="check_code();"/></span>
+<span class="message_code"><img  src="{url user/code}" onclick="javascript:updatecode();" id="verifycode"><a class="changecode" href="javascript:updatecode();">&nbsp;看不清?</a></span>
+<span id="codetip"></span>
+
+</span>
+
+</p>
+
+
+
+
+
+<p class="quc-field quc-field-submit"><input type="submit" value="发送" name="submit" class="btn btn-2 sendbtn"> </p>
+</form>
+</div>    
+                            
+                            </div>
+                            
+                            </div>
+                            
+                            </div>
+                            
+                            </div>
+                            
+                            </div>
+                            
+                            </div>
+                            
+                            
+     
+
+
+            
+            
+ 
+<!--{template footer}-->

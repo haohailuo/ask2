@@ -1,0 +1,79 @@
+<!--{template header,wap}-->
+
+<form enctype="multipart/form-data" method="POST" action="{url question/add}" name="askform" id="askform" onsubmit="return check_form();">
+<div class="ask-con">
+		<div class="textarea-box">
+        	  
+			  
+				<textarea name="title" id="qtitle" required="true" placeholder="请输入问题，最多允许50个字">{$word}</textarea><input type="hidden" id="user_action" name="action" value="f0.1436622230298.0|d68c119e4a5774fc17fb175a652799de|d41d8cd98f00b204e9800998ecf8427e|Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X; en-us) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53|v2.3.7">
+			
+            </div>
+            
+          
+		<h2 class="ask-con-tit mt5" id="sk-con-tit"><span>问题补充</span></h2>
+		<div class="textarea-box mt5" id="sk-con-con" style="display: none;"><textarea id="editor" name="description"  placeholder="请输入问题补充，最多允许3000个字"></textarea></div>
+	</div>
+	<div class="add-labels">
+		<div class="add-labels-box">
+			<input type="hidden" name="classId" id="classId" value="">
+			
+		</div>
+		<div id="labels_lists"></div>
+	</div>
+	
+<div class="add-labels">
+<div class="add-labels-box" style="border-style:none">
+悬赏&nbsp;<select style="width:60px;background: rgba(252, 247, 247, 0.28);border: solid 1px rgb(236, 225, 225);" name="givescore" id="scorelist"><option selected="selected" value="0">0</option><option value="3">3</option><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="30">30</option><option value="50">50</option><option value="80">80</option><option value="100">100</option></select></span>
+</div></div>
+	<div class="post"><div class="lightdeepblue-linear2 post-question mb15 fs14" id="subAdd">
+
+  
+<button  type="submit" id="subAdd" style="padding-top:10px;width:100%;color: #fff;border:none;background: #40adff;font-size: 14px;" name="submit">
+发布提问
+</button>
+</div></div>
+<input type="hidden" name="cid" id="cid" value='1'/>
+                    <input type="hidden" name="cid1" id="cid1" value="0"/>
+                    <input type="hidden" name="cid2" id="cid2" value="0"/>
+                    <input type="hidden" name="cid3" id="cid3" value="0"/>
+                    <input type="hidden" value="{$askfromuid}" name="askfromuid" />  
+                 
+
+</form>
+
+<script src="{SITE_URL}js/wap/member_m.js"></script>
+<script type="text/javascript">
+	
+$("#sk-con-tit").click(function(){
+	
+	$("#sk-con-con").toggle();
+});
+      
+function  check_form() {
+    var qtitle = $("#qtitle").val();
+    if (bytes($.trim(qtitle)) < 8 || bytes($.trim(qtitle)) > 100) {
+      
+        showErrMsg("问题标题长度不得少于4个字，不能超过50字");
+        $("#qtitle").focus();
+        return false;
+    }
+
+    {if $user['uid']}
+    //检查财富值是否够用
+    var offerscore = 0;
+    var selectsocre = $("#givescore").val();
+    if ($("#hidanswer:selected").val() == 1) {
+        offerscore += 10;
+    }
+    offerscore += parseInt(selectsocre);
+    if (offerscore > $user['credit2']) {
+    
+    showErrMsg("你的财富值不够!");
+            return false;
+    }
+    {/if}   
+}
+
+
+</script>
+<!--{template footer,wap}-->

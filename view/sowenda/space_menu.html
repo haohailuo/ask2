@@ -1,0 +1,35 @@
+ <div class="aside">
+                    <div class="aside-userinfo">
+                        <div class="avatar">
+                            <a href="{url user/profile}" class="pic">
+                                <img src="{$member['avatar']}">
+                            </a>
+                            <div id="pic_shine" class="shine" style="display: none;">
+
+                            </div>
+                        </div>
+                         <h1>  <p>
+                         <span class="name">{$member['username']}</span><a href="" class="nickname-tip-big" title="！" target="_blank"></a>&nbsp;&nbsp;
+                            <a href="/other/help#7_2" target="_blank" title="等级{$member['level']}" class="ico-lv ico-lv-{$member['level']}">&nbsp;</a>
+                            <!-- <a class="sina"></a> -->
+                           
+                        </p></h1>
+                         <p>身　份：<a ><i class="weath"></i>{$member['introduction']}</a>
+                        <p>金　币：<a ><i class="weath"></i>{$member['credit2']}</a>
+                        </p>
+                        <p>经验值：<a>{$user['credit1']}</a></p><p style="margin-top: 6px;">
+                        <a href="javascript:;" onclick="javascript:document.location = '{url question/add/$member['uid']}'" qid="2548582662" class="btn btn-1 js-ask-daren">
+                            <span>向TA提问</span>
+                        </a>
+                    </p>
+                    </div>
+                    <div class="aside-menu">
+                  
+                        <ul>
+                         <li<!--{if $regular=="user/space"}--> class="on"<!--{/if}-->><!--{if $regular=="user/space"}--><i class="m-ach"></i>TA的首页<!--{else}--><a href="{url user/space/$member['uid']}"><i class="m-ach"></i>TA的首页</a><!--{/if}--></li>
+                 <li<!--{if strstr($regular,"topic/userxinzhi")}--> class="on"<!--{/if}-->><!--{if strstr($regular,"topic/userxinzhi")}--><a href="{url topic/userxinzhi/$member['uid']}"><i class="m-xinzhi"></i>Ta的新知</a><!--{else}--><a href="{url topic/userxinzhi/$member['uid']}"><i class="m-xinzhi"></i>Ta的新知</a><!--{/if}--></li>
+                <li<!--{if $regular=="user/space_ask"}--> class="on"<!--{/if}-->><!--{if $regular=="user/space_ask"}--><i class="m-ask"></i>TA的提问<!--{else}--><a href="{url user/space_ask/$member['uid']}"><i class="m-ask"></i>TA的提问</a><!--{/if}--></li>
+                <li<!--{if $regular=="user/space_answer"}--> class="on"<!--{/if}-->><!--{if $regular=="user/space_answer"}--><i class="m-ans"></i>TA的回答<!--{else}--><a href="{url user/space_answer/$member['uid']}"><i class="m-ans"></i>TA的回答</a><!--{/if}--></li>
+                        </ul>
+                    </div>
+                </div>

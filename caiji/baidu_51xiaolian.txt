@@ -1,0 +1,10 @@
+﻿http://zhidao.baidu.com/browse/79?pn={#num}#list|
+.title-container>.question-title|
+.qslim-ans-info>.answer-text|
+#qb-content>#wgt-ask>pre[accuse="qContent"]|
+.wgt-best>.best-text|
+#wgt-answers>a[alog-action="qb-username"]|
+|
+http://zhidao.baidu.com|
+百度知道问答(<a href="http://zhidao.baidu.com" target="_blank">http://zhidao.baidu.com</a>)
+|0

@@ -1,0 +1,157 @@
+<!--{template header,wap}-->
+<div id="scrollpic" style="height:auto">
+		<ul class="cf" style="-webkit-transform: translate(-40%); -webkit-transition: 300ms linear; transition: 300ms linear;">
+		  <!--{eval $topiclistinphone=$this->fromcache('topiclistinphone');}-->
+		 <!--{loop $topiclistinphone $index $topic}-->
+			<li class="move"><a href="{url topic/getone/$topic['id']}"><img width="660" height="300"  src="{SITE_URL}{$topic['image']}" alt=""><p>{eval echo cutstr($topic['title'],14,'');}</p></a></li>
+		
+			 <!--{/loop}-->
+			 
+		</ul>
+		<div class="focus-btn">
+			<ul class="cf">
+			 <!--{loop $topiclistinphone $index $topic}-->
+			  <!--{if $index==1}-->
+                       <li class="active"></li>
+                        <!--{else}-->
+                        <li class=""></li>
+                        <!--{/if}-->
+			
+			  <!--{/loop}-->
+			
+			
+			 
+                     
+                     
+			</ul>
+		</div>
+	</div>
+            
+	
+	<div id="questions" class="mod mt15">
+		<div id="questions_tab">
+			<div class="tab-btn">
+				<ul class="cf box_title line3">
+						
+					<li class="active"><span class="fs14 ">待解决</span></li>
+					<li><span class="fs14 ">已解决</span></li>
+					<li><span class="fs14 ">高分悬赏</span></li>				
+				</ul>
+			</div>
+			<div class="tab-con cf w300">
+				
+				<div class="questions-con move" id="nosolved">
+					
+						
+						
+					
+					
+					 <ul class="questions-lists"> 	
+					
+					 <!--{eval $nosolvelist=$this->fromcache('nosolvelist');}-->
+                <!--{loop $nosolvelist $index $question}-->
+              	
+                  
+                    
+                    <li>
+							<h3><a href="{url question/view/$question['id']}" title="{$question['title']}">{eval echo cutstr($question['title'],50);}</a></h3>
+							
+					
+                    </li>
+              
+                <!--{/loop}-->
+                  </ul>
+                <a href="{url category/view/all/1}"><div class="getMoreData cf">查看更多</div></a>
+				</div>
+				<div class="questions-con move" id="resolved">
+					<ul class="questions-lists">
+						
+						
+						
+					
+					 <!--{eval $solvelist=$this->fromcache('solvelist');}-->
+                <!--{loop $solvelist $index $question}-->
+               		
+                 
+                    <li>
+							<h3><a href="{url question/view/$question['id']}" title="{$question['title']}">{eval echo cutstr($question['title'],50);}</a></h3>
+							
+						</li>
+                      
+               
+                <!--{/loop}-->
+                 </ul>
+					<a href="{url category/view/all/2}"><div class="getMoreData cf">查看更多</div></a>
+					
+				</div>
+				<div class="questions-con move" id="zeroanswer">
+					
+					 <ul class="questions-lists">	
+					 <!--{eval $nosolvelist=$this->fromcache('rewardlist');}-->
+                <!--{loop $nosolvelist $index $question}-->
+                   		
+                   
+                    <li>
+							<h3>
+							 <span class="gold" style="display:inline;color:red;">                
+                            <!--{if $question['price'] > 0}-->
+                            <img src="{SITE_URL}css/default/gold.gif" />{$question['price']}
+                            <!--{/if}-->
+                        </span>
+							<a style="display:inline;" href="{url question/view/$question['id']}" title="{$question['title']}">{eval echo cutstr($question['title'],50);}</a></h3>
+						</li>
+               
+                <!--{/loop}-->
+                 </ul>
+					<a href="{url category/view/all/4}"><div class="getMoreData cf">查看更多</div></a>
+					
+				</div>
+				
+			</div>
+		</div>
+	</div>
+     <!--精华知识 -->
+    <div id="elite" class="mod">
+        <div class="hd box_title">
+            <h2>精华知识</h2>
+        </div>
+        <ul id="elite_lists" class="elite_lists">
+          <!--{eval $topiclist=$this->fromcache('waptopiclist');}-->
+        	 <!--{loop $topiclist $index $topic}-->
+        	<a href="{url topic/getone/$topic['id']}" class="elite_btn">
+            	<span class="pic"><img src="{SITE_URL}{$topic['image']}"></span>
+                <span class="r">
+                	<span class="subject">{eval echo cutstr($topic['title'],24,'');}</span>
+                	<span class="name">{eval echo cutstr(strip_tags($topic['describtion']),30,'...');}</span>
+                    <span class="browse">{$topic['views']}</span>
+                </span>
+                
+            </a>
+            
+         
+         <!--{/loop}-->
+            
+         
+        	
+        
+           
+            
+        </ul>
+    </div>    
+    <!--精华知识 end -->   
+	<div id="labels" class="mod">
+		<div class="hd box_title"><h2>话题广场</h2></div>
+		<div id="labels_lists">
+		
+	
+		 <!--{eval $categorylist=$this->fromcache('categorylist');}-->
+                <!--{loop $categorylist  $category1}-->
+               <span style="width: 30.33%;" ><a href="{url category/view/$category1['id']}">{$category1['name']}</a></span>
+                <!--{/loop}--> 
+		
+		
+		
+		</div>
+	</div>
+</div>
+<!--{template footer,wap}-->

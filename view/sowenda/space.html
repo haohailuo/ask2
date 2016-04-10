@@ -1,0 +1,93 @@
+
+<!--{template header,sowenda}-->
+    <link href="{SITE_URL}css/sowenda/new.combo.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/user.combo.css" rel="stylesheet" />
+
+        <!-- 中间内容部分-->
+
+        <div id="bd">
+            <div class="grid main-cnt">
+                <!--{template space_menu}-->
+
+                <div class="article">
+                    <div class="mod-status-info">
+                        <div class="hd"><h3>{$member['username']}的资料</h3><span class="info"></span>
+                        </div>
+                        <div class="bd">
+                            <div class="status-data clearfix">
+                                <ul>
+                                    <li class="item"><em>{$member['answers']}</em><span>回答</span></li>
+                                    <li class="item"><em>{$member['questions']}</em><span>提问</span></li>
+                                    <li class="item">
+                                        <a target="_blank" href="/other/help#10_1">
+                                            <em>{$adoptpercent}%</em><span>采纳率</span>
+                                            <img src="http://p4.qhimg.com/t0102cbe77e8c3729fa.png" alt="查看采纳率的计算方式" style="vertical-align: -3px;margin-left: 5px;" title="查看采纳率的计算方式">
+                                        </a>
+                                    </li>
+                                    <li class="item"><em>0</em><span>帮助人数</span></li><li class="item"><em>{$member['supports']}</em><span>赞</span></li>
+                                     <li class="item"><em>{$member['followers']}</em><span>关注者</span></li>
+                                    <li class="item"><em>{$member['attentions']}</em><span>已关注</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="mod-qa-list">
+                        <div class="hd">
+                            <h3>{$member['username']}的动态</h3>
+                            &nbsp;
+                           
+                            
+                        </div>
+                        <div class="bd" style="margin: 10px 0 15px;">
+                           <!--{if $doinglist==null}--> 
+                        
+                      <div class="mod-nolist">
+                        <div class="smile"><span>这家伙很懒，没任何动态</span>
+                         
+                        </div>
+                        </div>
+                        
+                        <!--{/if}-->
+                            <ul>
+                            
+                             
+                             
+                                
+                        
+                     
+                             <!--{loop $doinglist $doing}-->
+                                <li class="item" ask_id="1448195689726701" ans_id="1448195869726814">
+                                    <a target="_blank" href="{url question/view/$doing['questionid']}" class="lnk">
+                                        <div>
+                                          
+                                            <span class="title" title="{$doing['title']}">   <i class="uns" title="待解决问题"></i>  <!--{if $doing['hidden'] && in_array($doing['action'],array(1,8))}-->
+                                匿名
+                                <!--{else}-->
+                              {$doing['author']}
+                                <!--{/if}-->                            
+                                {$doing['actiondesc']}{$doing['title']}</span>
+                                        </div>
+                                        <div >{eval echo cutstr($doing['content'],500)}</div>
+                                        <div class="info">{$doing['doing_time']}</div>
+                                    </a>
+                                    <div class="right"></div>
+                                </li>
+                                       <!--{/loop}-->
+                              
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+<!--{template footer,sowenda}-->

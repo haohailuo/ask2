@@ -1,0 +1,99 @@
+
+<!--{template header}-->
+ <link href="{SITE_URL}css/sowenda/search.css" rel="stylesheet" />
+<div id="warper">
+<div id="container">
+<div id="qa-tabcard">
+<input type="hidden" value="20" id="js-filt"><ul class="clearfix">
+ <ul>
+                    <!--{if 1==$status}--><li class="on">全部问题</li><!--{else}--><li><a href="{url question/search/$word}">全部问题</a></li><!--{/if}-->
+                    <!--{if 2==$status}--><li class="on">已解决<!--{else}--><li><a href="{url question/search/$word/2}">已解决</a></li><!--{/if}-->
+                </ul>
+</ul>
+<div id="qa-filt-time">
+<form id="js-filt-time-form"><label>提问时间: </label><select id="js-filt-time" name="adv_t"><option value="all" data-log="点击全部">全部</option><option value="w" data-log="点击1周内">1周内</option><option value="m" data-log="点击1月内">1月内</option><option value="3m" data-log="点击3月内">3月内</option><option value="6m" data-log="点击6月内">6月内</option><option value="y" data-log="点击1年内">1年内</option></select><input type="hidden" name="q" value="好搜"></form></div></div><div id="baike" style="float: left;"></div><div id="qaresult" clsss="clearfix"><div class="aside"><div id="js-sh-history" class="mod-sh-history" style="display:none;"><div class="hd clearfix"><h3>搜索历史</h3><a href="#">清除</a></div><div class="bd"><ul></ul></div></div><div class="garllery_ad" id="garllery"><a text="http://dev.tg.wan.360.cn/?channel=515480472&amp;placeid=" href="http://dev.tg.wan.360.cn/?channel=515480472&amp;placeid=" target="_blank"><img src="http://p8.qhimg.com/t0195dc4c26018ff583.jpg"></a></div>
+<script>(function(){function r(){var r=[],i,s;if(e==="ALL")for(var o in t)r=r.concat(t[o]);else if(Object.prototype.toString.call(e)==="[object Array]")for(var o;o<e.length;o++)r=r.concat(t[e[o]]);i=r[Math.floor(Math.random()*r.length)],s=document.getElementById("garllery"),i&&(s.innerHTML='<a text="'+n[i]+'" href="'+n[i]+'" target="_blank"><img src="'+i+'"></a>')}var e="ALL",t={shouyou:["http://p8.qhimg.com/t0195dc4c26018ff583.jpg"]},n={"http://p8.qhimg.com/t0195dc4c26018ff583.jpg":"http://dev.tg.wan.360.cn/?channel=515480472&placeid="};r()})()</script></div>
+  <!--{if $questionlist}-->
+
+<ul class="qa-list">
+  <!--{loop $questionlist $question}-->
+<li class="item"><div class="qa-i-hd"><h3>
+<a index="1" aid="1394041956060474" target="_blank" href="{url question/view/$question['id']}">
+{$question['title']}</a><!--{if in_array($question['status'],array(2,6))}--><img title="已解决" src="{SITE_URL}css/default/solved.gif" /><!--{/if}--></h3>
+</div><div class="qa-i-bd"> {eval echo cutstr($question['description'],250,'...');}</div><div class="qa-i-ft"><span class="cate">
+<a text="qaresult-cate" target="_blank" href="{url category/view/$question['cid']}">{$question['category_name']}</a> &gt; 
+
+</span>- 提问人:{if $question['hidden']}<span>匿名</span>{else}<a href="{url user/space/$question['authorid']}">{$question['author']}</a>{/if} -  {$question['answers']}个回答 - 提问时间: {$question['format_time']}</div>
+
+   <!--{/loop}-->
+
+</li>
+    <!--{else}-->
+            <div id="no-result">
+                <p>抱歉，未找到和 <span>"</span><em>{$word}</em><span>"</span>相关的内容。</p>
+                <strong>建议您：</strong>
+                <ul>
+                    <li><span>检查输入是否正确</span></li>
+                    <li><span>简化查询词或尝试其他相关词</span></li>
+                </ul>
+            </div>
+            <!--{/if}-->
+</ul>
+</div><div class="clearfix" style="clear:both">
+<!--{if $departstr}-->
+<div class="pagination" id="qaresult-page">
+<p class="pages">  {$departstr}</p>
+</div>
+<!--{/if}-->
+</div><div class="clearfix js-show-data" data-text="搜索结果页底部banner广告展现" style="clear:both;width:570px;max-height:55px;margin-top:10px;"> 
+	<a href="http://mall.360.com/ac/nvrenjie?utm_source=360wenda_dibutonglan&amp;utm_medium=inside" title="结果页底部banner广告" target="_blank" style="height:55px;" text="搜索结果页底部banner广告点击_360商城">
+		<img src="http://p2.qhimg.com/t011a35a37637a2c37b.jpg" width="570" height="55">
+	</a>
+</div>
+
+
+
+  </div><!-- end container --><div>
+  <div class="mod-rel-list" id="js-search-rel"><div class="hd">
+  <h4>相关搜索</h4>
+  </div><div class="bd">
+  <ul class="list clearfix">
+  
+   <!--{loop $related_words $index $word}-->
+             
+                              
+                                
+                                
+                                
+  <li><a href="{url question/search/$word}">{$word}</a></li>
+    <!--{/loop}-->
+  </ul></div></div>
+    <div class="mod-rel-list" id="js-search-rel"><div class="hd">
+  <h4>热门搜索</h4>
+  </div><div class="bd">
+  <ul class="list clearfix">
+  
+   <!--{if $hot_words}-->
+                    <!--{loop $hot_words $hostword}-->
+                    <li><a href="{url question/search/$hostword}">{$hostword}</a></li>
+                    <!--{/loop}-->
+                    <!--{else}-->
+                    <!--{eval $wordslist = unserialize($this->setting['hot_words']);}-->
+                    <!--{loop $wordslist $hotword}-->
+                    <li><a {if $hotword['qid']}href="{url question/view/$hotword['qid']}" {else}href="{url question/search/$hotword['w']}"{/if}>{$hotword['w']}</a></li>
+                    <!--{/loop}-->    
+                    <!--{/if}-->
+             
+                              
+                                
+                                
+                                
+
+    
+  </ul></div></div>
+  <div class="ft-search"><form name="f2" class="form" action="?" method="get"><span class="ipt-sh"><a href="javascript:;" class="search-del" title="清空"></a><input name="q" tabindex="1" class="js-sh-ipt input_key" value="好搜" maxlength="100" autocomplete="off"></span><input type="submit" text="search-ask" class="js-search-bt s_btn" onmousedown="this.className='js-search-bt s_btn s_btn_h'" onmouseout="this.className='js-search-bt s_btn'" onmouseover="this.className='js-search-bt s_btn s_btn_h'" value="搜索答案"><input type="button" text="add-ask" class="js-ask-bt s_btn" onmousedown="this.className='js-ask-bt s_btn s_btn_h'" onmouseout="this.className='js-ask-bt s_btn'" onmouseover="this.className='js-ask-bt s_btn s_btn_h'" value="我要提问"></form></div>
+  
+  </div></div>
+  
+  
+  <!--{template footer}-->

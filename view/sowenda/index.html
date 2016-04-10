@@ -1,0 +1,380 @@
+<!--{template header,sowenda}-->
+<!--{eval $statistics=$this->fromcache('statistics');}-->
+<!--{eval $onlineusernum=$this->fromcache('onlineusernum');}-->
+<!-- 中间内容部分-->
+    <div id="bd" class="grid-1 clearfix">
+ 
+        <!--好搜上线推广广告-->
+        <!--上部开始-->
+        <div class="mod-top clearfix">
+
+            <!--左侧开始-->
+            <div class="left">
+            <div text=" <网站>【首页左侧广告位】点击" class="mod-top-ad"><a class="mod-top-ad" href="javascript:void(0);" target="_blank"><img src="{SITE_URL}upload/t01a1c91dbc20214618.jpg" alt="我是大主宰"></a></div></div><!--左侧结束-->
+            <!--中间部分开始-->
+            <div class="center">
+                <!--未登录开始-->
+                <div class="mod-userpanel-nologin"><h2>已有<span class="js-help-total" data-num="{$statistics['solves']}">{$statistics['solves']}</span>位网友得到了帮助</h2>
+                <div class="askinput clearfix">
+                
+                
+                  <form name="askform" action="{url question/add}" method="POST">
+                           
+                             <input type="text" name="word" autocomplete="off" maxlength="100" placeholder="5分钟快速解答您的问题！" class="js-ask-input">
+                          
+                            
+                            <a  class="js-ask"> 
+                            <button type="submit" name="post" class="btnask" >我要提问</button>
+                            </a>
+                           
+                        </form>
+               
+                
+                </div>
+                <div class="sync j-switchable" data-switch="{&quot;horiz&quot;: false,&quot;effect&quot;: &quot;scroll&quot;, &quot;loop&quot;: true,&quot;autoplay&quot;:true}">
+                <div class="panels" text="" style="position: absolute; top: 0px; width: 530px; transition: none 500ms ease; -webkit-transition: none 500ms ease;">
+                <ul>
+                  <!--{eval $attentionlist=$this->fromcache('attentionlist');}-->
+                    <!--{loop $attentionlist $index $question}-->
+                                    <li>
+                <i class="i-ask">Q</i><div>问答网友<span class="g-grey">提问</span>
+                <a href="{url question/view/$question['id']}" target="_blank" title="{$question['title']}">{eval echo cutstr($question['title'],40,'');}</a>
+                </div>
+                <span class="g-grey time">
+                <i class="i-clock"></i>{$question['answers']}回答</span>
+                </li>
+                     <!--{/loop}-->
+
+              
+                </ul>
+
+                </div>
+                </div>
+                </div>
+                <!--未登录结束--></div>
+            <!--中间部分结束-->
+            <!--右侧开始-->
+            <div class="right">
+              <!--{eval $topiclist=$this->fromcache('topiclist');}-->
+            <!--{if $topiclist}-->
+            
+            
+                <!--问答日报开始-->
+                <div class="mod-daypaper">
+                <h3>新知一刻</h3>
+                <ul>
+                
+                 <!--{loop $topiclist $index $topic}-->
+              <!--{if $index==0}-->
+              
+              <li class="first" text="{$topic['title']}">
+                <a href="{url topic/getone/$topic['id']}" target="_blank">
+                <img src="{SITE_URL}{$topic['image']}" alt="">
+                </a>
+                <a class="title" href="{url topic/getone/$topic['id']}" target="_blank" title="{$topic['title']}">
+                {eval echo cutstr($topic['title'],34,'');}</a>
+                <div class="bg">
+                </div>
+                </li>
+
+              
+                <!--{elseif $index<=2}-->
+                
+                
+                <li text="{$topic['title']}">
+                <a href="{url topic/getone/$topic['id']}" target="_blank" title="{$topic['title']}">
+                ·   {eval echo cutstr($topic['title'],34,'');}</a>
+                </li>
+                 <!--{else}-->
+                 
+              <!--{/if}--> 
+              
+             <!--{/loop}-->
+               
+             
+                </ul>
+                <p>
+                <a text="<网站>【首页新知查看更多】点击" href="{url topic/default}" target="_blank">查看更多</a>
+                </p>
+                </div>
+                  <!--{/if}-->
+                <!--问答日报结束-->
+                </div>
+            <!--右侧结束-->
+        </div>
+
+
+
+
+
+        <!--上部结束-->
+        <!--下部开始-->
+        <div class="mod-bottom clearfix">
+
+            <!--左侧分类开始-->
+            <div class="left">
+                <div class="mod-subnav" style="position: relative;">
+                    <b style="visibility: visible; top: 0px;">
+                        <i></i></b>
+                    <ul id="catelist">
+                    
+                    <li>
+                        <a hidefocus="true" href="javascript:;" data-key="0" class="selected">全部</a></li>
+                           <!--{eval $categorylist=$this->fromcache('categorylist');}-->
+                <!--{loop $categorylist  $category1}-->
+                 <li><a hidefocus="true" href="{url category/view/$category1['id']}" data-key="{$category1['id']}">{$category1['name']}</a></li>
+                   <!--{/loop}-->
+                       
+                    </ul>
+                </div>
+                </div>
+
+            <!--左侧分类结束-->
+            <!--中间列表开始-->
+
+
+            <div class="center js-context">
+                <!--推荐问题开始-->
+                  <!--{eval $attentionlist=$this->fromcache('hotattentionlist');}-->
+                    <!--{loop $attentionlist $index $question}-->
+                         <div class="mod-bastinfo" >
+                    <h3 class="title">原来是这样！</h3>
+                    <dl class="clearfix">
+                        <dt>
+                            <i class="i-ask">Q</i></dt>
+                        <dd>
+                            <p>
+                                <a class="fir-title" target="_blank" text="<网站>【首页原来是这样标题】点击" href="/q/1448010006721740">为何女生偏爱大叔？</a>
+                            </p>
+                            <p class="cate">
+                                <a target="_blank" class="g-grey" href="/c/13">情感/家庭</a>
+                                &nbsp;&gt;&nbsp;
+                                <a target="_blank" class="g-grey" href="/c/134">情感话题</a>
+                            </p>
+                        </dd>
+                        <dt>
+                        <i class="i-ans">A</i></dt>
+                        <dd>
+                        <p>“女生出现这一现象，大多是由于是受恋父情结影响。”恋父（母）情结期　莫文达医生解释，从心理学角度分析...&nbsp;
+                        <a text="<网站>【首页原来是这样更多】点击" class="more" href="/q/1448010006721740" target="_blank">查看更多</a>
+                        </p>
+                        </dd>
+                        </dl>
+                        </div>
+                     <!--{/loop}-->
+           
+
+
+
+                <!--推荐问题结束-->
+                <!--列表开始-->
+
+
+                <div class="mod-asklist">
+                    <div class="loading" style="display: none;">
+
+                    </div>
+                    <ul class="nologin-nav clearfix">
+                        <li><a text="<网站>【首页待解决问题列表】点击" filt="102" id="linosolve" class="selected questionlist" href="javascript:;">等你回答</a></li>
+                        <li><a text="<网站>【首页零回答问题列表】点击" filt="0" id="lisolve" class="middle questionlist" href="javascript:;">已解决</a></li>
+                        <li><a text="<网站>【首页高悬赏问题列表】点击" filt="100" class="questionlist" id="lineedmore" href="javascript:;">高悬赏</a></li>
+                    </ul>
+                    <ul class="list nosolve1" >
+                      <!--{eval $nosolvelist=$this->fromcache('nosolvelist');}-->
+                <!--{loop $nosolvelist $index $question}-->
+                 <li class="">
+                            <div class="fl">
+                                <a href="{url question/view/$question['id']}" target="_blank" title="{$question['title']}">{eval echo cutstr($question['title'],50);}</a>
+                            </div>
+                            <div >
+                                <span class="num g-grey">{$question['answers']}回答</span><span class="time g-grey">{$question['format_time']}</span></div>
+                        </li>
+                  <!--{/loop}-->
+                       
+                    
+                    </ul>
+                    <div  class="tools clearfix nosolve2">
+                        <a class="g-grey more" href="{url category/view/all/1}" target="_blank">查看全部问题</a>
+                        
+                    </div>
+                    
+                     <ul class="list solve1" style="display:none;">
+                      <!--{eval $solvelist=$this->fromcache('solvelist');}-->
+                <!--{loop $solvelist $index $question}-->
+                 <li class="">
+                            <div class="fl">
+                                <a href="{url question/view/$question['id']}" target="_blank" title="{$question['title']}">{eval echo cutstr($question['title'],50);}</a>
+                            </div>
+                            <div >
+                                <span class="num g-grey">{$question['answers']}回答</span><span class="time g-grey">{$question['format_time']}</span></div>
+                        </li>
+                  <!--{/loop}-->
+                       
+                    
+                    </ul>
+                    <div   style="display:none;" class=" solve2 tools clearfix">
+                        <a class="g-grey more" href="{url category/view/all/2}" target="_blank">查看全部问题</a>
+                        
+                    </div>
+                    
+                     <ul class="list nosolve3" style="display:none;">
+                      <!--{eval $nosolvelist=$this->fromcache('rewardlist');}-->
+                <!--{loop $nosolvelist $index $question}-->
+                 <li class="">
+                            <div class="fl">
+                                <a href="{url question/view/$question['id']}" target="_blank" title="{$question['title']}">{eval echo cutstr($question['title'],50);}</a>
+                            </div>
+                            <div >
+                                <span class="num g-grey">{$question['answers']}回答</span><span class="time g-grey">{$question['format_time']}</span></div>
+                        </li>
+                  <!--{/loop}-->
+                       
+                    
+                    </ul>
+                    <div   style="display:none;" class=" nosolve4 tools clearfix">
+                        <a class="g-grey more" href="{url category/view/all/4}" target="_blank">查看全部问题</a>
+                        
+                    </div>
+                </div>
+
+
+<script>
+$("#linosolve").click(function(){
+	$(".questionlist").removeClass("selected");
+	$(this).addClass("selected");
+	$(".solve1").hide();
+	$(".nosolve1").show();
+	$(".solve2").hide();
+	$(".nosolve2").show();
+	$(".nosolve3").hide();
+	$(".nosolve4").hide();
+})
+$("#lisolve").click(function(){
+	$(".questionlist").removeClass("selected");
+	$(this).addClass("selected");
+	$(".solve1").show();
+	$(".nosolve1").hide();
+	$(".solve2").show();
+	$(".nosolve2").hide();
+	$(".nosolve3").hide();
+	$(".nosolve4").hide();
+})
+$("#lineedmore").click(function(){
+	$(".questionlist").removeClass("selected");
+	$(this).addClass("selected");
+	$(".solve1").hide();
+	$(".nosolve1").hide();
+	$(".solve2").hide();
+	$(".nosolve2").hide();
+	$(".nosolve3").show();
+	$(".nosolve4").show();
+})
+
+</script>
+
+
+                <!--列表结束-->
+
+
+
+                <!--达人开始-->
+
+                <div class="mod-daren">
+                <h3>最新网友<img src="http://p1.qhimg.com/t015c71912f212d1737.jpg" alt="最新网友"></h3>
+                <div class="boxs clearfix">
+                  <!--{eval $expertlist=$this->fromcache('newuser');}-->
+                    <!--{loop $expertlist $index $expert}-->
+                 
+                    
+                     <div class="box">
+                <div class="info clearfix">
+                <div class="pic">
+                <a target="_blank" text="{$expert['name']}" href="{url user/space/$expert['uid']}">
+                <img src="{$expert['avatar']}" onmouseover="pop_user_on(this, '{$expert[uid]}', 'text');"  onmouseout="pop_user_out();" alt=""></a>
+                </div><div class="tools">
+                <p>
+                <a text="<网站>【乐帮达人用户名】点击" target="_blank" href="{url user/space/$expert['uid']}" class="name">{$expert['username']}</a>
+                </p>
+                <p>
+                <a text="<网站>【乐帮达人向他提问按钮】点击" target="_blank" href="javascript:;"  onclick="javascript:document.location = '{url question/add/$expert['uid']}'" class="ask-to js-ask-daren" qid="159762300"><i class="i-pen"></i>向TA提问</a>
+                </p>
+                </div>
+                </div>
+                <p class="cate"><em>信息</em>{$expert['answers']}回答&nbsp;|&nbsp;{$expert['supports']}赞同</p>
+                </div>
+                    <!--{/loop}-->
+               
+                
+
+               
+
+                </div>
+                </div>
+
+
+                <!--达人结束-->
+</div>
+            <!--中间列表结束-->
+
+
+
+            <!--右侧模块开始-->
+            <div class="right js-aside" style="bottom: 0px;">
+            
+             <!--{eval $notelist=$this->fromcache('notelist');}-->
+               <!--{if $notelist}-->
+                <div class="mod-hotnews"><h3>问答新鲜事</h3>
+                <ul text="<网站>【问答新鲜事】模块点击">
+                 
+        <!--{loop $notelist $nindex $note}-->
+       <li><a target="_blank" title="{$note['title']}" {if $note['url']}href="{$note['url']}"{else}href="{url note/view/$note['id']}"{/if}>{eval echo cutstr({$note['title']},40,'');}</a></li>
+        
+       
+       
+        <!--{/loop}-->
+               
+                </ul></div>
+                
+                 <!--{/if}-->
+                
+                <!--助人光荣榜开始--><div class="mod-today-help">
+                <a class="help-img" href="javascript:void(0);" target="_blank" text="<网站>【首页助人光荣榜图片】点击">
+                    <img src="{SITE_URL}upload/t0120fead718649cb29.jpg" alt="助人光荣榜新玩法，每周精美礼品送不停" width="240" height="80">
+                </a>
+
+
+                <h3>乐帮专家<span class="g-grey js-cate">
+                </span></h3>
+                <dl class="clearfix" text="<网站>【首页今日助人光荣榜列表】点击">
+                 <!--{eval $answertop=$this->fromcache('expertlist');}-->
+                    <!--{loop $answertop $index $topuser}-->
+                    <dt>
+                <a target="_blank" href="{url user/space/$topuser['uid']}">
+                <img src="{$topuser['avatar']}" alt=""></a>
+                <i class="org-1">  <!--{eval $index++;}-->
+                
+                $index
+                </i>
+                </dt>
+                <dd>
+                <a target="_blank" class="name" href="{url user/space/$topuser['uid']}">{$topuser['username']}</a>
+                <p class="g-grey">财富:{$topuser['credit2']}<span>经验:{$topuser['credit1']}</span> <br>回答数 ：{$topuser['answers']}</p>
+                </dd>
+                    
+                      <!--{/loop}-->
+               
+                </dl>
+                
+             </div><!--今日助人光荣榜结束-->
+    
+                </div>
+
+
+            <!--右侧模块结束-->
+
+            </div>
+
+
+        </div>
+
+<!--{template footer,sowenda}-->

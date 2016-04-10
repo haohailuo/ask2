@@ -1,0 +1,137 @@
+<!--{template header,wap}-->
+
+         
+          <center><h1>{$topicone['title']}</h1></center>
+          <div id="content" style="padding:1px;border:solid 1px silver;" >
+          {$topicone['describtion']}
+      
+   
+     
+    <ul class="functions_elite mt25">
+                <li> 
+                	
+                          
+						<a class="" ><i class="ico"></i><span>阅读:{$topicone['views']}</span><b></b></a>
+                </li>
+                <li><a href="javascript:void(0)" class="question_share"><i class="ico"></i><span>分享</span><b></b></a></li>
+                
+            </ul>
+   
+    
+          </div>
+<!-- footer -->
+<!-- footer -->
+<center><span style="font-size:12px;">WAP版权归属:<a href="{SITE_URL}">{$setting['site_name']}</a> <!--{if $setting['site_statcode']}-->
+            {$setting['site_statcode']}
+            <!--{/if}--></span></center>
+<!--end footer -->
+<script type="text/javascript" src="{SITE_URL}js/wap/TY_m_2.0.js"></script>
+<script type="text/javascript" src="{SITE_URL}js/wap/TYWenda.m.js"></script>
+<div class="goTop" id="goTop" style="display: none;"></div>
+<script type="text/javascript" charset="utf-8" src="{SITE_URL}js/wap/stat_20080313.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23887046-5']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  
+  var gH=TY(window).height();
+  var ft_p=TY("#ft").position().top;
+  var ft_h=TY("#ft").height();
+  if(ft_p+ft_h<gH){
+  	TY("#ft").addClass("ft_fixed");
+  }else{
+	TY("#ft").removeClass("ft_fixed");  
+  }
+  
+  
+</script> 
+<!--end footer -->
+
+<script type="text/javascript">
+	TYWenda.m.initPage.thread();
+	
+	//回答跳转
+	$(".question_answer").click(function(){
+		var t=$(".post-box").offset();
+		$("body").scrollTop(t.top-50);
+	})
+	
+	
+	var adsGlobal = {itemId : "998",pageType : "03"};
+    (function(){
+		var tid = TY("h1.post-title").attr("topicid");
+		TY.loadUrl("http://wenda.tianya.cn/topic?action=countTopic&topicId="+tid)
+	})();
+	
+</script> 
+<!--share  --> 
+<script type="text/javascript">
+TY(".question_share").click(function(){
+	var h=TY(window).height();
+	TY(".pop_share_cover").height(h);
+	TY(".pop_share,.pop_share_cover").show();	
+})	
+TY(".pop_share_cover,.pop_share_clo").click(function(){
+	TY(".pop_share,.pop_share_cover").hide();	
+})
+</script> 
+<!--share end -->
+<script type="text/javascript">
+var gVote_zf=0,
+    gVote_ff=0;
+	
+if($(".pk_show").length==1){
+	$(".question_answer").hide();
+	
+	
+	var ch=$(".pk_show .zf .c").height();			//观点距离一致
+	var ch2=$(".pk_show .ff .c").height();
+	ch>=ch2?ch=ch:ch=ch2;
+	var ch=$(".pk_show ul .c").height(ch);	
+	if (!__global.isOnline()) {
+		$(".pk_show ul .i").prepend("<a href='{url user/login}'  class='unLoginLink loginPost'>立即登录，登录后可评论</a> ")
+		$(".pk_show ul .b").hide();	
+	}
+	
+	//点击显示
+	$(".pk_show ul .t").click(function(){
+		$(".pk_show ul").removeClass("ul_show");
+		$(this).parent().addClass("ul_show");
+		$(".pk_show ul .b input").val("确认");
+	});
+	setRatio();
+	
+}	
+	
+function setRatio(){
+	$(".pk_show .ratio .zf_num").text(gVote_zf);
+	$(".pk_show .ratio .ff_num").text(gVote_ff);
+	if(!(gVote_zf==0&&gVote_ff==0)){
+		$(".pk_show .pk_c1").width( 100*gVote_zf/(gVote_zf+gVote_ff)+"%" )	
+	}
+}	
+
+function addVote(i){
+	if(i=="1"){gVote_zf=gVote_zf+1	}
+	if(i=="-1"){gVote_ff=gVote_ff+1	}
+	setRatio();
+}	
+	
+	
+	
+	
+	      
+</script> 
+
+
+
+
+
+
+<div style="width: 0px; height: 0px;"><object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="0" height="0" id="TYFC1" align="middle"><param name="allowScriptAccess" value="always"><param name="allowNetworking" value="all"><param name="movie" value="http://static.tianya.cn/js/2010/cookie.swf"><param name="quality" value="high"><param name="bgcolor" value="#ffffff"><embed src="http://static.tianya.cn/js/2010/cookie.swf" quality="high" bgcolor="#ffffff" width="0" height="0" id="TYFC2" align="middle" allowscriptaccess="always" allownetworking="all" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></object></div></body></html>

@@ -1,0 +1,134 @@
+
+<!--{template header,sowenda}-->
+   <link href="{SITE_URL}css/sowenda/new.combo.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/club.combo.css" rel="stylesheet" />
+
+<!-- 中间内容部分-->
+
+    <div id="bd" class="grid-5 clearfix" style="background:#f6f7f7;margin-top:0">
+
+        <div id="bd-banner">
+            <div class="mod-index-banner">
+                <div class="banner-area">
+                    <span id="user_count" num="12388">1&nbsp;&nbsp;2&nbsp;&nbsp;3&nbsp;&nbsp;8&nbsp;&nbsp;8</span>
+                </div>
+               
+            </div>
+        </div>
+
+
+        <div id="bd-content">
+        <div class="grid-5 clearfix"><div class="article">
+        <div class="daren-list"><div class="item-title"><span class="bubble">
+        </span>向在线达人求助
+      
+        </div>
+      <div class="daren-list-cnt">
+        <div class="center-line"></div>
+        <ul id="club-daren-list">
+       <!--{loop $useractivelistlist $activeuser}-->
+        <li><div class="daren-pic">
+        <a text="uc-by-header" target="_blank" href="{url user/space/$activeuser['uid']}">
+        <img src="{$activeuser['avatar']}" alt="" onmouseout="pop_user_out();" onmouseover="pop_user_on(this, '{$activeuser['uid']}', 'image_active');"></a>
+        </div><p class="daren-name">
+        <a text="uc-by-name" target="_blank" href="{url user/space/$activeuser['uid']}" title="{$activeuser['username']}">{$activeuser['username']}</a>
+        </p>
+        <p class="daren-cate">
+   共有{$activeuser['supports']}赞同Ta
+  
+        </p>
+        <p class="daren-data">回答问题：
+        <span class="ans-count">{$activeuser['answers']}个</span>
+        </p><a href="javascript:;" onclick="javascript:document.location = '{url question/add/$activeuser['uid']}'"  qid="142318263" class="btn btn-daren-3 js-ask-daren">向达人提问</a></li>
+      
+               
+                <!--{/loop}-->
+        </ul>
+        
+        
+        </div></div>
+       
+        <div class="daren-rank">
+        <div class="item-title"><span class="heart"></span>达人财富榜</div>
+        <div class="rank-tab">
+        <a href="javascript:;" data-type="total" class="total-tab js-tab current">总榜</a></div>
+        <div class="daren-rank-cnt"><div class="rank-title">
+        <ul>
+        <li class="first">
+        <span class="icon-daren-name"></span>达人昵称</li>
+        <li><span class="icon-daren-heart"></span>元宝</li>
+        
+        <li><span class="icon-daren-good"></span>回答</li>
+        </ul>
+        </div><div class="rank-list"><div class="total-rank-list">
+        <ul>
+        
+         <!--{loop $userlist $index $user}-->
+                         
+                            
+                            
+        <li class="top-3"><div class="daren-info first">
+      
+        <div class="daren-pic">
+        <a text="uc-by-header" target="_blank" href="{url user/space/$user['uid']}">
+        <img src="{$user['avatar']}" alt=""></a>
+        </div>
+        <a target="_blank" href="{url user/space/$user['uid']}">{$user['username']}</a>
+        </div>
+        <div class="daren-heart">
+        <a target="_blank" href="#" title="">
+        <span class="heart-icon"></span>{$user['credit2']}</a></div>
+     
+         
+        <div class="daren-good">{$user['answers']}</div>
+        
+        </li>
+         <!--{/loop}-->
+        </ul>
+        </div>
+        </div>
+        </div></div></div><div class="aside"><div id="is-daren" style="diplay:none;" data-daren="0"></div><div class="each-item daren-notice"><div class="item-title">
+            <span class="green-line"></span>
+          新知一刻
+        </div>
+            <div class="item-cnt">
+                <ul>
+                 <!--{eval $topiclist=$this->fromcache('topiclist');}-->
+                   <!--{loop $topiclist $index $topic}-->
+                  <li>
+                        <a href="{url topic/getone/$topic['id']}" target="_blank" title="{$topic['title']}">
+                       {eval echo cutstr($topic['title'],14,'');}
+                         </a>
+                    </li>
+                  <!--{/loop}-->
+                   </ul>
+            </div></div><div class="each-item daren-privilege"><div class="item-title">
+            <span class="green-line"></span>
+           关注问题排行榜
+        </div>
+            <div class="item-cnt">
+                <ul>
+                
+                
+                 <!--{eval $attentionlist=$this->fromcache('attentionlist');}-->
+                <!--{loop $attentionlist $index $question}-->
+                
+                <li>
+                <span class="prvlg-icon prvlg-icon-1">
+                </span><a title="{$question['title']}" target="_blank" href="{url question/view/$question['id']}">{eval echo cutstr($question['title'],20,'...');}</a>
+                </li>
+             
+                <!--{/loop}-->
+                
+                
+                
+                 
+                </ul>
+            </div></div></div></div></div>
+
+
+        </div>
+
+
+
+<!--{template footer,sowenda}-->

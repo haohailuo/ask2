@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+
+<html>
+<!--{eval global $starttime,$querynum;$mtime = explode(' ', microtime());$runtime=number_format($mtime[1] + $mtime[0] - $starttime,6); $setting=$this->setting;$user=$this->user;$headernavlist=$this->nav;$regular=$this->regular;$toolbars="'".str_replace(",", "','", $setting['editor_toolbars'])."'";}-->
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!--<base href="http://passport.tianya.cn:80/">--><base href=".">
+    <meta charset="utf-8">
+    <title>公共-找回密码</title>
+ 
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Set a shorter title for iOS6 devices when saved to home screen -->
+    <meta name="apple-mobile-web-app-title" content="tianya touch">
+
+    <!-- Set Apple icons for when prototype is saved to home screen -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://static.tianyaui.com/global/m/touch/images/icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://static.tianyaui.com/global/m/touch/images/icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://static.tianyaui.com/global/m/touch/images/icons/apple-touch-icon-57x57.png">
+
+    <!--<link rel="icon" type="image/x-icon" href="favicon.ico" />-->
+
+    <!-- Include the CSS -->
+	<link rel="stylesheet" href="http://static.tianyaui.com/global/m/touch/css/touch-global.css">
+    <link rel="stylesheet" href="http://passport.tianya.cn/css/main_m.css">
+
+<script type="text/javascript" charset="utf-8" src="{SITE_URL}js/wap/core_interface.js"></script>
+<script type="text/javascript" charset="utf-8" src="{SITE_URL}js/wap/stat_20080313.js"></script>
+<script type="text/javascript" src="{SITE_URL}js/wap/h.js"></script>
+<script type="text/javascript" src="{SITE_URL}js/wap/TY.util.userActionRl.js"></script>
+</head>
+<body>
+
+<!-- header -->
+<header class="header-static clearfix">
+    <div class="left">
+        <ul class="list-nav">
+            <li><a href="javascript:history.go(-1);"><i class="icon-chevron-left"></i></a></li>
+        </ul>
+    </div>
+    <div class="center">
+        找回密码
+    </div>
+    <div class="right">
+        <ul class="list-set">
+            <li class="item item-user"><a href="{url user/register}">注册</a></li>
+        </ul>
+    </div>
+</header>
+<!-- .content -->
+<div class="content" id="page_login">
+  <form name="getpassform"  action="{url user/getpass}" method="post">
+    	<input type="hidden" name="__sid" id="__sid" value="1#2#1.0#fa5d246c-b154-45dd-8f90-585c7a792e1a">
+        <div class="form-item item-with-label">
+            <label>用户名</label><input type="text" name="username" id="username" value=""><input type="hidden" id="user_action" name="action" value="f2.1436517100600.3825,,,,b1.5.3693,b3.6.7640|cd9a4762c3f0460764e6ee91288e5596|d41d8cd98f00b204e9800998ecf8427e|Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36|v2.2">
+        </div>
+        <div class="form-item item-with-label">
+            <label>邮 箱</label><input type="text" name="email" id="email">
+        </div>
+        
+         <!--{if $setting['code_login']}-->
+                  
+                    <div class="input-bar">
+                        <h2>验证码</h2>
+                        <input type="text" class="code-input" id="code" name="code" onblur="check_code();"/><span id="codetip"></span>
+                    </div>
+                    
+                    <div class="form-item item-with-label">
+            <label>验证码</label> <input type="text" class="code-input" id="code" name="code" onblur="check_code();"/><span id="codetip"></span>
+        </div>
+                    <div class="form-item item-with-label"> 
+                        <span class="verifycode"><img  src="{url user/code}" onclick="javascript:updatecode();" id="verifycode"></span><a class="changecode" href="javascript:updatecode();">&nbsp;看不清?</a>
+                   </div>
+                    <!--{/if}-->
+        
+      
+        <div class="form-control"><button name="submit"  class="btn full" type="submit">提交</button></div>
+       
+        
+	   
+    </form>
+   
+
+</div>
+<center><span style="font-size:12px;">WAP版权归属:<a href="{SITE_URL}">{$setting['site_name']}</a><!--{if $setting['site_statcode']}-->
+            {$setting['site_statcode']}
+            <!--{/if}--></span></center>
+
+
+</body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

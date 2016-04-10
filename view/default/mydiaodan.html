@@ -1,0 +1,187 @@
+<!--{template header}-->
+<div class="wrapper mt10 clearfix">
+    <!--{template user_menu}-->
+    <div class="user-content">
+        <div class="my-answerbox">
+            <div class="title"><span>我的掉单</span>
+            <span class="normal-button"  style="margin-left:10px;float:right;"><a style="padding-left:20px;font-size:15px;color:white;" href="{url user/diaodanadd}">添加掉单</a></span>
+            <!--{if $user['chuli']==1||$user['id']==1}--> 
+            <span class="normal-button" style="float:right">
+            <a style="padding-left:20px;font-size:15px;color:white;"  href="{url user/diaodanchuli}">掉单处理</a></span><!--{/if}-->
+            </div>
+           
+
+            <div class="bd">
+                <div class="cls-qa-table" style="position:relative;margin-top:20px;">
+                <style>
+td{
+	text-align:left;
+}
+       .fbold{
+       	font-weight:bold;
+}
+ .fboldred{
+       	font-weight:bold;
+color:red;
+}
+
+     </style>
+                 
+                         <!--{loop $diaodanlist $diaodan}-->
+                         <!--{if $diaodan['leixing']=='转账掉单'&&$diaodan['show']==1}-->
+                      <table style="margin-bottom:10px;border-bottom:solid 1px red">   <tr style="background:#fffccc"><td class="fbold">
+                          类型:
+                         </td>
+                         <td style="text-align:left;"><span class="fboldred">{$diaodan['leixing']}</span></td>
+                         <td class="fbold">
+                          会员账号:
+                         </td>
+                         <td>{$diaodan['huiyuanzhanghao']}</td>
+                          <td style="text-align:left;" class="fbold">
+                          金额:
+                         </td>
+                         <td >{$diaodan['jine']}</td>
+                         <td class="fbold">
+                          状态:
+                         </td>
+                         <td colspan="3">
+                           <!--{if $diaodan['zhuangtai']=='未处理'}-->
+                        <span class="weichuli" style="color:red;font-weight:bold;">
+                        {$diaodan['zhuangtai']}
+                        </span> 
+                       
+                           <!--{else}-->
+                            <span style="color:blue">
+                        {$diaodan['zhuangtai']}
+                        </span> 
+                          <!--{/if}-->
+                         </td>
+                         </tr>
+                                <tr style="background:#fffccc"><td class="fbold">
+                          时间:
+                         </td>
+                         <td style="text-align:left;">{$diaodan['shijian']}</td>
+                         <td class="fbold">
+                          转账平台:
+                         </td>
+                         <td style="text-align:left;">{$diaodan['zhuanzhangpingtai']}</td>
+                          <td class="fbold">
+                          网址:
+                         </td>
+                         <td style="text-align:left;" colspan="5">{$diaodan['caozuowangzhi']}</td>
+                          
+                         </tr>
+                            <tr  style="background:#fffccc">
+                        
+                          <td class="fbold" >
+                         备注:
+                         </td>
+                         <td  colspan="5">{$diaodan['beizhu']}</td>
+                           <td class="fbold" >
+                        提交人:
+                         </td>
+                         <td >
+                         {$diaodan['caozuorenmingzi']}
+                         </td>
+                          <td class="fbold" >
+                       处理人:
+                         </td>
+                         <td >
+                         {$diaodan['chulirenmingzi']}
+                         </td>
+                         </tr>
+                         </table>
+                          <!--{/if}-->
+                            <!--{if $diaodan['leixing']=='存款掉单'&&$diaodan['show']==1}-->
+                          <table style="margin-bottom:10px;border-bottom:solid 1px red">
+                           <tr><td class="fbold">
+                          类型:
+                         </td>
+                          <td ><span class="fboldred">{$diaodan['leixing']}</span></td>
+                         <td class="fbold">
+                          会员账号:
+                         </td>
+                         <td>{$diaodan['huiyuanzhanghao']}</td>
+                          <td class="fbold">
+                          金额:
+                         </td>
+                         <td >{$diaodan['jine']}</td>
+                         <td class="fbold">
+                          状态:
+                         </td>
+                         <td colspan="3">
+                           <!--{if $diaodan['zhuangtai']=='未处理'}-->
+                        <span class="weichuli" style="color:red;font-weight:bold;">
+                        {$diaodan['zhuangtai']}
+                        </span> 
+                       
+                           <!--{else}-->
+                            <span style="color:blue">
+                        {$diaodan['zhuangtai']}
+                        </span> 
+                          <!--{/if}-->
+                         </td>
+                         </tr>
+                         
+                         
+                          <tr><td class="fbold">
+                          时间:
+                         </td>
+                         <td>{$diaodan['shijian']}</td>
+                        
+                          <td class="fbold">
+                          商户名称:
+                         </td>
+                         <td>{$diaodan['shanghumingchen']}</td>
+                          <td class="fbold">
+                          存款方式:
+                         </td>
+                         <td colspan="5">{$diaodan['cunkuanfangshi']}</td>
+                         </tr>
+                         
+                          <tr><td class="fbold" >
+                          订单号:
+                         </td>
+                         <td colspan="2" ><a>{$diaodan['dingdanhao']}</a><span class="viewimg" style="text-decoration:underline;cursor:pointer">[查看凭证]</span>
+                         
+                         <img class="imgshow" src="{$diaodan['cunkuangjietu']}" style="postion:absolute;top:10px;left:10px;display:none;width:500px;height:300px;" />
+                         </td>
+                        
+                          <td class="fbold">
+                         备注:
+                         </td>
+                         <td colspan="2" >{$diaodan['beizhu']}</td>
+                           <td class="fbold" >
+                        提交人:
+                         </td>
+                         <td >
+                         {$diaodan['caozuorenmingzi']}
+                         </td>
+                           <td class="fbold" >
+                       处理人:
+                         </td>
+                         <td >
+                         {$diaodan['chulirenmingzi']}
+                         </td>
+                         </tr></table>
+                            <!--{/if}-->
+                             <!--{/loop}-->
+                   
+                    
+                    
+                </div>
+                <script>
+                $(".viewimg").click(function(){
+                	
+                	$(this).parent().find(".imgshow").toggle();
+                });
+                $(".imgshow").click(function(){
+                	$(this).toggle();
+                })
+                </script>
+                <div class="pages">{$departstr}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--{template footer}-->

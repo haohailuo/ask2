@@ -1,0 +1,55 @@
+<!--{template header,wap}-->
+	<div id="questions" class="mod mt15">
+		<div id="questions_tab">
+			<div class="tab-btn">
+				<ul class="cf box_title line3">
+						
+						 
+					 <!--{if 1==$status}--><li class="on" style="color:#288add;"><font color="#ff6600">？</font>待解决</li><!--{else}--><li class="active"><a href="{url category/view/$cid/1}"><font color="#ff6600">？</font>待解决</a></li><!--{/if}-->
+					
+                   
+                    <!--{if 2==$status}--><li class="on" style="color:#288add;"><font color="#1bbf00">√ </font>已解决</li><!--{else}--><li class="active"><a href="{url category/view/$cid/2}"><font color="#1bbf00">√ </font>已解决</a></li><!--{/if}-->             
+					
+						 <!--{if 4==$status}--><li class="on" style="color:#288add;">悬赏问题</li><!--{else}--><li class="active"><a href="{url category/view/$cid/4}">悬赏问题</a></li><!--{/if}-->
+				</ul>
+			</div>
+			<div class="tab-con cf w300">
+				
+				<div >
+					
+						
+						
+					
+					
+					 <ul class="questions-lists"> 	
+					
+					  <!--{loop $questionlist $question}-->
+              	
+                  
+                    
+                    <li>
+							<h3>
+							
+							 <span class="gold" style="display:inline;color:red;">    
+							             
+                            <!--{if $question['price'] > 0&& 4==$status}-->
+                            <img src="{SITE_URL}css/default/gold.gif" />{$question['price']}
+                            <!--{/if}-->
+                        </span>
+							
+							<a style="display:inline;"  href="{url question/view/$question['id']}" title="{$question['title']}">{eval echo cutstr($question['title'],50);}</a></h3>
+							
+					
+                    </li>
+              
+                <!--{/loop}-->
+                  </ul>
+              
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+  <div class="pages">{$departstr}</div>
+<!--{template footer,wap}-->

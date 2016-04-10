@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <!--{eval global $starttime,$querynum;$mtime = explode(' ', microtime());$runtime=number_format($mtime[1] + $mtime[0] - $starttime,6); $setting=$this->setting;$user=$this->user;$headernavlist=$this->nav;$regular=$this->regular;$toolbars="'".str_replace(",", "','", $setting['editor_toolbars'])."'";}-->
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+ <script type="text/javascript" src="{SITE_URL}js/jquery.js"></script>
+        <script type="text/javascript">var g_site_url = "{SITE_URL}";
+            var g_site_name = "{$setting['site_name']}";
+            var g_prefix = "{$setting['seo_prefix']}";
+            var g_suffix = "{$setting['seo_suffix']}";
+            var g_uid = {$user['uid']};</script>
+<script type="text/javascript" src="{SITE_URL}js/editor/ueditor.config.js"></script> 
+<script type="text/javascript" src="{SITE_URL}js/editor/ueditor.all.js"></script> 
+
+
+ <script type="text/plain" id="anscontent" name="content" style="height: 122px;"></script>
+                    <script type="text/javascript">UE.getEditor('anscontent', UE.utils.extend({toolbars:[[{$toolbars}]]}));</script>
+
+</body>
+</html>

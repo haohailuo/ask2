@@ -1,0 +1,31 @@
+
+<!--{template header,sowenda}-->
+   <link href="{SITE_URL}css/sowenda/base.combo.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/xinzhilist.css" rel="stylesheet" />
+     <link href="{SITE_URL}css/sowenda/listindex.combo.css" rel="stylesheet" />
+   <link href="{SITE_URL}css/sowenda/list.combo.css" rel="stylesheet" />
+    <div id="bd" class="clearfix">
+
+        <div class="mod-bread-crumb"><span><a href="{SITE_URL}">{$setting['site_name']}</a></span><span>&nbsp;&gt;&nbsp;</span><span><a href="{url tags}">网站标签</a></span></div>
+        <div class="mod-items">
+        
+        <!--{if $taglist==null}-->
+     
+        <!--{/if}-->
+             <!--{loop $taglist $index $tag}-->
+               <a target="_blank" style="margin:8px" title="$tag" href="{url tag-$tag['name']}">{$tag['name']}</a>
+              <!--{/loop}-->
+       
+            <div class="pagination" id="list-page">
+                        <p class="pages">
+                        $departstr
+                        </p>
+                    </div>
+         
+        </div>
+  
+        
+
+    </div>
+
+<!--{template footer,sowenda}-->

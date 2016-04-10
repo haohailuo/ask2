@@ -1,0 +1,41 @@
+<!--{template header,wap}-->
+<div class="labels-list">
+		<!--<h2>请选择问题标签</h2> -->
+		<div class="each-labels active">
+			<div class="hd">
+				<h3>推荐</h3>
+				<div class="operate unfold"></div>
+			</div>
+			<dl class="cf">
+			 <!--{eval $taglist=$this->fromcache('hosttaglist');}-->
+                    <!--{loop $taglist $tag}-->
+                  <dd> <a target="_blank" title="$tag['name']" href="{url tag-$tag['name']}">{$tag['name']}</a></dd>
+                  
+                  
+                   
+                    <!--{/loop}-->
+				
+				
+			</dl>
+		</div>
+		
+		<div class="each-labels" id="900" style="display:none;">
+			<div class="hd">
+				<h3>休闲/娱乐</h3>
+				<div class="operate fold"></div>
+			</div>
+			<dl class="cf">							
+						
+			</dl>
+		</div>
+		
+		
+		
+	
+		
+		
+		
+		
+	</div>
+
+<!--{template footer,wap}-->

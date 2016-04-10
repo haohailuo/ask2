@@ -1,0 +1,256 @@
+
+    
+<!--{template header,sowenda}-->
+<link href="{SITE_URL}css/sowenda/base.combo.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/index.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/index.combo.css" rel="stylesheet" />
+    <script type="text/javascript" src="{SITE_URL}js/editor/ueditor.config.js"></script> 
+<script type="text/javascript" src="{SITE_URL}js/editor/ueditor.all.js"></script> 
+    <div id="bd" class="clearfix" style="width:1200px;">
+
+
+        <!--面包屑-->
+        <div class="mod-bread-crumb"><span>{$setting['site_name']}</span><span>&nbsp;&gt;&nbsp;</span><span>通知列表</span><span>&nbsp;&gt;&nbsp;</span><span>详细通知</span></div>
+
+
+
+        <!--文章内容开始-->
+        <div class="article" style="width:892px;">
+            <!-- 文章标题 -->
+            <h1 class="art-title">{$note['title']}</h1>
+            <!-- 文章信息 -->
+            <div class="art-info">
+                <!-- 创建时间 -->
+                          <div class="time">
+                <span class="art-time">作者 : {$note['author']}</span>
+                <span class="art-time">|</span>
+                <span class="art-time">发布时间 : {$note['format_time']}</span>
+                <span class="art-time">|</span>
+                <span class="art-time">浏览{$note['views']}次</span>
+            </div>  
+                <!-- 管理员编辑，删除入口 --><!-- 原创logo --><!-- 主体内容 -->
+                <div class="content">
+                    <div class="mod-essence-ans clearfix">
+                        <div class="main-content" style="z-index:0">
+                            <div class="sections-wrap">
+                        <!-- 前言 -->
+                        <div class="section brief">
+                            <div class="content text">
+                              
+                                {$note['content']}
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <!-- 声明部分 -->
+            <div class="bshare-custom"> <p class="mod-tips"><span class="tag" style="display:inline-block">分享</span>
+                <span style="display:inline-block"> 
+
+     <a title="分享到" href="http://www.bShare.cn/" id="bshare-shareto" class="  bshare-more"></a>
+     <a title="分享到QQ空间" class="bshare-qzone">QQ空间</a>
+     <a title="分享到新浪微博" class="bshare-sinaminiblog">新浪微博</a>
+     <a title="分享到人人网" class="bshare-renren">人人网</a>
+     <a title="分享到腾讯微博" class="bshare-qqmb">腾讯微博</a>
+     <a title="分享到网易微博" class="bshare-neteasemb">网易微博</a>
+     <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis">
+     </a>
+     <span class="BSHARE_COUNT bshare-share-count">0</span>
+     
+
+     <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+ 
+   
+    </span>
+         
+        </div>
+    </div>
+
+
+
+</div>
+   <div class="your-answer-mod clearfix">
+            <div class="title">我要评论</div>
+            <form name="commentForm" action="{url note/addcomment}" method="post">
+                <input type="hidden" value="{$note['id']}" name="noteid">
+                <div class="your-answer">
+                    <script type="text/plain" id="content" name="content" style="height: 122px;"></script>
+                    <script type="text/javascript">UE.getEditor('content', UE.utils.extend({toolbars:[[{$toolbars}]]}));</script>
+                </div>
+                <div class="input-bar">
+                    <h2>验证码</h2>
+                    <input type="text" onblur="check_code()" name="code" id="code" class="code-input">&nbsp;<span class="verifycode"><img id="verifycode" onclick="javascript:updatecode();" src="{url user/code}"></span><a class="changecode" href="javascript:updatecode();">&nbsp;换一个</a>
+                    <span id="codetip" style="color:red"></span>
+                   
+                </div>
+                <div class="submit clearfix">
+                    <span class="btn btn-2" style="padding:0px;margin-top:10px;">
+                    <button type="submit" name="submit" id="submit" class="js-added-submit">提交回答</button>
+                    </span>
+                    <div class="btn-submiting js-submiting"></div>
+                    </div>
+               
+            </form>
+        </div>
+          <!--{if $commentlist}-->
+          
+          
+         <!-- 其它回答-->
+                <div class="mod-other-ans clearfix" id="hoa">
+                    <div class="answers"><div class="hd">
+                        <h2>全部回答<span></span></h2>
+                    </div>
+                    <div class="bd"><ul>
+                    
+                     <!--{loop $commentlist $index $comment}-->
+                      
+                      
+                      
+                     
+                        <li style="padding-top:17px" class="ans-item js-form" ans_id="1448174749726268" qid="1417411048">
+
+
+
+
+
+
+
+                            <div class="mod-user-label">
+
+                                <div class="l-ans clearfix">
+                                    <div class="info">
+
+                                        <a target="_blank" href="{url user/space/$comment['authorid']}" class="pic   js-ordinary-card" index="1417411048">
+                                            <img alt="{$comment['author']}" src="{$comment['avatar']}">
+                                        </a>
+                                    </div>
+
+                                    <div class="text">
+
+
+
+
+                                        <div style="margin-bottom:2px;display:inline;">
+<span>
+
+<a target="_blank" href="{url user/space/$comment['authorid']}" class="ask-author  js-ordinary-card" index="1417411048">
+{$comment['author']}
+
+</a>
+</span>
+
+
+
+
+                                        </div>
+
+
+
+                                      
+
+
+
+
+
+                                        <span class="time"> {$comment['format_time']}</span>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="other-ans-cnt">
+                     {$comment['content']}
+                            </div>
+                            <div class="mod-added-qa js-added-area" style=""><ul></ul></div>
+                            <div class="console clearfix">
+                            <div class="clearfix">
+                             <div class="action">
+                            <span class="js-operate" >
+                           <!--{if $user['grouptype']==1}-->
+
+                           <a  class="js-report  ui-report"  href="javascript:void(0);" onclick="delete_comment('{$note['id']}', '{$comment['id']}')">删除</a>
+                            <!--{/if}-->
+
+                            <!-- <span class="line ui-line last-line"></span> -->
+                            </span>
+                           
+                            </div>
+                            </div>
+                            <div class="js-form-area add-area">
+                             
+                            </div>
+                            </div>
+                            
+                           
+                            
+                            </li>
+
+ 
+                       <!--{/loop}-->
+
+
+                    </ul>
+                       
+                    </div>
+                        <div class="ft"><div class="pagination" id=""><p class="pages">{$departstr}</p></div></div>
+                    </div>
+                </div>
+                
+                  <!--{/if}-->
+</div>
+
+        <!--文章内容结束-->
+        <div class="aside">
+            <!--作者信息开始-->
+            <div class="mod-author-info">
+                
+                <div class="other" style="margin-top:0px;">
+                    <h3><a href="{url topic/userxinzhi/$member['uid']}">最新通知</a></h3>
+                    <ul>
+                    
+                       <!--{eval $notelist=$this->fromcache('notelist');}-->
+                <!--{loop $notelist $note}-->
+                <li><a target="_blank" title="{$note['title']}" {if $note['url']}href="{$note['url']}"{else}href="{url note/view/$note['id']}"{/if}>{eval echo cutstr({$note['title']},28);}</a></li>
+                <!--{/loop}-->
+                    </ul>
+                   
+                </div>
+            </div>
+            <!--作者信息结束-->
+        </div>
+        
+
+    </div>
+    <link rel="stylesheet" href="{SITE_URL}js/lightbox/lightbox.css"/>
+<script type="text/javascript" src="{SITE_URL}js/lightbox/lightbox.js"></script>
+    <script type="text/javascript">
+                                        $(document).ready(function(){
+                                $(".anscontent img,.content img").each(function(i){
+                                var img = $(this);
+                                        $.ajax({
+                                        type: "POST",
+                                                url: "{url index/ajaxchkimg}",
+                                                async: true,
+                                                data: "imgsrc=" + img.attr("src"),
+                                                success: function(status){
+                                                if ('1' == status){
+                                                img.wrap("<a href='" + img.attr("src") + "' title='" + img.attr("title") + "' data-lightbox='comment'></a>");
+                                                }
+                                                }
+                                        });
+                                });
+                                });
+                                        function delete_comment(noteid, commentid) {
+                                        if (confirm('确定删除改评论？') === true) {
+                                        document.location.href = g_site_url + '' + query + 'note/deletecomment/' + noteid + '/' + commentid + g_suffix;
+                                        }
+                                        }
+</script>
+<script>
+$(".js-foot-close").click(function(){
+	$(".mod-fixed").hide();
+	return false;
+})
+</script>
+<!--{template footer,sowenda}-->

@@ -1,0 +1,48 @@
+
+<!--{template header,sowenda}-->
+   <link href="{SITE_URL}css/sowenda/base.combo.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/xinzhilist.css" rel="stylesheet" />
+     <link href="{SITE_URL}css/sowenda/listindex.combo.css" rel="stylesheet" />
+   <link href="{SITE_URL}css/sowenda/list.combo.css" rel="stylesheet" />
+    <div id="bd" class="clearfix">
+
+        <div class="mod-bread-crumb"><span><a href="{SITE_URL}">{$setting['site_name']}</a></span><span>&nbsp;&gt;&nbsp;</span><span><a href="{url new}">最近更新</a></span></div>
+        <div class="mod-items">
+        
+        <!--{if $questionlist==null}-->
+        
+        <!--{/if}-->
+             <!--{loop $questionlist $index $question}-->
+                  <div class="item clearfix" style="height:auto">
+                <div class="info" style="width:auto;float:none">
+                <h3 style="width:550px;"><a href="{url question/view/$question['id']}" target="_blank" title="{$question['title']}">{$question['title']}</a></h3>
+              <span style="float:right;position:relative;top:-30px;">{$question['format_time']}</span>
+                <!-- 分类 -->
+
+
+<!--{if $question['tags']}-->  <i class="line"></i>
+                       标签：
+                        
+<!--{loop $question['tags'] $tag}-->
+<span><a target="_blank" title="$tag" href="{url question/search/$tag}">{$tag}</a></span>
+                
+                <!--{/loop}--><!--{else}--><!--{/if}-->
+                      
+                        <!-- 分类 -->
+            </div>
+            </div>
+              <!--{/loop}-->
+       
+            <div class="pagination" id="list-page">
+                        <p class="pages">
+                           {$departstr}
+                        </p>
+                    </div>
+         
+        </div>
+  
+        
+
+    </div>
+
+<!--{template footer,sowenda}-->

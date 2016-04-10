@@ -1,0 +1,456 @@
+<!--{template header,wap}-->
+<link rel="stylesheet" type="text/css" href="{SITE_URL}css/wap/main.css" />
+    <article id="main">
+        <div class="floor first-floor">
+            <div class="poster-info">
+                <div class="poster">
+                 
+                
+                 <!--{if $question['hidden']}-->
+                <span>匿名</span>
+                    <!--{elseif $question['authorid']==0}-->
+                    <span><!--{if $question['ip']}-->{$question['ip']}<!--{else}-->游客<!--{/if}--></span>
+                    <!--{else}-->
+                    <span><a  href="{url user/space/$question['authorid']}" target="_blank" >{$question['author']}</a></span>
+                    <!--{/if}-->
+               </div>
+                <span class="time gray">{$question['format_time']}</span> </div>
+            <h1 class="post-title" topicid="19pm6sbi87tb8re3v0fjprcsf8ltbj5uisg60">{$question['title']}</h1>
+             <!--{if $question['description']!=''}-->
+                 <div class="post-details">
+             {$question['description']}
+              <ul>
+                    <!--{loop $supplylist $supply}-->
+                    <li><span class="time">问题补充 : {$supply['format_time']}</span>{$supply['content']}</li>
+                    <!--{/loop}-->
+                </ul>
+            </div>
+              <!--{/if}--> 
+        
+            <div class="functions hAuto"> <span class="class">
+                 <!--{loop $taglist $tag}-->
+                <a target="_blank" title="$tag" href="{url question/search/tag:$tag}">{$tag}</a>
+                <!--{/loop}-->
+                
+                </span> </div>
+            <ul class="functions_elite mt25">
+                <li> 
+                	
+                          
+						<a class="favMenu favMenued" href="{url favorite/add/$question['id']}"><i class="ico"></i><span>收藏</span><b></b></a>
+                </li>
+                <li><a href="javascript:void(0)" class="question_share"><i class="ico"></i><span>分享</span><b></b></a></li>
+                <li><a href="javascript:void(0)" class="question_answer"><i class="ico"></i><span>回答</span></a></li>
+            </ul>
+        </div>
+        <div class="comment_list cf">
+            <div class="hd box_title">
+                <h2>回答({$question['answers']})</h2>
+            </div>
+            
+            
+                    <!--{loop $answerlist $index $answer}-->
+                    
+                        
+                    
+                    
+                        <div class="floor other-floor ">
+                            <div class="poster-info">
+                                <div class="poster"><a href="{url user/space/$answer['authorid']}">{$answer['author']}</a></div>
+                                <span class="time gray">{$answer['time']}</span> </div>
+                            <div class="post-details">                              
+                                
+								
+                       {$answer['content']}            
+                            </div>
+                            <div class="functions">
+                                <div style="float:left;" id="{$answer['id']}">
+                                     <span class="support button_agree" >{$answer['supports']}</span>  
+                                </div>
+                                <div style="float:right;"> <span asid="{$answer['id']}" id="cm_{$answer['id']}" class="add-comment" >添加评论(<em>{$answer['comments']}</em>)</span><!-- |<span class="complaints">投诉</span>--></div>
+                            </div>
+                            <div class="comment hide" id="comment_{$answer['id']}">
+                                <!--<div class="comm-arrow-label"></div> -->
+                                
+                                    <ul class="mb15 comments-list" >
+                                        
+                                           
+                                        
+                                    </ul>
+                                
+                                <div class="comm-box zero-answer">
+                                	 
+                   					 
+                       				  <textarea name="content" class="comment-input"   placeholder="请输入评论内容"></textarea>
+                    				 
+                                
+                                   
+                                </div>
+                                <div class="functions mt15 cf">
+                                
+                                <input type='hidden' value='0' name='replyauthor' />
+                               
+                                    <button type="button" name="submit" onclick="addcomment({$answer['id']});" class=" ui-btn ui-btn-border" style="width:100%;color: #fff;border-style:none;background: #40adff;font-size: 14px;" >
+                                   发布评论
+                                    </button>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    
+                    
+                
+                    
+                        
+                     <!--{/loop}-->
+                    
+                     
+                
+                    
+                    
+                        
+                    
+                    
+                        
+                    
+                    
+                    
+                
+            
+        </div>
+    </article>
+<div class="pages">{$departstr}</div>
+    
+    
+            <div class="post mb15" >
+              <form name="answerForm" action="{url question/answer}" method="post">
+               <input type="hidden" value="{$question['id']}" name="qid">
+                <input type="hidden" value="{$question['title']}" name="title">
+                <div class="post-box mb15" >
+                    
+                    
+                        <textarea id="anscontent"  name="content"  placeholder="在此输入回答内容" id="answer"></textarea><input type="hidden" id="user_action" name="action" value="f0.1436662617406.0|eec8c4fb1dcd9dd765346b3d7bb499bb|d41d8cd98f00b204e9800998ecf8427e|Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X; en-us) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53|v2.3.9">
+                    
+                </div>
+                <div class="lightdeepblue-linear2 post-question mb15 fs14" >
+                <button  type="submit" name="submit" style="width:100%;height:100%;color: #fff;border-style:none;background: #40adff;font-size: 14px;" >
+                发布回答
+                </button>
+               
+                
+               </div>
+           </form>
+            </div>
+        
+    
+    <!-- -->
+    
+    
+    <div id="similar_question" class="mod1">
+        <div class="hd box_title">
+            <h2>相似问题</h2>
+        </div>
+        <ul class="top-newslist">
+            
+            
+                
+            
+                  <!--{loop $solvelist $solve}-->
+                    <li><a href="{url question/view/$solve['id']}">{$solve['title']}</a></li>
+
+                <!--{/loop}-->
+                    
+                  
+                
+            
+                
+                 
+                
+            
+        </ul>
+    </div>
+      
+    
+    
+    <!--热门问题 -->
+    <div id="similar_question" class="mod1">
+        <div class="hd box_title">
+            <h2>热门问题</h2>
+        </div>
+        <ul class="top-newslist">
+            
+           <!--{eval $attentionlist=$this->fromcache('attentionlist');}-->
+                    <!--{loop $attentionlist $index $question}-->
+                    <!--{eval $index++;}-->
+                    <li>
+                      
+                        <a  title="{$question['title']}" target="_blank" href="{url question/view/$question['id']}">{eval echo cutstr($question['title'],40,'');}</a>
+                    </li>
+                    <!--{/loop}-->  
+            
+                
+            
+        </ul>
+    </div>
+    <!--热门问题 end -->
+     
+    
+    
+  
+    <div id="wait_answer" class="mod1">
+        <div class="hd box_title">
+            <h2>等你回答</h2>
+        </div>
+        <ul class="top-newslist">
+             <!--{eval $nosolvelist=$this->fromcache('nosolvelist');}-->
+                <!--{loop $nosolvelist $index $question}-->
+               		
+                    <li>
+                       
+                        <a target="_blank" href="{url question/view/$question['id']}" title="{$question['title']}">{eval echo cutstr($question['title'],50);}</a>
+                     
+                    </li>
+              
+                <!--{/loop}-->
+                
+        </ul>
+    </div>
+   
+</div>
+<!-- footer -->
+<!-- footer -->
+<center><span style="font-size:12px;">WAP版权归属:<a href="{SITE_URL}">{$setting['site_name']}</a><!--{if $setting['site_statcode']}-->
+            {$setting['site_statcode']}
+            <!--{/if}--></span></center>
+<!--end footer -->
+
+<div class="goTop" id="goTop" style="display: none;"></div>
+<script type="text/javascript" src="{SITE_URL}js/wap/TY_m_2.0.js"></script>
+<script type="text/javascript" src="{SITE_URL}js/wap/TYWenda.m.js"></script>
+<script type="text/javascript" charset="utf-8" src="{SITE_URL}js/wap/stat_20080313.js"></script>
+<script type="text/javascript">
+                              
+                                $(document).ready(function() {
+                      
+                     
+                     
+                              
+                                $(".button_agree").click(function(){
+                        var supportobj = $(this);
+                                var answerid = $(this).parent().attr("id");
+                              var valcount= $(this).html();
+                            
+                                $.ajax({
+                                type: "GET",
+                                        url:"{SITE_URL}index.php?answer/ajaxhassupport/" + answerid,
+                                        cache: false,
+                                        success: function(hassupport){
+                                        
+                                        if (hassupport != '1'){
+                                       
+                                                $.ajax({
+                                                type: "GET",
+                                                        cache:false,
+                                                        url: "{SITE_URL}index.php?answer/ajaxaddsupport/" + answerid,
+                                                        success: function(comments) {
+                                                        	valcount=parseInt(valcount)+1;
+                                                        	// supportobj.val(valcount);
+                                                        	 supportobj.html(valcount);
+                                                        }
+                                                });
+                                        }else{
+                                        	
+                                        	   TYWenda.m.showMsg("已赞同", 1);
+                                        	
+                                        }
+                                        }
+                                });
+                        });
+                                SyntaxHighlighter.all();
+                        });
+                                $(".add-comment").click(function(){
+                                	var id=$(this).attr("asid");
+                                	
+                                	show_comment(id);
+                                });
+                                function show_comment(answerid) {
+                                if ($("#comment_" + answerid).css("display") === "none") {
+                                load_comment(answerid);
+                                        $("#comment_" + answerid).slideDown();
+                                } else {
+                                $("#comment_" + answerid).slideUp();
+                                }
+                                }
+
+                        
+
+                     
+               
+
+
+                        //添加评论
+                        function addcomment(answerid) {
+                        var content = $("#comment_" + answerid + " .comment-input").val();
+                       
+                        var replyauthor = $("#comment_" + answerid + " input[name='replyauthor']").val();
+                      
+                        if (g_uid == 0){
+                            window.location.href='{url user/login}';
+                            return false;
+                        }
+                        if (bytes($.trim(content)) < 2){
+                        alert("评论内容不能少于2字");
+                                return false;
+                        }
+                       
+                        $.ajax({
+                        type: "POST",
+                                url: "{url answer/addcomment}",
+                                data: "content=" + content + "&answerid=" + answerid+"&replyauthor="+replyauthor,
+                                success: function(status) {
+                                if (status == '1') {
+                                $("#comment_" + answerid + " input[name='content']").val("");
+                                        load_comment(answerid);
+                                }
+                                }
+                        });
+                        }
+
+                 
+                        function load_comment(answerid){
+                        $.ajax({
+                        type: "GET",
+                                cache:false,
+                                url: "{SITE_URL}index.php?answer/ajaxviewcomment/" + answerid,
+                                success: function(comments) {
+                                $("#comment_" + answerid + " .comments-list").html(comments);
+                               var len= $("#comment_" + answerid + " .comments-list").find("li").length;
+                               $("#cm_"+answerid).html("添加评论(<em>"+len+"<em>)");
+                                }
+                        });
+                        }
+                        function bytes(str) {
+                            var len = 0;
+                            for (var i = 0; i < str.length; i++) {
+                                if (str.charCodeAt(i) > 127) {
+                                    len++;
+                                }
+                                len++;
+                            }
+                            return len;
+                        }
+                        function replycomment(commentauthorid,answerid){
+                            var comment_author = $("#comment_author_"+commentauthorid).attr("title");
+                            $("#comment_"+answerid+" .comment-input").focus();
+                            $("#comment_"+answerid+" .comment-input").val("回复 "+comment_author+" :");
+                            $("#comment_" + answerid + " input[name='replyauthor']").val(commentauthorid);
+                        }
+                 
+
+
+</script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23887046-5']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  
+  var gH=TY(window).height();
+  var ft_p=TY("#ft").position().top;
+  var ft_h=TY("#ft").height();
+  if(ft_p+ft_h<gH){
+  	TY("#ft").addClass("ft_fixed");
+  }else{
+	TY("#ft").removeClass("ft_fixed");  
+  }
+  
+  
+</script> 
+<!--end footer -->
+
+<script type="text/javascript">
+	TYWenda.m.initPage.thread();
+	
+	//回答跳转
+	$(".question_answer").click(function(){
+		var t=$(".post-box").offset();
+		$("body").scrollTop(t.top-50);
+	})
+	
+	
+	var adsGlobal = {itemId : "998",pageType : "03"};
+    (function(){
+		var tid = TY("h1.post-title").attr("topicid");
+		TY.loadUrl("http://wenda.tianya.cn/topic?action=countTopic&topicId="+tid)
+	})();
+	
+</script> 
+<!--share  --> 
+<script type="text/javascript">
+TY(".question_share").click(function(){
+	var h=TY(window).height();
+	TY(".pop_share_cover").height(h);
+	TY(".pop_share,.pop_share_cover").show();	
+})	
+TY(".pop_share_cover,.pop_share_clo").click(function(){
+	TY(".pop_share,.pop_share_cover").hide();	
+})
+</script> 
+<!--share end -->
+<script type="text/javascript">
+var gVote_zf=0,
+    gVote_ff=0;
+	
+if($(".pk_show").length==1){
+	$(".question_answer").hide();
+	
+	
+	var ch=$(".pk_show .zf .c").height();			//观点距离一致
+	var ch2=$(".pk_show .ff .c").height();
+	ch>=ch2?ch=ch:ch=ch2;
+	var ch=$(".pk_show ul .c").height(ch);	
+	if (!__global.isOnline()) {
+		$(".pk_show ul .i").prepend("<a href='{url user/login}'  class='unLoginLink loginPost'>立即登录，登录后可评论</a> ")
+		$(".pk_show ul .b").hide();	
+	}
+	
+	//点击显示
+	$(".pk_show ul .t").click(function(){
+		$(".pk_show ul").removeClass("ul_show");
+		$(this).parent().addClass("ul_show");
+		$(".pk_show ul .b input").val("确认");
+	});
+	setRatio();
+	
+}	
+	
+function setRatio(){
+	$(".pk_show .ratio .zf_num").text(gVote_zf);
+	$(".pk_show .ratio .ff_num").text(gVote_ff);
+	if(!(gVote_zf==0&&gVote_ff==0)){
+		$(".pk_show .pk_c1").width( 100*gVote_zf/(gVote_zf+gVote_ff)+"%" )	
+	}
+}	
+
+function addVote(i){
+	if(i=="1"){gVote_zf=gVote_zf+1	}
+	if(i=="-1"){gVote_ff=gVote_ff+1	}
+	setRatio();
+}	
+	
+	
+	
+	
+	      
+</script> 
+
+
+
+
+
+
+<div style="width: 0px; height: 0px;"><object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="0" height="0" id="TYFC1" align="middle"><param name="allowScriptAccess" value="always"><param name="allowNetworking" value="all"><param name="movie" value="http://static.tianya.cn/js/2010/cookie.swf"><param name="quality" value="high"><param name="bgcolor" value="#ffffff"><embed src="http://static.tianya.cn/js/2010/cookie.swf" quality="high" bgcolor="#ffffff" width="0" height="0" id="TYFC2" align="middle" allowscriptaccess="always" allownetworking="all" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></object></div></body></html>

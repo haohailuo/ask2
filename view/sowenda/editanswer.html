@@ -1,0 +1,47 @@
+<!--{template header}-->
+<!--{eval $adlist = $this->fromcache("adlist");}-->
+
+<script type="text/javascript" src="{SITE_URL}js/editor/ueditor.config.js"></script> 
+<script type="text/javascript" src="{SITE_URL}js/editor/ueditor.all.js"></script> 
+
+ <!-- 中间内容部分-->
+
+        <div id="bd" class="mod-detail" style="margin-top:16px;">
+        
+           <div class="grid clearfix"><!-- 填空回答，安仔提示 -->
+           <div class="article " id="js-detail">
+           <div class="nav-line"><a class="first" href="{SITE_URL}">{$setting['site_name']}</a> &gt; <a href="{url question/view/$question['id']}">{$question['title']}</a> &gt; <span>编辑回答</span></div>
+            <div class="mod-q mod-q-height js-form" ask_id="1448174703614371" style="border-bottom:0;">
+           
+           
+               <form name="answerform" onsubmit="return check_form();" action="{url question/editanswer}" method="post" >
+               
+                <script type="text/plain" id="editor" name="content" style="height: 222px;">{$answer['content']}</script>
+                        <script type="text/javascript">UE.getEditor('editor', UE.utils.extend({toolbars:[[{$toolbars}]]}));</script>
+                        
+                           <div class="ask-input-bar clearfix">
+                    <!--{if $user['grouptype']!=1}-->
+                    <h2>验证码</h2>
+                    <input type="text" class="code-input" id="code" name="code" onblur="check_code()">&nbsp;<span class="verifycode"><img src="{url user/code}" onclick="javascript:updatecode();" id="verifycode"></span><a href="javascript:updatecode();" class="changecode">&nbsp;换一个</a>
+                    <span id="codetip"></span>
+                    <!--{/if}-->
+                    <input type="hidden" value="{$aid}" name="aid" />
+                    <input type="submit" value="保存修改" class="btn btn-2 sendbtn flright"  name="submit" />
+                </div>
+                        
+               </form>
+           
+           </div>
+           
+           </div>
+           
+           </div>
+           
+           
+           </div>
+
+
+
+
+
+<!--{template footer}-->

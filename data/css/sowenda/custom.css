@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+.input_title {
+    border: 2px #3eaf0e solid;
+    -moz-box-shadow: 3px 3px 3px #eee inset;
+    -webkit-box-shadow: 3px 3px 3px #eee inset;
+    box-shadow: 3px 3px 3px #eee inset;
+    height: 34px;
+    margin-right: 5px;
+    margin-top: 1px;
+    width: 422px;
+}
+ .add-img-html5 {
+    display: inline-block;
+    float: left;
+    height: 24px;
+    line-height: 24px;
+    overflow: hidden;
+    padding-right: 10px;
+    position: relative;
+}
+ .add-img-html5 a {
+    color: #00a204;
+}
+ .add-img-html5 span {
+    background: url(http://p18.qhimg.com/t0166fc6089b49e677d.gif) 50% 50% no-repeat;
+    float: left;
+    height: 24px;
+    width: 26px;
+}
+.topicclass{
+	  border: 2px #3eaf0e solid;
+    -moz-box-shadow: 3px 3px 3px #eee inset;
+    -webkit-box-shadow: 3px 3px 3px #eee inset;
+    box-shadow: 3px 3px 3px #eee inset;
+}

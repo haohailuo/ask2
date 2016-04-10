@@ -1,0 +1,89 @@
+
+
+
+
+<!--{template header,sowenda}-->
+    <link href="{SITE_URL}css/sowenda/new.combo.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/user.combo.css" rel="stylesheet" />
+<!-- 中间内容部分-->
+
+    <div id="bd">
+        <div class="grid main-cnt">
+             <!--{template user_menu,sowenda}-->
+
+                <div class="article">
+
+                    <div class="mod-qa-list">
+                        <div class="hd">
+                            <h3>为我推荐的问题</span>
+                        </div>
+                        <div class="bd" style="margin: 10px 0 15px;">
+                            <div class="qa-type js-qa-type">
+                             
+                            </div>
+                            <div class="loading js-loading"></div>
+                            <div class="qa-list js-status-wrap">
+                             
+                             
+ 
+  <!--{if $questionlist}-->
+
+   <ul>
+ <!--{loop $questionlist $question}-->
+                    <li class="item" ask_id="{$question['id']}" ans_id="">
+                <a target="_blank" href="{url question/view/$question['id']}" class="lnk">
+                    <div>   
+                                <i class="uns" title="待解决问题"></i>
+                                <span class="title" title="{$question['title']}">{eval echo cutstr($question['title'],84)}</span>
+                                                                                                                             
+                            </div>
+                        <div class="info">
+                                    回答：{$question['answers']} &nbsp;&nbsp;|&nbsp;&nbsp;
+                    浏览：{$question['views']} &nbsp;&nbsp;|&nbsp;&nbsp;
+                               {$question['format_time']}
+            </div>
+
+        </a>
+        <div class="right">
+            
+                                    
+                 
+
+                    </div>
+    </li>
+              <!--{/loop}-->        
+      
+</ul>
+ <div class="pagination" id="list-page">
+                        <p class="pages">
+                           {$departstr}
+                        </p>
+                    </div>
+   <!--{else}-->
+     <div class="mod-nolist">
+                            <div class="smile ">
+                            
+
+                                <span>亲，快设置下擅长领域吧，设置后可根据您的兴趣爱好为您推荐合适的问题!</span><a href="{url user/mycategory}">点击设置擅长领域</a>
+                            </div>
+                        </div>
+    <!--{/if}-->
+    
+
+                      
+                    </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+<!--{template footer,sowenda}-->
+
+
+
+

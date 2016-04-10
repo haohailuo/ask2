@@ -1,0 +1,66 @@
+
+<!--{template header,sowenda}-->
+    <link href="{SITE_URL}css/sowenda/new.combo.css" rel="stylesheet" />
+    <link href="{SITE_URL}css/sowenda/user.combo.css" rel="stylesheet" />
+<!-- 中间内容部分-->
+
+    <div id="bd">
+        <div class="grid main-cnt">
+             <!--{template user_menu,sowenda}-->
+
+
+                <div class="article">
+
+                    <div class="mod-qa-list">
+                        <div class="hd"><h3>我的回答</h3>&nbsp;<span>({$answersize})</span>
+                        </div>
+                        <div class="bd" style="margin: 10px 0 15px;">
+                          <!--{if $answerlist}-->
+                        <ul>
+                           <!--{loop $answerlist $answer}-->
+                        <li class="item" ask_id="1451964616497528" ans_id="1451964653720516">
+                        <a target="_blank" href="{url question/view/$answer['qid']/u-$user['uid']/a-$answer['id']}" class="lnk left">
+                        <div class="left">
+                        <i class="uns" title="待解决问题"></i>
+                        <span class="title" title="{$answer['title']}">{eval echo cutstr($answer['title'],54)}</span>
+                        <span class="tag">
+                        {if $answer['adopttime']>0}<font color="green">已采纳</font>{else}新补充{/if}
+                        </span>
+                        </div>
+                       
+                        </a>
+                        <div class="right" style="top:5px">
+                        <span class="st-text">{$answer['time']}</span>
+                        </div>
+                        </li>
+                           <!--{/loop}-->
+</ul>
+ <div class="pagination" id="list-page">
+                        <p class="pages">
+                           {$departstr}
+                        </p>
+                    </div>
+                           <!--{else}-->
+                             <div class="mod-nolist"><div class="smile">
+                                <span>您还没有回答过呢！快去点此</span>
+                                <a href="{url category/view/all}">回答问题吧</a>
+                            </div>
+                            </div>
+                               <!--{/if}-->
+                          
+                            
+                            
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+<!--{template footer,sowenda}-->

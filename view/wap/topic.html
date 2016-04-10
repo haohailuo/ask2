@@ -1,0 +1,26 @@
+<!--{template header,wap}-->
+    <!--精华知识 -->
+    <div id="elite" class="mod">
+        <div class="hd box_title">
+            <h2>精华知识</h2>
+        </div>
+        <ul id="elite_lists" class="elite_lists">
+        
+        	 <!--{loop $topiclist $index $topic}-->
+        	<a href="{url topic/getone/$topic['id']}" class="elite_btn">
+            	<span class="pic"><img src="{SITE_URL}{$topic['image']}"></span>
+                <span class="r">
+                	<span class="subject">{eval echo cutstr($topic['title'],24,'');}</span>
+                	<span class="name">{eval echo cutstr(strip_tags($topic['describtion']),30,'...');}</span>
+                    <span class="browse">{$topic['views']}</span>
+                </span>
+                
+            </a>
+            
+         
+         <!--{/loop}-->
+              
+        </ul>
+    </div> 
+     <div class="pages">{$departstr}</div>	   
+    <!--精华知识 end -->   

@@ -1,0 +1,44 @@
+<div class="aside">
+                <div class="aside-userinfo">
+                    <div class="avatar">
+                        <a target="_blank" href="{url user/editimg}" title="点击修改头像" class="pic">
+                            <img src="{$user['avatar']}">
+                        </a>
+                        <div id="pic_shine" class="shine" style="display: none;"></div>
+                    </div>
+                    <p>
+                        <span class="name">{$user['username']}</span>
+                        <a href="" class="nickname-tip-big" title="称吧！" target="_blank"></a>&nbsp;&nbsp;
+                        <a href="#" target="_blank" title="等级{$user['level']}" class="ico-lv ico-lv-{$user['level']}">&nbsp;</a>
+                        <!-- <a class="sina"></a> -->
+                    </p>
+                    <p class="editNickWrap" id="js-modify-nick">
+                        <span class="editNickBtn">
+
+                        </span>
+                        <a href="{url user/profile}" class="modify-nickname">修改个人资料</a>
+                    </p>
+                    <p>金&nbsp;&nbsp;&nbsp;币：<a href="/user/rewardLog"><i class="weath"></i>{$user['credit2']}</a></p>
+                    <p>经验值：<a href="/user/rewardLog">{$user['credit1']}</a></p>
+                </div>
+                <div class="aside-menu">
+                    <ul>
+                     <li<!--{if strstr($regular,"user/score")}--> class="on"<!--{/if}-->><!--{if strstr($regular,"user/score")}--><a href="{url user/score}"><i class="m-ach"></i>我的首页</a><!--{else}--><a href="{url user/score}"><i class="m-ach"></i>我的首页</a><!--{/if}--></li>
+                       
+                       
+                                    <li<!--{if strstr($regular,"user/ask")}--> class="on"<!--{/if}-->><!--{if strstr($regular,"user/ask")}--><a href="{url user/ask/1}"><i class="m-ask"></i>我的提问</a><!--{else}--><a href="{url user/ask/1}"><i class="m-ask"></i>我的提问</a><!--{/if}--></li>
+                     
+                         <li<!--{if strstr($regular,"user/answer")}--> class="on"<!--{/if}-->><!--{if strstr($regular,"user/answer")}--><a href="{url user/answer/1}"><i class="m-ans"></i>我的回答</a><!--{else}--><a href="{url user/answer/1}"><i class="m-ans"></i>我的回答</a><!--{/if}--></li>
+                       
+                      
+                     
+                          <li<!--{if strstr($regular,"user/xinzhi")}--> class="on"<!--{/if}-->><!--{if strstr($regular,"user/xinzhi")}--><a href="{url topic/userxinzhi/$user['uid']}"><i class="m-xinzhi"></i>我的新知</a><!--{else}--><a href="{url topic/userxinzhi/$user['uid']}"><i class="m-xinzhi"></i>我的新知</a><!--{/if}--></li>
+                 
+                     
+                        
+                        <li<!--{if strstr($regular,"message")}--> class="on"<!--{/if}-->><!--{if strstr($regular,"message")}--><a href="{url message/personal}"><i class="m-msg"></i>我的消息</a><!--{else}--><a href="{url message/personal}"><i class="m-msg"></i>我的消息</a><!--{/if}--></li>
+                     
+                        <li><a href="{url user/mycategory}"><i class="m-set"></i>我的设置</a></li>
+                    </ul>
+                </div>
+            </div>
