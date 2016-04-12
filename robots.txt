@@ -1,5 +1,5 @@
 #
-# robots.txt for TIPASK 2.0
+# robots.txt for ask2
 #
 #
 
