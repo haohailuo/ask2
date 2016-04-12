@@ -1,6 +1,6 @@
 <?php
 
-/* the tipask entrance */
+/* the ask2 entrance */
 error_reporting(0);
 $mtime = explode(' ', microtime());
 $starttime = $mtime[1] + $mtime[0];
